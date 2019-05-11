@@ -35,7 +35,7 @@ public class DriverProvider {
         driver.manage().timeouts().pageLoadTimeout(seconds, TimeUnit.SECONDS);
     }
 
-    public static String getDriverURL(){
-        return driver.getCurrentUrl();
+    public static void scriptLoadTimeout(int seconds){
+        driver.manage().timeouts().setScriptTimeout(seconds, TimeUnit.SECONDS);
     }
 }

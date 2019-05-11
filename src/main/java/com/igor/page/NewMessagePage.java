@@ -1,13 +1,17 @@
 package com.igor.page;
 
+import com.igor.provider.DriverProvider;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class NewMessagePage extends BasePage {
     @FindBy(xpath = "//textarea[@name='to']")
     private WebElement receiverField;
-    @FindBy(xpath = "//form[@enctype='multipart/form-data']/div[2]/div")
+    @FindBy(xpath = "//form[@enctype='multipart/form-data']/div[1]")
     private WebElement receiverArea;
     @FindBy(xpath = "//input[@name='to']/preceding-sibling::span/div[2]")
     private WebElement deleteContact;
@@ -40,7 +44,7 @@ public class NewMessagePage extends BasePage {
     public boolean alertDialogIsEnable() {
         try {
             buttonOkInAlertDialog.getText();
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return false;
         }
         return true;
@@ -50,8 +54,10 @@ public class NewMessagePage extends BasePage {
         buttonOkInAlertDialog.click();
     }
 
-    public void clickToDeleteContact(){
-        receiverArea.click();
+    public void clickToDeleteContact() {
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].removeAttribute('style')", receiverArea);
+        driverWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='to']/preceding-sibling::span/div[2]")));
         deleteContact.click();
     }
 }
