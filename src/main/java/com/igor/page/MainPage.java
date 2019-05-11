@@ -18,6 +18,7 @@ public class MainPage extends BasePage{
     }
 
     public SentPage goToSentPage(){
+        searchField.clear();
         searchField.sendKeys("in:sent");
         searchButton.click();
         driverWait.until(ExpectedConditions.urlContains("sent"));
