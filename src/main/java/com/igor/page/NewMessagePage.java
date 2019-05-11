@@ -1,6 +1,5 @@
 package com.igor.page;
 
-import com.igor.provider.DriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
@@ -55,8 +54,9 @@ public class NewMessagePage extends BasePage {
     }
 
     public void clickToDeleteContact() {
-        ((JavascriptExecutor) driver).executeScript(
-                "arguments[0].removeAttribute('style')", receiverArea);
+        //doing receiver enable
+        ((JavascriptExecutor) driver).executeScript("arguments[0].removeAttribute('style')", receiverArea);
+        //waiting while js is running
         driverWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='to']/preceding-sibling::span/div[2]")));
         deleteContact.click();
     }
