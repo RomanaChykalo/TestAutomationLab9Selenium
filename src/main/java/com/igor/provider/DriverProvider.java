@@ -24,8 +24,7 @@ public class DriverProvider {
         driverWait = new WebDriverWait(driver, 10);
     }
 
-    private DriverProvider() {
-    }
+    private DriverProvider() { }
 
     public static WebDriver getDriver() {
         return driver;

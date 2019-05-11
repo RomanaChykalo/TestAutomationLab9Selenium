@@ -1,30 +1,24 @@
 package com.igor;
 
-import com.igor.model.Spoiler;
 import com.igor.page.LogInPage;
 import com.igor.page.MainPage;
 import com.igor.page.NewMessagePage;
 import com.igor.page.SentPage;
+import static com.igor.parser.JsonParser.*;
 import com.igor.provider.DriverProvider;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.*;
 
 public class GmailTest {
-    private static final Logger LOGGER = LogManager.getLogger(GmailTest.class);
-    private static final String INITIAL_URL = "https://mail.google.com/";
-    private static final String EMAIL_NAME = "groot.epam@gmail.com";
-    private static final String EMAIL_PASSWORD = "iamgroot";
-    private static final String RECEIVER_EMAIL = "paprika0015@gmail.com";
-    private static final String INCORRECT_RECEIVER_EMAIL = "Tralalala";
-    private static final String MESSAGE = "I am Groot! " + Spoiler.getSpoiler();
-    private static final String MESSAGE_TITLE = "Final battle";
+    private static final String EMAIL_NAME = getUserName();
+    private static final String EMAIL_PASSWORD = getPassword();
+    private static final String INCORRECT_RECEIVER_EMAIL = getReceiver(0);
+    private static final String RECEIVER_EMAIL = getReceiver(1);
+    private static final String MESSAGE = getMessage();
+    private static final String MESSAGE_TITLE = getTitle();
 
     @AfterClass
     public void quitDriver() {

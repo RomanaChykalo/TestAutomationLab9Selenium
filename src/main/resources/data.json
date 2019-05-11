@@ -1,0 +1,16 @@
+{
+    "username":"groot.epam@gmail.com",
+    "password":"iamgroot",
+    "receivers": [
+        "Tralalala",
+        "paprika0015@gmail.com"
+    ],
+    "title": "Final battle",
+    "messages": [
+        "I am Groot!",
+        "Natasha was hot, but she 's gone.",
+        "Mr. Stark died.",
+        "They travelled in time.",
+        "Captain America has almost gone."
+    ]
+}
