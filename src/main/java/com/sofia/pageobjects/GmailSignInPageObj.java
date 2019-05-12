@@ -6,8 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static com.sofia.utilmanager.Property.getProperty;
+
 public class GmailSignInPageObj {
-    private static final String SIGN_IN_PAGE = "https://mail.google.com";
+    private static final String SIGN_IN_PAGE = getProperty("login_page");
 
     @FindBy(xpath = "//input[@id='identifierId']")
     private WebElement usernameInput;

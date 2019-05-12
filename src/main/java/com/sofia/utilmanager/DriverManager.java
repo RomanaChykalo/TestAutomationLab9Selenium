@@ -1,30 +1,36 @@
-package com.sofia.drivermanager;
+package com.sofia.utilmanager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
+
+import static com.sofia.utilmanager.Property.getProperty;
 
 public class DriverManager {
     private static WebDriver driver;
-    private static final String DRIVER_PATH = "src/main/resources/chromedriver.exe";
-    private static final String WEB_DRIVER_NAME = "webdriver.chrome.driver";
+    private static final String DRIVER_PATH = getProperty("path");
+    private static final String WEB_DRIVER_NAME = getProperty("name");
 
     private DriverManager() {
     }
 
-    public static WebDriver getInstance() {
-        if (driver == null) {
+    static {
+        System.setProperty(WEB_DRIVER_NAME, DRIVER_PATH);
+    }
+
+    public static WebDriver getDriverInstance() {
+        if (Objects.isNull(driver)) {
             driver = setSettings();
         }
         return driver;
     }
 
     private static WebDriver setSettings() {
-        System.setProperty(WEB_DRIVER_NAME, DRIVER_PATH);
         driver = new ChromeDriver();
         driver.manage().timeouts()
-                .implicitlyWait(40, TimeUnit.SECONDS);
+                .implicitlyWait(60, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         return driver;
     }

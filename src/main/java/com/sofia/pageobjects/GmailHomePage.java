@@ -7,8 +7,10 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
+import static com.sofia.utilmanager.Property.getProperty;
+
 public class GmailHomePage {
-    private static final String GMAIL_HOME_PAGE = "https://mail.google.com/mail/u/0/#inbox";
+    private static final String GMAIL_HOME_PAGE = getProperty("home_email_page");
 
     @FindBy(xpath = "//div[@role='checkbox']")
     private List<WebElement> emailCheckboxes;
