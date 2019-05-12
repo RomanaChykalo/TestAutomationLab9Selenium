@@ -1,0 +1,3 @@
+ERROR 2019-05-12 16:30:39.962 Parser:24 - class java.io.FileNotFoundException 
+ERROR 2019-05-12 16:31:47.951 Parser:24 - class com.fasterxml.jackson.databind.exc.MismatchedInputException 
+ERROR 2019-05-12 16:54:54.198 Parser:24 - class java.io.FileNotFoundException 
