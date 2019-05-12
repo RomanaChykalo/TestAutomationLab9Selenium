@@ -1,4 +1,4 @@
-package com.sofia.utilmanager;
+package com.sofia.utilmanager.property;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

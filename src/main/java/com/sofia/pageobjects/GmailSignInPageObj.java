@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static com.sofia.utilmanager.Property.getProperty;
+import static com.sofia.utilmanager.property.Property.getProperty;
 
 public class GmailSignInPageObj {
     private static final String SIGN_IN_PAGE = getProperty("login_page");

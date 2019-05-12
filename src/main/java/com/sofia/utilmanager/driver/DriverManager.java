@@ -1,4 +1,4 @@
-package com.sofia.utilmanager;
+package com.sofia.utilmanager.driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-import static com.sofia.utilmanager.Property.getProperty;
+import static com.sofia.utilmanager.property.Property.getProperty;
 
 public class DriverManager {
     private static WebDriver driver;

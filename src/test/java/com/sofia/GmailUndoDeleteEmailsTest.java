@@ -1,6 +1,6 @@
 package com.sofia;
 
-import com.sofia.utilmanager.DriverManager;
+import com.sofia.utilmanager.driver.DriverManager;
 import com.sofia.pageobjects.GmailHomePage;
 import com.sofia.pageobjects.GmailSignInPageObj;
 import org.apache.logging.log4j.LogManager;
@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static com.sofia.utilmanager.JsonParser.*;
+import static com.sofia.utilmanager.jsonparser.JsonParser.*;
 import static org.testng.Assert.assertTrue;
 import static org.testng.AssertJUnit.assertEquals;
 
@@ -29,11 +29,11 @@ public class GmailUndoDeleteEmailsTest {
         GmailSignInPageObj loginPage = new GmailSignInPageObj(driver);
         loginPage.navigateToLoginPage(driver);
         loginPage.typeUernameAndSubmit(TEST_USERNAME);
-
         assertEquals(loginPage.getActiveUsernameAttributeValue(), TEST_USERNAME);
         LOG.info("Username Correct");
         loginPage.typePasswordAndSubmit(TEST_PASSWORD);
         LOG.info("Log in successfully! ");
+
         GmailHomePage homePage = new GmailHomePage(driver);
         List<WebElement> checkboxes = homePage.getCheckboxes();
         assertTrue(!checkboxes.isEmpty());

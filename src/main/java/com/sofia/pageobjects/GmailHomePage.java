@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-import static com.sofia.utilmanager.Property.getProperty;
+import static com.sofia.utilmanager.property.Property.getProperty;
 
 public class GmailHomePage {
     private static final String GMAIL_HOME_PAGE = getProperty("home_email_page");
