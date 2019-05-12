@@ -1,5 +1,6 @@
-package com.sofia.pageobjects;
+package com.sofia.pageobjects.gmailpages;
 
+import com.sofia.pageobjects.GeneralGmailPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.*;
@@ -9,7 +10,7 @@ import java.util.List;
 
 import static com.sofia.utilmanager.property.Property.getProperty;
 
-public class GmailHomePage {
+public class GmailHomePage extends GeneralGmailPage {
     private static final String GMAIL_HOME_PAGE = getProperty("home_email_page");
 
     @FindBy(xpath = "//div[@role='checkbox']")
@@ -23,10 +24,6 @@ public class GmailHomePage {
 
     @FindBy(className = "bAq")
     private WebElement undoWidget;
-
-    public GmailHomePage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-    }
 
     public List<WebElement> getCheckboxes(){
         return emailCheckboxes;

@@ -1,8 +1,8 @@
 package com.sofia;
 
 import com.sofia.utilmanager.driver.DriverManager;
-import com.sofia.pageobjects.GmailHomePage;
-import com.sofia.pageobjects.GmailSignInPageObj;
+import com.sofia.pageobjects.gmailpages.GmailHomePage;
+import com.sofia.pageobjects.gmailpages.GmailSignInPageObj;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -26,7 +26,7 @@ public class GmailUndoDeleteEmailsTest {
 
     @Test
     public void logInAndSendEmail() {
-        GmailSignInPageObj loginPage = new GmailSignInPageObj(driver);
+        GmailSignInPageObj loginPage = new GmailSignInPageObj();
         loginPage.navigateToLoginPage(driver);
         loginPage.typeUernameAndSubmit(TEST_USERNAME);
         assertEquals(loginPage.getActiveUsernameAttributeValue(), TEST_USERNAME);
@@ -34,7 +34,7 @@ public class GmailUndoDeleteEmailsTest {
         loginPage.typePasswordAndSubmit(TEST_PASSWORD);
         LOG.info("Log in successfully! ");
 
-        GmailHomePage homePage = new GmailHomePage(driver);
+        GmailHomePage homePage = new GmailHomePage();
         List<WebElement> checkboxes = homePage.getCheckboxes();
         assertTrue(!checkboxes.isEmpty());
         LOG.info("There are enough messages to delete");
