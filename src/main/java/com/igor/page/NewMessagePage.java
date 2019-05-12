@@ -1,11 +1,9 @@
 package com.igor.page;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
 
 public class NewMessagePage extends BasePage {
     @FindBy(xpath = "//textarea[@name='to']")
@@ -54,10 +52,8 @@ public class NewMessagePage extends BasePage {
     }
 
     public void clickToDeleteContact() {
-        //doing receiver enable
-        ((JavascriptExecutor) driver).executeScript("arguments[0].removeAttribute('style')", receiverArea);
-        //waiting while js is running
-        driverWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='to']/preceding-sibling::span/div[2]")));
-        deleteContact.click();
+        messageField.sendKeys(Keys.chord(Keys.CONTROL, Keys.SHIFT, "B"));
+        driverWait.until(ExpectedConditions.visibilityOf(receiverArea));
+        driverWait.until(ExpectedConditions.elementToBeClickable(deleteContact)).click();
     }
 }
