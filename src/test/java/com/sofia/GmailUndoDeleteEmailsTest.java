@@ -6,11 +6,8 @@ import com.sofia.pageobjects.gmailpages.GmailSignInPageObj;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
-
-import java.util.List;
 
 import static com.sofia.utilmanager.jsonparser.JsonParser.*;
 import static org.testng.Assert.assertTrue;
@@ -21,6 +18,7 @@ public class GmailUndoDeleteEmailsTest {
     private static final String TEST_USERNAME = getUsername();
     private static final String TEST_PASSWORD = getPassword();
     private static final String UNDO_DELETE_EMAIL_WIDGET = getWidgetText();
+    private static final int CHECKBOX_AMOUNT = 3;
 
     private WebDriver driver = DriverManager.getDriverInstance();
 
@@ -35,12 +33,9 @@ public class GmailUndoDeleteEmailsTest {
         LOG.info("Log in successfully! ");
 
         GmailHomePage homePage = new GmailHomePage();
-        List<WebElement> checkboxes = homePage.getCheckboxes();
-        assertTrue(!checkboxes.isEmpty());
+        assertTrue(!homePage.isCheckboxesListEmpty());
         LOG.info("There are enough messages to delete");
-        for (int i = 0; i < 3; i++) {
-            checkboxes.get(i).click();
-        }
+        homePage.checkEmailsBoxes(CHECKBOX_AMOUNT);
         homePage.clickDeleteButton();
         homePage.clickUndoButton();
         assertEquals(homePage.getUndoWidgetAttributeValue(), UNDO_DELETE_EMAIL_WIDGET);
