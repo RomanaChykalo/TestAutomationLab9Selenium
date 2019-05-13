@@ -7,6 +7,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pagemodels.LoginPage;
+import utils.PropertyManager;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,7 +17,7 @@ public class GmailTest {
 
     @BeforeTest
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
+        PropertyManager.setSystemWebDriverProperty();
         driver = DriverManager.getDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
@@ -31,7 +32,6 @@ public class GmailTest {
         loginPage.clickLoginNextBtn();
         loginPage.setPasswrd(TestData.PASSW);
         loginPage.clickPasswordNextBtn();
-        Thread.sleep(350000);
     }
 
     @AfterTest
