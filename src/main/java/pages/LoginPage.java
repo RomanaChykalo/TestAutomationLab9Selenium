@@ -16,10 +16,6 @@ public class LoginPage extends BasePage {
     @FindBy(css = "ul li:nth-child(2) a")
     private WebElement signInButton;
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
-    }
-
     public void typeEmailAndSubmit(String userEmail){
         userEmailInput.sendKeys(userEmail);
         emailNextButton.click();

@@ -22,10 +22,6 @@ public class MainPage extends BasePage {
     @FindBy(css = "#aso_search_form_anchor > button.gb_Qe.gb_Re")
     private WebElement gmailSearchButton;
 
-    public MainPage(WebDriver driver) {
-        super(driver);
-    }
-
     public void markImportantMessages() {
         Wait wait = new FluentWait(driver)
                 .withTimeout(10, TimeUnit.SECONDS)

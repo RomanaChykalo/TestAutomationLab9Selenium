@@ -18,10 +18,6 @@ public class ImportantPage extends BasePage {
     @FindBy(css = "[gh] .Dj > .ts:nth-of-type(2)")
     private WebElement lettersAmount;
 
-    public ImportantPage(WebDriver driver) {
-        super(driver);
-    }
-
     public void selectLettersInImportantFolder() {
         String jsClickCode = "arguments[0].scrollIntoView(true); arguments[0].click();";
         List<WebElement> elementToClick = driver.findElements(By.cssSelector("td.oZ-x3"));
