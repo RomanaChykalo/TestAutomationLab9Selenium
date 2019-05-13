@@ -21,22 +21,20 @@ public class JsonParser {
         }
     }
 
-    public static String getUserName(){
-        return (String) jsonObject.get("username");
+    public static String getUserName(int index){
+        return (String) ((JSONArray)((JSONObject)jsonObject.get("users")).get("email_address")).get(index);
     }
 
-    public static String getPassword(){
-        return (String) jsonObject.get("password");
+    public static String getPassword(int index){
+        return (String) ((JSONArray)((JSONObject)jsonObject.get("users")).get("passwords")).get(index);
     }
 
-    public static String getIncorrectReceiver(){ return (String) jsonObject.get("incorrect_receiver"); }
-
-    public static String getReceiver(int index){
-        return (String) ((JSONArray)jsonObject.get("receivers")).get(index);
+    public static String getIncorrectReceiver(){
+        return (String) ((JSONObject)jsonObject.get("receivers")).get("incorrect_receiver");
     }
 
-    public static String getTitle(){
-        return (String) jsonObject.get("title");
+    public static String getReceiver(){
+        return (String) ((JSONObject)jsonObject.get("receivers")).get("receiver");
     }
 
     public static String getMessage(){

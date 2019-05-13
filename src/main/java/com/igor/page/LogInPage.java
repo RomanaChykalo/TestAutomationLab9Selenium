@@ -19,7 +19,7 @@ public class LogInPage extends BasePage{
     public MainPage setPassword(String password){
         passwordField.sendKeys(password);
         passwordField.sendKeys(Keys.ENTER);
-        DriverProvider.pageLoadTimeout(10);
+        DriverProvider.pageLoadTimeout(30);
         return new MainPage();
     }
 }

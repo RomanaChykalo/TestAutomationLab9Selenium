@@ -1,16 +1,28 @@
 {
-    "username":"groot.epam@gmail.com",
-    "password":"iamgroot",
-    "incorrect_receiver": "Tralalala",
-    "receivers": [
-        "paprika0015@gmail.com"
+  "users": {
+    "email_address": [
+      "groot.epam@gmail.com",
+      "paprika0015@gmail.com",
+      "sonyachanter@gmail.com",
+      "orest.zhmurkevych.secondary@gmail.com"
     ],
-    "title": "Final battle",
-    "messages": [
-        "I am Groot!",
-        "Natasha was hot, but she 's gone.",
-        "Mr. Stark died.",
-        "They travelled in time.",
-        "Captain America has almost gone."
+    "passwords": [
+      "iamgroot",
+      "423489123789op",
+      "sonichka13",
+      "passwordfortest"
     ]
+  },
+  "password": "iamgroot",
+  "receivers": {
+    "incorrect_receiver": "Tralalala",
+    "receiver": "support@sender.binomo.com"
+  },
+  "messages": [
+    "I am Groot!",
+    "Natasha was hot, but she 's gone.",
+    "Mr. Stark died.",
+    "They travelled in time.",
+    "Captain America has almost gone."
+  ]
 }

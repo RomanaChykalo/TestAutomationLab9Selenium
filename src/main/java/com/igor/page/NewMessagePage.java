@@ -53,7 +53,7 @@ public class NewMessagePage extends BasePage {
     }
 
     public void clickToDeleteContact() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 15);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 25);
         messageField.sendKeys(Keys.chord(Keys.CONTROL, Keys.SHIFT, "B"));
         webDriverWait.until(ExpectedConditions.visibilityOf(receiverArea));
         webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteContact)).click();

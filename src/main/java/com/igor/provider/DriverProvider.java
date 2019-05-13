@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class DriverProvider {
-    private static WebDriver driver;
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     static {
         System.setProperty(Objects.requireNonNull(Property.getProperty("name")), Objects.requireNonNull(Property.getProperty("path")));
@@ -18,20 +18,20 @@ public class DriverProvider {
 
     public static WebDriver getDriver()
     {
-        if(Objects.isNull(driver)) {
-            driver = new ChromeDriver();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            driver.manage().window().maximize();
+        if(Objects.isNull(driver.get())) {
+            driver.set(new ChromeDriver());
+            driver.get().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+            driver.get().manage().window().maximize();
         }
-        return driver;
+        return driver.get();
     }
 
     public static void pageLoadTimeout(int seconds) {
-        driver.manage().timeouts().pageLoadTimeout(seconds, TimeUnit.SECONDS);
+        driver.get().manage().timeouts().pageLoadTimeout(seconds, TimeUnit.SECONDS);
     }
 
     public static void quit() {
-        driver.quit();
-        driver = null;
+        driver.get().quit();
+        driver.set(null);
     }
 }

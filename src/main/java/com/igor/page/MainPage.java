@@ -22,7 +22,7 @@ public class MainPage extends BasePage{
         searchField.clear();
         searchField.sendKeys("in:sent");
         searchButton.click();
-        (new WebDriverWait(driver, 15)).until(ExpectedConditions.urlContains("sent"));
+        (new WebDriverWait(driver, 25)).until(ExpectedConditions.urlContains("sent"));
         return new SentPage();
     }
 }
