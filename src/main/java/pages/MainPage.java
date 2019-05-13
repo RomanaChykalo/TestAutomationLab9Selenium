@@ -1,5 +1,6 @@
 package pages;
 
+import driver.DriverLoader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,7 +24,7 @@ public class MainPage extends BasePage {
     private WebElement gmailSearchButton;
 
     public void markImportantMessages() {
-        Wait wait = new FluentWait(driver)
+        Wait wait = DriverLoader.getFluentWait()
                 .withTimeout(10, TimeUnit.SECONDS)
                 .pollingEvery(5, TimeUnit.SECONDS)
                 .ignoring(org.openqa.selenium.StaleElementReferenceException.class);

@@ -1,5 +1,6 @@
 package pages;
 
+import driver.DriverLoader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -28,7 +29,7 @@ public class ImportantPage extends BasePage {
 
     public void deleteSelectedLetters() {
         this.deleteButton.click();
-        new FluentWait(driver)
+        DriverLoader.getFluentWait()
                 .until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector("span.bAq"))));
     }
 
