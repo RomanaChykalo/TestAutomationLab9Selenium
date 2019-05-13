@@ -12,13 +12,14 @@ import java.util.concurrent.TimeUnit;
 
 public class GmailTest {
     Logger logger = LogManager.getLogger(GmailTest.class);
+    private WebDriver driver;
 
     @BeforeTest
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver");
-//        DriverManager.getDriver();
-        DriverManager.getDriver().manage().window().maximize();
-        DriverManager.getDriver().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
+        driver = DriverManager.getDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
     @Test
@@ -30,6 +31,7 @@ public class GmailTest {
         loginPage.clickLoginNextBtn();
         loginPage.setPasswrd(TestData.PASSW);
         loginPage.clickPasswordNextBtn();
+        Thread.sleep(350000);
     }
 
     @AfterTest

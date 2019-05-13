@@ -19,7 +19,7 @@ public class DriverManager {
     private static WebDriver getWebDriverInstance(){
         if (Objects.isNull(driver)){
             logger.trace("Starting Chrome driver...");
-            WebDriver driver = new ChromeDriver();
+            driver = new ChromeDriver();
         }
         return driver;
     }

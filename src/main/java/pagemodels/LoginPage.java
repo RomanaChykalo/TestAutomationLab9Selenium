@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage{
     Logger logger = LogManager.getLogger(LoginPage.class);
@@ -17,11 +18,14 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "//h1/content")
     private WebElement helloField;
 
-    @FindBy(css = "input[type=\"password\"]")
+    @FindBy(xpath = "//input[@type='password']")
     private WebElement passwField;
 
     @FindBy(xpath = "//content/span[contains(text(),'Далі')]")
     private WebElement passwNextBtn;
+
+    public LoginPage() {
+    }
 
     public WebElement getEmailInput() {
         return emailInput;
@@ -45,7 +49,7 @@ public class LoginPage extends BasePage{
 
     public void navigateToLoginPg(){
         logger.trace("Navigating to 'https://mail.google.com'...");
-        getDriver().navigate().to("https://mail.google.com");
+        driver().navigate().to("https://mail.google.com");
     }
 
     public void setEmailField(String email){
@@ -59,6 +63,8 @@ public class LoginPage extends BasePage{
     }
 
     public void setPasswrd(String passw){
+        logger.trace("Typing password...");
+        expWait().until(ExpectedConditions.elementToBeClickable(getPasswField()));
         getPasswField().sendKeys(passw);
     }
 
