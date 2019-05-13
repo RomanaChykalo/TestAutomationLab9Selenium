@@ -1,8 +1,8 @@
 {
     "username":"groot.epam@gmail.com",
     "password":"iamgroot",
+    "incorrect_receiver": "Tralalala",
     "receivers": [
-        "Tralalala",
         "paprika0015@gmail.com"
     ],
     "title": "Final battle",

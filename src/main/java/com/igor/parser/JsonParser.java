@@ -29,6 +29,8 @@ public class JsonParser {
         return (String) jsonObject.get("password");
     }
 
+    public static String getIncorrectReceiver(){ return (String) jsonObject.get("incorrect_receiver"); }
+
     public static String getReceiver(int index){
         return (String) ((JSONArray)jsonObject.get("receivers")).get(index);
     }

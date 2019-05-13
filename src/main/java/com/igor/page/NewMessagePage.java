@@ -3,6 +3,7 @@ package com.igor.page;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class NewMessagePage extends BasePage {
@@ -52,8 +53,9 @@ public class NewMessagePage extends BasePage {
     }
 
     public void clickToDeleteContact() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 15);
         messageField.sendKeys(Keys.chord(Keys.CONTROL, Keys.SHIFT, "B"));
-        driverWait.until(ExpectedConditions.visibilityOf(receiverArea));
-        driverWait.until(ExpectedConditions.elementToBeClickable(deleteContact)).click();
+        webDriverWait.until(ExpectedConditions.visibilityOf(receiverArea));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteContact)).click();
     }
 }

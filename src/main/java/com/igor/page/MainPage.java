@@ -3,6 +3,7 @@ package com.igor.page;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainPage extends BasePage{
     @FindBy(xpath = "//div[@role='complementary']/..//div[@role='button']")
@@ -21,7 +22,7 @@ public class MainPage extends BasePage{
         searchField.clear();
         searchField.sendKeys("in:sent");
         searchButton.click();
-        driverWait.until(ExpectedConditions.urlContains("sent"));
+        (new WebDriverWait(driver, 15)).until(ExpectedConditions.urlContains("sent"));
         return new SentPage();
     }
 }
