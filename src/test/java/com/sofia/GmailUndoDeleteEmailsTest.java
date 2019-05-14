@@ -6,7 +6,6 @@ import com.sofia.pageobjects.gmailpages.GmailSignInPageObj;
 import com.sofia.utilmanager.property.Property;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -24,6 +23,7 @@ public class GmailUndoDeleteEmailsTest {
     private static final Logger LOG = LogManager.getLogger(GmailUndoDeleteEmailsTest.class);
     private static final String UNDO_DELETE_EMAIL_WIDGET = getWidgetText();
     private static final int CHECKBOX_AMOUNT = 3;
+    private static final int USERS_AMOUNT = 4;
 
     @BeforeMethod()
     public void setStartedPage(){
@@ -32,8 +32,8 @@ public class GmailUndoDeleteEmailsTest {
 
     @DataProvider(parallel = true)
     public Iterator<Object[]> users(){
-        Object[][] objects = new Object[4][];
-        for (int i = 0; i < 4; i++) {
+        Object[][] objects = new Object[USERS_AMOUNT][];
+        for (int i = 0; i < objects.length; i++) {
             objects[i] = new Object[]{getUsername(i), getPassword(i)};
         }
 
@@ -43,9 +43,10 @@ public class GmailUndoDeleteEmailsTest {
     @Test(dataProvider = "users")
     public void logInAndSendEmail(String testUsername, String testPassword) {
         GmailSignInPageObj loginPage = new GmailSignInPageObj();
+        LOG.info("Making username input");
         loginPage.typeUernameAndSubmit(testUsername);
         assertEquals(loginPage.getActiveUsernameAttributeValue(), testUsername);
-        LOG.info("Username Correct");
+        LOG.info("Username Correct. Making password input");
         loginPage.typePasswordAndSubmit(testPassword);
         LOG.info("Log in successfully! ");
 
