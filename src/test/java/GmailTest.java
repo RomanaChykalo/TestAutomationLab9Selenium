@@ -1,3 +1,4 @@
+import data.DataProvidersSet;
 import data.TestData;
 import driver.DriverManager;
 import org.apache.logging.log4j.LogManager;
@@ -6,12 +7,13 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pagemodels.GmailPage;
 import pagemodels.LoginPage;
 import utils.PropertyManager;
 
 import java.util.concurrent.TimeUnit;
 
-public class GmailTest {
+public class GmailTest extends DataProvidersSet {
     Logger logger = LogManager.getLogger(GmailTest.class);
     private WebDriver driver;
 
@@ -23,15 +25,14 @@ public class GmailTest {
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
-    @Test
-    public void deleteAndRevert3EmailsTest() throws InterruptedException {
+    @Test (dataProvider = "users")
+    public void deleteAndRevert3EmailsTest(String login, String passw) {
         LoginPage loginPage = new LoginPage();
-
         loginPage.navigateToLoginPg();
-        loginPage.setEmailField(TestData.EMAIL);
+        loginPage.setEmailField(login);
         loginPage.clickLoginNextBtn();
-        loginPage.setPasswrd(TestData.PASSW);
-        loginPage.clickPasswordNextBtn();
+        loginPage.setPasswrd(passw);
+        GmailPage gmailPage = loginPage.clickPasswordNextBtn();
     }
 
     @AfterTest
