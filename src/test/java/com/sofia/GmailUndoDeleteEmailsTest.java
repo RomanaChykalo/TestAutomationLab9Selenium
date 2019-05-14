@@ -20,8 +20,6 @@ import static org.testng.AssertJUnit.assertEquals;
 
 public class GmailUndoDeleteEmailsTest {
     private static final Logger LOG = LogManager.getLogger(GmailUndoDeleteEmailsTest.class);
-   // private static final String TEST_USERNAME = getUsername();
-    //private static final String TEST_PASSWORD = getPassword();
     private static final String UNDO_DELETE_EMAIL_WIDGET = getWidgetText();
     private static final int CHECKBOX_AMOUNT = 3;
 
