@@ -3,10 +3,12 @@ package com.sofia;
 import com.sofia.utilmanager.driver.DriverManager;
 import com.sofia.pageobjects.gmailpages.GmailHomePage;
 import com.sofia.pageobjects.gmailpages.GmailSignInPageObj;
+import com.sofia.utilmanager.property.Property;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -23,7 +25,10 @@ public class GmailUndoDeleteEmailsTest {
     private static final String UNDO_DELETE_EMAIL_WIDGET = getWidgetText();
     private static final int CHECKBOX_AMOUNT = 3;
 
-    private WebDriver driver = DriverManager.getDriverInstance();
+    @BeforeMethod()
+    public void setStartedPage(){
+        DriverManager.getDriverInstance().get(Property.getProperty("login_page"));
+    }
 
     @DataProvider(parallel = true)
     public Iterator<Object[]> users(){
@@ -38,7 +43,6 @@ public class GmailUndoDeleteEmailsTest {
     @Test(dataProvider = "users")
     public void logInAndSendEmail(String testUsername, String testPassword) {
         GmailSignInPageObj loginPage = new GmailSignInPageObj();
-        loginPage.navigateToLoginPage(driver);
         loginPage.typeUernameAndSubmit(testUsername);
         assertEquals(loginPage.getActiveUsernameAttributeValue(), testUsername);
         LOG.info("Username Correct");
@@ -55,7 +59,7 @@ public class GmailUndoDeleteEmailsTest {
         LOG.info("Test passed successfully");
     }
 
-    @AfterTest
+    @AfterMethod
     public void endTest() {
         quitDriver();
     }

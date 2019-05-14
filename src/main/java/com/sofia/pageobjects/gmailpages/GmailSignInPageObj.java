@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import static com.sofia.utilmanager.property.Property.getProperty;
 
 public class GmailSignInPageObj extends GeneralGmailPage {
-    private static final String SIGN_IN_PAGE = getProperty("login_page");
+    //private static final String SIGN_IN_PAGE = getProperty("login_page");
 
     @FindBy(xpath = "//input[@id='identifierId']")
     private WebElement usernameInput;
@@ -31,9 +31,9 @@ public class GmailSignInPageObj extends GeneralGmailPage {
         passwordInput.sendKeys(Keys.ENTER);
     }
 
-    public void navigateToLoginPage(WebDriver driver) {
-        driver.navigate().to(SIGN_IN_PAGE);
-    }
+//    public void navigateToLoginPage(WebDriver driver) {
+//        driver.navigate().to(SIGN_IN_PAGE);
+//    }
 
     public String getActiveUsernameAttributeValue(){
         return activeUsername.getAttribute("innerHTML");
