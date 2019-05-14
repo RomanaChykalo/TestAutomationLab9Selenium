@@ -7,31 +7,35 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+import static com.igor.constant.Constants.IMPLICIT_WAIT;
+
 public class DriverProvider {
-    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static ThreadLocal<WebDriver> DRIVER_POOL = new ThreadLocal<>();
+    private static final String NAME = Objects.requireNonNull(Property.getProperty("name"));
+    private static final String PATH = Objects.requireNonNull(Property.getProperty("path"));
 
     static {
-        System.setProperty(Objects.requireNonNull(Property.getProperty("name")), Objects.requireNonNull(Property.getProperty("path")));
+        System.setProperty(NAME, PATH);
     }
 
     private DriverProvider() { }
 
     public static WebDriver getDriver()
     {
-        if(Objects.isNull(driver.get())) {
-            driver.set(new ChromeDriver());
-            driver.get().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-            driver.get().manage().window().maximize();
+        if(Objects.isNull(DRIVER_POOL.get())) {
+            DRIVER_POOL.set(new ChromeDriver());
+            DRIVER_POOL.get().manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
+            DRIVER_POOL.get().manage().window().maximize();
         }
-        return driver.get();
+        return DRIVER_POOL.get();
     }
 
     public static void pageLoadTimeout(int seconds) {
-        driver.get().manage().timeouts().pageLoadTimeout(seconds, TimeUnit.SECONDS);
+        DRIVER_POOL.get().manage().timeouts().pageLoadTimeout(seconds, TimeUnit.SECONDS);
     }
 
     public static void quit() {
-        driver.get().quit();
-        driver.set(null);
+        DRIVER_POOL.get().quit();
+        DRIVER_POOL.set(null);
     }
 }

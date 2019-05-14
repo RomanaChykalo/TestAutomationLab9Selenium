@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static com.igor.constant.Constants.EXPLICIT_WAIT;
+
 public class MainPage extends BasePage{
     @FindBy(xpath = "//div[@role='complementary']/..//div[@role='button']")
     private WebElement composeButton;
@@ -23,8 +25,8 @@ public class MainPage extends BasePage{
         searchField.clear();
         searchField.sendKeys("in:sent");
         searchButton.click();
-        (new WebDriverWait(driver, 25)).until(ExpectedConditions.urlContains("sent"));
-        DriverProvider.pageLoadTimeout(25);
+        (new WebDriverWait(driver, EXPLICIT_WAIT)).until(ExpectedConditions.urlContains("sent"));
+        DriverProvider.pageLoadTimeout(EXPLICIT_WAIT);
         return new SentPage();
     }
 }

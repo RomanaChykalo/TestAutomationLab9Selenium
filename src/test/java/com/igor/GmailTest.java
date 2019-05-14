@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.UUID;
 import java.util.stream.Stream;
 
+import static com.igor.constant.Constants.NUMBER_OF_USERS;
 import static com.igor.parser.JsonParser.*;
 import static org.testng.Assert.*;
 
@@ -28,11 +29,11 @@ public class GmailTest {
 
     @DataProvider(parallel = true)
     public Iterator<Object[]> users(){
-        Object[][] objects = new Object[5][];
-        for (int i = 0; i < 4; i++) {
+        int numberOfUsers = getNumberOfUsers();
+        Object[][] objects = new Object[numberOfUsers][];
+        for (int i = 0; i < numberOfUsers; i++) {
             objects[i] = new Object[]{getUserName(i), getPassword(i)};
         }
-
         return Stream.of(objects).iterator();
     }
 

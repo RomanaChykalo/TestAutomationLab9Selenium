@@ -5,6 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static com.igor.constant.Constants.EXPLICIT_WAIT;
+
 
 public class NewMessageWidget extends BasePage {
     @FindBy(xpath = "//textarea[@name='to']")
@@ -51,7 +53,7 @@ public class NewMessageWidget extends BasePage {
     }
 
     public void clickToDeleteContact() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 25);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, EXPLICIT_WAIT);
         messageField.sendKeys(Keys.chord(Keys.CONTROL, Keys.SHIFT, "B"));
         webDriverWait.until(ExpectedConditions.visibilityOf(receiverArea));
         webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteContact)).click();

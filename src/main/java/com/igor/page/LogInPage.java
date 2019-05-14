@@ -5,6 +5,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.igor.constant.Constants.EXPLICIT_WAIT;
+
 public class LogInPage extends BasePage{
     @FindBy(id = "identifierId")
     private WebElement usernameField;
@@ -19,7 +21,7 @@ public class LogInPage extends BasePage{
     public MainPage setPassword(String password){
         passwordField.sendKeys(password);
         passwordField.sendKeys(Keys.ENTER);
-        DriverProvider.pageLoadTimeout(30);
+        DriverProvider.pageLoadTimeout(EXPLICIT_WAIT);
         return new MainPage();
     }
 }

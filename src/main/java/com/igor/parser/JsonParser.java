@@ -25,6 +25,10 @@ public class JsonParser {
         return (String) ((JSONArray)((JSONObject)jsonObject.get("users")).get("email_address")).get(index);
     }
 
+    public static int getNumberOfUsers(){
+        return ((JSONArray)((JSONObject)jsonObject.get("users")).get("email_address")).size();
+    }
+
     public static String getPassword(int index){
         return (String) ((JSONArray)((JSONObject)jsonObject.get("users")).get("passwords")).get(index);
     }
