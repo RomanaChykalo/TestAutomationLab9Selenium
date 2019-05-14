@@ -1,5 +1,22 @@
 {
-  "username": "sonyachanter@gmail.com",
-  "password": "sonichka13",
-  "delete_email_widget_text": "Дію скасовано.",
+  "users": [
+    {
+      "username": "sonyachanter@gmail.com",
+      "password": "sonichka13"
+    },
+    {
+      "username": "groot.epam@gmail.com",
+      "password": "iamgroot"
+    },
+    {
+      "username": "paprika0015@gmail.com",
+      "password": "423489123789op"
+    },
+    {
+      "username": "orest.zhmurkevych.secondary@gmail.com",
+      "password": "passwordfortest"
+    }
+  ],
+
+  "delete_email_widget_text": "Дію скасовано."
 }

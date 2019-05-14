@@ -34,4 +34,9 @@ public class DriverManager {
         DRIVER_POOL.get().manage().window().maximize();
         return DRIVER_POOL;
     }
+
+    public static void quitDriver() {
+        DRIVER_POOL.get().quit();
+        DRIVER_POOL.set(null);
+    }
 }

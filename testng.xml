@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="GmailTest" verbose="2" parallel="true" data-provider-thread-count="3">
+<suite name="GmailTest" data-provider-thread-count="3" verbose="2">
     <test name="EmailsUndoDeleteTest">
         <classes>
             <class name="com.sofia.GmailUndoDeleteEmailsTest" />

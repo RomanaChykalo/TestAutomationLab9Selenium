@@ -2,6 +2,7 @@ package com.sofia.utilmanager.jsonparser;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -21,12 +22,12 @@ public class JsonParser {
         }
     }
 
-    public static String getUsername(){
-        return (String) jsonObject.get("username");
+    public static String getUsername(int userNumber){
+        return (String)((JSONObject) ((JSONArray) jsonObject.get("users")).get(userNumber)).get("username");
     }
 
-    public static String getPassword(){
-        return (String) jsonObject.get("password");
+    public static String getPassword(int passwordNumber){
+        return (String)((JSONObject) ((JSONArray) jsonObject.get("users")).get(passwordNumber)).get("password");
     }
 
     public static String getWidgetText(){
