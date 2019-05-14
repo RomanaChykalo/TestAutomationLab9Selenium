@@ -2,7 +2,7 @@ package com.igor;
 
 import com.igor.page.LogInPage;
 import com.igor.page.MainPage;
-import com.igor.page.NewMessagePage;
+import com.igor.page.NewMessageWidget;
 import com.igor.page.SentPage;
 
 import com.igor.property.Property;
@@ -42,18 +42,18 @@ public class GmailTest {
         LogInPage logInPage = new LogInPage();
         logInPage.setUsername(username);
         MainPage mainPage = logInPage.setPassword(password);
-        NewMessagePage newMessagePage = mainPage.clickToComposeButton();
-        newMessagePage.setReceiverField(getIncorrectReceiver());
-        newMessagePage.setTitleField(MESSAGE_TITLE);
-        newMessagePage.setMessageField(getMessage());
-        newMessagePage.clickToSendButton();
-        assertTrue(newMessagePage.alertDialogIsEnable());
-        newMessagePage.clickToButtonOkInAlertDialog();
-        newMessagePage.clickToDeleteContact();
-        newMessagePage.setReceiverField(getReceiver());
-        newMessagePage.clickToSendButton();
+        NewMessageWidget newMessageWidget = mainPage.clickToComposeButton();
+        newMessageWidget.setReceiverField(getIncorrectReceiver());
+        newMessageWidget.setTitleField(MESSAGE_TITLE);
+        newMessageWidget.setMessageField(getMessage());
+        newMessageWidget.clickToSendButton();
+        assertTrue(newMessageWidget.alertDialogIsEnable());
+        newMessageWidget.clickToButtonOkInAlertDialog();
+        newMessageWidget.clickToDeleteContact();
+        newMessageWidget.setReceiverField(getReceiver());
+        newMessageWidget.clickToSendButton();
         SentPage sentPage = mainPage.goToSentPage();
-        assertTrue(sentPage.getLetter(0).getText().contains(MESSAGE_TITLE));
+        assertEquals(sentPage.getLetter(), MESSAGE_TITLE);
     }
 
     @AfterMethod

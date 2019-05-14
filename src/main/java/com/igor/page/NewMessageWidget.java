@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class NewMessagePage extends BasePage {
+public class NewMessageWidget extends BasePage {
     @FindBy(xpath = "//textarea[@name='to']")
     private WebElement receiverField;
     @FindBy(xpath = "//form[@enctype='multipart/form-data']/div[1]")
@@ -17,7 +17,7 @@ public class NewMessagePage extends BasePage {
     private WebElement titleField;
     @FindBy(xpath = "//input[@name='composeid']/../../table//div[@role='textbox']")
     private WebElement messageField;
-    @FindBy(css = "table[role=group]>tbody>tr>td:first-child>div>div>div:first-child")
+    @FindBy(xpath = "//table[@role='group']/tbody/tr/td[1]/div/div/div[1]")
     private WebElement sendButton;
     @FindBy(xpath = "//button[@name='ok']")
     private WebElement buttonOkInAlertDialog;
@@ -31,9 +31,7 @@ public class NewMessagePage extends BasePage {
         titleField.sendKeys(title);
     }
 
-    public void setMessageField(String message) {
-        messageField.sendKeys(message);
-    }
+    public void setMessageField(String message) { messageField.sendKeys(message); }
 
     public void clickToSendButton() {
         sendButton.click();

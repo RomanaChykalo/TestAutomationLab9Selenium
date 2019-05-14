@@ -1,5 +1,6 @@
 package com.igor.page;
 
+import com.igor.provider.DriverProvider;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,9 +14,9 @@ public class MainPage extends BasePage{
     @FindBy(xpath = "//form[@role='search']/button[4]")
     private WebElement searchButton;
 
-    public NewMessagePage clickToComposeButton(){
+    public NewMessageWidget clickToComposeButton(){
         composeButton.click();
-        return new NewMessagePage();
+        return new NewMessageWidget();
     }
 
     public SentPage goToSentPage(){
@@ -23,6 +24,7 @@ public class MainPage extends BasePage{
         searchField.sendKeys("in:sent");
         searchButton.click();
         (new WebDriverWait(driver, 25)).until(ExpectedConditions.urlContains("sent"));
+        DriverProvider.pageLoadTimeout(25);
         return new SentPage();
     }
 }

@@ -3,14 +3,12 @@ package com.igor.page;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
-
 public class SentPage extends BasePage{
-    @FindBy(xpath = "//div[@role='main']//tbody")
-    private List<WebElement> sentLetters;
+    @FindBy(xpath = "//div[@role='main']//tbody/tr[1]/td[6]//span[@class='bog']/span")
+    private WebElement sentLetter;
 
-    public WebElement getLetter(int index){
-        return sentLetters.get(index);
+    public String getLetter(){
+        return sentLetter.getText();
     }
 }
 
