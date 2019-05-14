@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 import static com.sofia.utilmanager.property.Property.getProperty;
 
 public class DriverManager {
-    private static WebDriver driver;
+    private static ThreadLocal<WebDriver> DRIVER_POOL = new ThreadLocal<>();
     private static final String DRIVER_PATH = getProperty("path");
     private static final String WEB_DRIVER_NAME = getProperty("name");
 
@@ -21,17 +21,17 @@ public class DriverManager {
     }
 
     public static WebDriver getDriverInstance() {
-        if (Objects.isNull(driver)) {
-            driver = setSettings();
+        if (Objects.isNull(DRIVER_POOL.get())) {
+            DRIVER_POOL = setSettings();
         }
-        return driver;
+        return DRIVER_POOL.get();
     }
 
-    private static WebDriver setSettings() {
-        driver = new ChromeDriver();
-        driver.manage().timeouts()
+    private static ThreadLocal<WebDriver> setSettings() {
+        DRIVER_POOL.set(new ChromeDriver());
+        DRIVER_POOL.get().manage().timeouts()
                 .implicitlyWait(60, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        return driver;
+        DRIVER_POOL.get().manage().window().maximize();
+        return DRIVER_POOL;
     }
 }
