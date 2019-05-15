@@ -1,13 +1,11 @@
 import data.DataProvidersSet;
 import data.TestData;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pagemodels.GmailPage;
-import pagemodels.LoginPage;
+import pages.pagemodels.GmailPage;
+import pages.pagemodels.LoginPage;
 
 public class GmailTestBase extends DataProvidersSet {
 
-    @BeforeClass
     @Test(dataProvider = "recipients")
     public void sendTestEmailsForUsers(String recipient, String subject, String mailBody){
         LoginPage loginPage = new LoginPage();

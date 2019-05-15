@@ -3,7 +3,7 @@ package data;
 import org.testng.annotations.DataProvider;
 
 public class DataProvidersSet {
-    @DataProvider(name = "users")
+    @DataProvider(name = "users", parallel = true)
     public Object[][] users() {
         return new Object[][]{
                 {"tt6549624", "Qwerty123!"},

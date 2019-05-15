@@ -1,11 +1,13 @@
-package pagemodels;
+package pages.pagemodels;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.BasePage;
 
-public class GmailPage extends BasePage{
+public class GmailPage extends BasePage {
     Logger logger = LogManager.getLogger(GmailPage.class);
 
     @FindBy(xpath = "(//a[@title='Gmail'])[2]")
@@ -30,6 +32,7 @@ public class GmailPage extends BasePage{
     WebElement sendBtn;
 
     public GmailPage() {
+        expWait().until(ExpectedConditions.visibilityOf(gmailLogo));
     }
 
     public WebElement getGmailLogo() {
