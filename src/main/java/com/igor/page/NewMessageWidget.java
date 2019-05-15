@@ -25,6 +25,7 @@ public class NewMessageWidget extends BasePage {
     private WebElement buttonOkInAlertDialog;
 
     public void setReceiverField(String receiver) {
+        (new WebDriverWait(driver, EXPLICIT_WAIT)).until(ExpectedConditions.visibilityOf(receiverField));
         receiverField.clear();
         receiverField.sendKeys(receiver);
     }
