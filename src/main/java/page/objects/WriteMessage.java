@@ -18,8 +18,6 @@ public class WriteMessage extends BasePage{
     @FindBy(name = "subjectbox")
     private WebElement subjectInput;
 
-
-
     public void toWriteMessage(String message,String receiver, String subject){
         receiverInput.sendKeys(receiver);
         subjectInput.sendKeys(subject);

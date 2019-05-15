@@ -1,3 +1,9 @@
 ERROR 2019-05-12 16:30:39.962 Parser:24 - class java.io.FileNotFoundException 
 ERROR 2019-05-12 16:31:47.951 Parser:24 - class com.fasterxml.jackson.databind.exc.MismatchedInputException 
 ERROR 2019-05-12 16:54:54.198 Parser:24 - class java.io.FileNotFoundException 
+ERROR 2019-05-14 13:49:37.384 FilePath:24 - class java.io.IOException 
+ERROR 2019-05-14 14:22:30.226 FilePath:24 - class java.io.IOException 
+ERROR 2019-05-14 19:03:52.743 Parser:26 - class com.fasterxml.jackson.databind.exc.InvalidDefinitionException 
+ERROR 2019-05-14 19:17:05.320 Parser:26 - class com.fasterxml.jackson.databind.exc.InvalidDefinitionException 
+ERROR 2019-05-14 19:18:37.441 Parser:26 - class com.fasterxml.jackson.databind.exc.InvalidDefinitionException 
+ERROR 2019-05-14 19:34:23.068 FilePath:24 - class java.io.IOException 

@@ -6,6 +6,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 public class Parser {
 
@@ -16,15 +18,15 @@ public class Parser {
         this.objectMapper = new ObjectMapper();
     }
 
-    public Data getData(File jsonFile) {
-        Data data = new Data();
+    public List<Data> getData(File jsonFile) {
+        Data[] data = new Data[0];
         try {
-            data = objectMapper.readValue(jsonFile, Data.class);
+            data = objectMapper.readValue(jsonFile, Data[].class);
         } catch (IOException e) {
             logger.error(e.getClass());
             e.printStackTrace();
         }
 
-        return data;
+        return Arrays.asList(data);
     }
 }

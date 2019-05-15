@@ -9,11 +9,10 @@ import java.util.concurrent.TimeUnit;
 
 public class DriverManager {
 
-    private static WebDriver driver;
+    private static ThreadLocal<WebDriver> driverPool = new ThreadLocal<>();
     private static FilePath filePath = new FilePath();
 
     static {
-
         System.setProperty("webdriver.chrome.driver", filePath.propertyFile("fileWayChrome"));
     }
 
@@ -21,16 +20,19 @@ public class DriverManager {
     }
 
     public static WebDriver getDriver() {
-        if (Objects.isNull(driver)) {
-            driver = new ChromeDriver();
-            driver.get(filePath.propertyFile("fileWayGmail"));
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            driver.manage().window().maximize();
+        if (Objects.isNull(driverPool.get())) {
+            driverPool.set(new ChromeDriver());
+            driverPool.get().get(filePath.propertyFile("fileWayGmail"));
+            driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            driverPool.get().manage().window().maximize();
         }
-        return driver;
+        return driverPool.get();
     }
 
     public static void tearDown() {
-        driver.quit();
+        if(!Objects.isNull(driverPool.get())){
+            driverPool.get().quit();
+            driverPool.remove();
+        }
     }
 }

@@ -36,7 +36,7 @@ configuration:
 
 
     Logger:
-      name: TestMailResource
+      name: TestGmail
       additivity: false
       level: trace
       AppenderRef:

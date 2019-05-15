@@ -16,7 +16,7 @@ public class Data {
         this.subject = subject;
         this.message = message;
     }
-    Data(){}
+    public Data(){}
 
     public String getLogin() {
         return login;
