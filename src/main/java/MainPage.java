@@ -3,11 +3,8 @@ import org.openqa.selenium.support.FindBy;
 
 public class MainPage extends BasePage {
 
-    @FindBy(xpath = "//a[@title = 'Gmail']")
-    private WebElement title;
-
     @FindBy(className = "aic")
-    private WebElement writeEmailButton;
+    private WebElement composeButton;
     @FindBy(name = "to")
     private WebElement whomField;
 
@@ -20,12 +17,6 @@ public class MainPage extends BasePage {
     @FindBy(css = ".dC div")
     private WebElement sendButton;
 
-    @FindBy(xpath = "//div[@class = 'Hp']/child::h2/div[2]")
-    private WebElement headingMessageForm;
-
-    @FindBy(xpath = "//div[@class = 'vh']")
-    private WebElement sendingSuccessMessage;
-
     @FindBy(xpath = "//img[@class ='Ha']")
     private WebElement closeButton;
 
@@ -33,22 +24,19 @@ public class MainPage extends BasePage {
     private WebElement draftButton;
 
     @FindBy(xpath = "//div[@class = 'ae4 UI']//tbody/tr[2]")
-    private WebElement messageButton;
+    private WebElement draft;
 
     @FindBy(xpath = "//*[@class = 'F cf zt']//tbody/tr[2]//td[@class = 'xY a4W']//div//span[@class = 'bog']/span")
-    private WebElement savedFirstLetterInDraft;
+    private WebElement savedSubject;
 
     @FindBy(xpath = "//*[@class = 'F cf zt']//tbody/tr[2]//td[@class = 'xY a4W']//div//span[@class = 'bog']/span/following::span")
-    private WebElement savedTextMessageinDraft;
+    private WebElement savedText;
 
     @FindBy(xpath = "//div[@class ='oL aDm az9']/span")
     private WebElement savedEmailAddress;
 
-    @FindBy(xpath = "//a[text() = 'stepankish@gmail.com']/ancestor::div//span")
-    private WebElement savedEmailAddressinDtraft;
-
-    public void clickWriteButton() {
-        writeEmailButton.click();
+    public void clickComposeButton() {
+        composeButton.click();
     }
 
     public void typeWhomField(String emailAddress) {
@@ -75,20 +63,20 @@ public class MainPage extends BasePage {
         draftButton.click();
     }
 
-    public String foundSubjectOfMessage() {
-        return savedFirstLetterInDraft.getText();
+    public String takeLetterSubject() {
+        return savedSubject.getText();
     }
 
-    public String foundTextMessage() {
-        return savedTextMessageinDraft.getText();
+    public String takeLetterText() {
+        return savedText.getText();
     }
 
-    public String foundEmailAddress() {
+    public String takeEmailAddress() {
         return savedEmailAddress.getText();
     }
 
-    public void clickOnMessage() {
-        messageButton.click();
+    public void clickOnDraft() {
+        draft.click();
     }
 }
 

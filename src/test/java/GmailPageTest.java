@@ -20,8 +20,6 @@ import java.util.concurrent.TimeUnit;
 public class GmailPageTest {
 
     private WebDriver driver;
-    private MainPage mainPage;
-    private LoginPage loginPage;
     private String user;
     private String password;
     private String customerEmail;
@@ -38,8 +36,6 @@ public class GmailPageTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get(URL);
-        mainPage = PageFactory.initElements(driver, MainPage.class);
-        loginPage = PageFactory.initElements(driver, LoginPage.class);
         try (InputStream input = new FileInputStream(PATH_TO_PROPERTIES)) {
             Properties prop = new Properties();
             prop.load(input);
@@ -52,39 +48,50 @@ public class GmailPageTest {
             e.printStackTrace();
         }
     }
+
     @Test
     public void loginTest() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
         loginPage.typeUsername(user);
         loginPage.clickNextButton();
         loginPage.typePassword(password);
         loginPage.clickNextButton();
-        mainPage.clickWriteButton();
+        logger.info("Login was successful");
+
+        MainPage mainPage = PageFactory.initElements(driver, MainPage.class);
+        mainPage.clickComposeButton();
         mainPage.typeWhomField(customerEmail);
         mainPage.typeSubjectField("Тест");
         mainPage.typeTextField("Привіт друже");
         mainPage.clickOnCloseMessageButton();
+        logger.info("The draft was created");
+
+
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.urlToBe("https://mail.google.com/mail/u/0/#inbox"));
         mainPage.clickOnDraftButton();
         wait.until(ExpectedConditions.urlToBe("https://mail.google.com/mail/u/0/#drafts"));
 
-        String foundSubject = mainPage.foundSubjectOfMessage();
-        Assert.assertEquals("Тест", foundSubject);
+        String letterSubject = mainPage.takeLetterSubject();
+        Assert.assertEquals("Тест", letterSubject);
+        logger.info("Subject of the letter was verified");
 
-        String foundMessage = mainPage.foundTextMessage();
-        Assert.assertEquals(" - \nПривіт друже", foundMessage);
+        String letterText = mainPage.takeLetterText();
+        Assert.assertEquals(" - \nПривіт друже", letterText);
+        logger.info("Text was verified");
 
         mainPage.clickOnDraftButton();
         wait.until(ExpectedConditions.urlToBe("https://mail.google.com/mail/u/0/#drafts"));
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'ae4 UI']//tbody/tr[2]")));
-        mainPage.clickOnMessage();
+        mainPage.clickOnDraft();
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'vT']")));
-        String foundEmailAddress = mainPage.foundEmailAddress();
+        String emailAddress = mainPage.takeEmailAddress();
 
-        Assert.assertEquals("stepankish@gmail.com", foundEmailAddress);
+        Assert.assertEquals("stepankish@gmail.com", emailAddress);
         mainPage.clickSendButton();
+        logger.info("Email address was verified");
 
         wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class = 'vh']")));
