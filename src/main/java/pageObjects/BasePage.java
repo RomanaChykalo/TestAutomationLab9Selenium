@@ -1,4 +1,4 @@
-package pages;
+package pageObjects;
 
 import driver.DriverLoader;
 import org.openqa.selenium.WebDriver;

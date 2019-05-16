@@ -25,3 +25,23 @@ configuration:
       level: all
       AppenderRef:
       - ref: Console
+
+    - name: businessObjects.LoginBO
+      level: all
+      AppenderRef:
+      - ref: Console
+
+    - name: businessObjects.MessagesBO
+      level: all
+      AppenderRef:
+      - ref: Console
+
+    - name: businessObjects.MessagesBO
+      level: all
+      AppenderRef:
+      - ref: Console
+
+    - name: ImportantMessagePage
+      level: all
+      AppenderRef:
+      - ref: Console
