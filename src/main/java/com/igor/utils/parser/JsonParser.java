@@ -21,15 +21,24 @@ public class JsonParser {
         }
     }
 
-    public static String getUserName(int index){
+    public static Object[][] getUsers(){
+        int numberOfUsers = getNumberOfUsers();
+        Object[][] objects = new Object[numberOfUsers][];
+        for (int i = 0; i < numberOfUsers; i++) {
+            objects[i] = new Object[]{getUserName(i), getPassword(i)};
+        }
+        return objects;
+    }
+
+    private static String getUserName(int index){
         return (String) ((JSONArray)((JSONObject)jsonObject.get("users")).get("email_address")).get(index);
     }
 
-    public static int getNumberOfUsers(){
+    private static int getNumberOfUsers(){
         return ((JSONArray)((JSONObject)jsonObject.get("users")).get("email_address")).size();
     }
 
-    public static String getPassword(int index){
+    private static String getPassword(int index){
         return (String) ((JSONArray)((JSONObject)jsonObject.get("users")).get("passwords")).get(index);
     }
 

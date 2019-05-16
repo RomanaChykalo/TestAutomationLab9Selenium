@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import java.util.Iterator;
 import java.util.stream.Stream;
 
-import static com.igor.utils.parser.JsonParser.*;
+import static com.igor.utils.parser.JsonParser.getUsers;
 import static org.testng.Assert.assertTrue;
 
 public class GmailTest {
@@ -23,12 +23,7 @@ public class GmailTest {
 
     @DataProvider(parallel = true)
     public Iterator<Object[]> users(){
-        int numberOfUsers = getNumberOfUsers();
-        Object[][] objects = new Object[numberOfUsers][];
-        for (int i = 0; i < numberOfUsers; i++) {
-            objects[i] = new Object[]{getUserName(i), getPassword(i)};
-        }
-        return Stream.of(objects).iterator();
+        return Stream.of(getUsers()).iterator();
     }
 
     @Test(dataProvider = "users")
