@@ -3,11 +3,7 @@
 <suite name="ParallelSuite" verbose="2" data-provider-thread-count="3">
     <test name="default">
         <classes>
-            <class name="GmailTest">
-                <methods>
-                    <include name="deleteAndRevert3EmailsTest"/>
-                </methods>
-            </class>
+            <class name="GmailTest"/>
         </classes>
     </test>
 </suite>

@@ -3,6 +3,7 @@ package pages;
 import driver.DriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Wait;
@@ -22,9 +23,14 @@ public abstract class BasePage {
         return this.driver;
     }
 
-    public Wait expWait(){
-        Wait expWait = new WebDriverWait(driver, 25);
+    public Wait expWait(int seconds){
+        Wait expWait = new WebDriverWait(driver, seconds);
         return expWait;
+    }
+
+    public JavascriptExecutor jsExecutor(){
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        return jsExecutor;
     }
 
 }

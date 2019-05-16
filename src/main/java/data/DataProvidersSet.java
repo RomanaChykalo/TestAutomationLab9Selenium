@@ -36,4 +36,11 @@ public class DataProvidersSet {
                 {"tt6549629@gmail.com", "Subject 3", "This is test mail #3"}
         };
     }
+
+    @DataProvider(name = "recipientsTest", parallel = true)
+    public Object[][] recipientsTest() {
+        return new Object[][]{
+                {"tt6549624@gmail.com", "Subject 1", "This is test mail #1"}
+        };
+    }
 }

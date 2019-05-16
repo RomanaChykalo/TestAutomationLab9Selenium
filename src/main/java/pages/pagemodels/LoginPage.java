@@ -7,8 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
 
-import java.util.function.Function;
-
 public class LoginPage extends BasePage {
     Logger logger = LogManager.getLogger(LoginPage.class);
 
@@ -26,7 +24,6 @@ public class LoginPage extends BasePage {
 
     @FindBy(xpath = "//div[@id='passwordNext']//span")
     private WebElement passwNextBtn;
-
 
     public LoginPage() {
     }
@@ -68,7 +65,7 @@ public class LoginPage extends BasePage {
 
     public void setPasswrd(String passw){
         logger.trace("Typing password...");
-        expWait().until(ExpectedConditions.elementToBeClickable(getPasswField()));
+        expWait(35).until(ExpectedConditions.visibilityOf(getPasswField()));
         getPasswField().sendKeys(passw);
     }
 
