@@ -5,10 +5,10 @@ import com.igor.provider.DriverProvider;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-abstract class BasePage {
+public abstract class BasePage {
     protected WebDriver driver;
 
-    BasePage(){
+    protected BasePage(){
         driver = DriverProvider.getDriver();
         PageFactory.initElements(driver, this);
     }

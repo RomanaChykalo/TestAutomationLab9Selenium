@@ -1,12 +1,13 @@
 package com.igor.page;
 
+import com.igor.page.widget.NewMessageWidget;
 import com.igor.provider.DriverProvider;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static com.igor.constant.Constants.EXPLICIT_WAIT;
+import static com.igor.utils.constant.Constants.EXPLICIT_WAIT;
 
 public class MainPage extends BasePage{
     @FindBy(xpath = "//div[@role='complementary']/..//div[@role='button']")
@@ -21,12 +22,11 @@ public class MainPage extends BasePage{
         return new NewMessageWidget();
     }
 
-    public SentPage goToSentPage(){
+    public void goToSentPage(){
         searchField.clear();
         searchField.sendKeys("in:sent");
         searchButton.click();
         (new WebDriverWait(driver, EXPLICIT_WAIT)).until(ExpectedConditions.urlContains("sent"));
         DriverProvider.pageLoadTimeout(EXPLICIT_WAIT);
-        return new SentPage();
     }
 }

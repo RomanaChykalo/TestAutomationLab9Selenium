@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static com.igor.constant.Constants.EXPLICIT_WAIT;
+import static com.igor.utils.constant.Constants.EXPLICIT_WAIT;
 
 public class LogInPage extends BasePage{
     @FindBy(id = "identifierId")
@@ -15,16 +15,15 @@ public class LogInPage extends BasePage{
     @FindBy(name = "password")
     private WebElement passwordField;
 
-    public void setUsername(String username){
+    public void setUsernameAndSubmit(String username){
         usernameField.sendKeys(username);
         usernameField.sendKeys(Keys.ENTER);
     }
 
-    public MainPage setPassword(String password){
+    public void setPasswordAndSubmit(String password){
         (new WebDriverWait(driver, EXPLICIT_WAIT)).until(ExpectedConditions.visibilityOf(passwordField));
         passwordField.sendKeys(password);
         passwordField.sendKeys(Keys.ENTER);
         DriverProvider.pageLoadTimeout(EXPLICIT_WAIT);
-        return new MainPage();
     }
 }

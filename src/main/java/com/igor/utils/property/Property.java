@@ -1,4 +1,4 @@
-package com.igor.property;
+package com.igor.utils.property;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

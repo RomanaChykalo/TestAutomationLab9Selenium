@@ -1,11 +1,12 @@
-package com.igor.page;
+package com.igor.page.widget;
 
+import com.igor.page.BasePage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static com.igor.constant.Constants.EXPLICIT_WAIT;
+import static com.igor.utils.constant.Constants.EXPLICIT_WAIT;
 
 
 public class NewMessageWidget extends BasePage {
@@ -21,8 +22,7 @@ public class NewMessageWidget extends BasePage {
     private WebElement messageField;
     @FindBy(xpath = "//table[@role='group']/tbody/tr/td[1]/div/div/div[1]")
     private WebElement sendButton;
-    @FindBy(xpath = "//button[@name='ok']")
-    private WebElement buttonOkInAlertDialog;
+
 
     public void setReceiverField(String receiver) {
         (new WebDriverWait(driver, EXPLICIT_WAIT)).until(ExpectedConditions.visibilityOf(receiverField));
@@ -38,19 +38,6 @@ public class NewMessageWidget extends BasePage {
 
     public void clickToSendButton() {
         sendButton.click();
-    }
-
-    public boolean alertDialogIsEnable() {
-        try {
-            buttonOkInAlertDialog.getText();
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-        return true;
-    }
-
-    public void clickToButtonOkInAlertDialog() {
-        buttonOkInAlertDialog.click();
     }
 
     public void clickToDeleteContact() {

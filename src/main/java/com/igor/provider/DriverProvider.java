@@ -1,13 +1,13 @@
 package com.igor.provider;
 
-import com.igor.property.Property;
+import com.igor.utils.property.Property;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-import static com.igor.constant.Constants.IMPLICIT_WAIT;
+import static com.igor.utils.constant.Constants.IMPLICIT_WAIT;
 
 public class DriverProvider {
     private static ThreadLocal<WebDriver> DRIVER_POOL = new ThreadLocal<>();
@@ -25,7 +25,6 @@ public class DriverProvider {
         if(Objects.isNull(DRIVER_POOL.get())) {
             DRIVER_POOL.set(new ChromeDriver());
             DRIVER_POOL.get().manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
-            DRIVER_POOL.get().manage().window().maximize();
         }
         return DRIVER_POOL.get();
     }
