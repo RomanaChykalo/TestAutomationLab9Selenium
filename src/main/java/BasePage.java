@@ -1,12 +1,10 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.PageFactory;
+
 
 public class BasePage {
-    protected WebDriver driver;
-    protected WebDriverWait webDriverWait;
+    protected DriverFactory factory;
 
-    public BasePage(){
-        this.driver = DriverManager.getDriver();
-        this.webDriverWait = new WebDriverWait(driver, 3);
-    }
+       public BasePage(){
+        PageFactory.initElements(factory.getInstance().getDriver(), this);
+     }
 }
