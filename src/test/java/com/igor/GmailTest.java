@@ -1,8 +1,7 @@
 package com.igor;
 
-import com.igor.page.*;
-import com.igor.page.widget.AlertDialogWidget;
-import com.igor.page.widget.NewMessageWidget;
+import com.igor.business.LogInBO;
+import com.igor.business.MessageBO;
 import com.igor.provider.DriverProvider;
 import com.igor.utils.property.Property;
 import org.apache.logging.log4j.LogManager;
@@ -22,14 +21,13 @@ import static org.testng.Assert.assertTrue;
 
 public class GmailTest {
     private static final Logger LOGGER = LogManager.getLogger(GmailTest.class);
-
     @BeforeMethod()
-    public void setStartedPage() {
+    public void setStartedPage(){
         DriverProvider.getDriver().get(Property.getProperty("initial_page"));
     }
 
     @DataProvider(parallel = true)
-    public Iterator<Object[]> users() {
+    public Iterator<Object[]> users(){
         int numberOfUsers = getNumberOfUsers();
         Object[][] objects = new Object[numberOfUsers][];
         for (int i = 0; i < numberOfUsers; i++) {
@@ -41,38 +39,17 @@ public class GmailTest {
     @Test(dataProvider = "users")
     public void sendEmailTest(String username, String password) {
         final String MESSAGE_TITLE = UUID.randomUUID().toString();
-        LogInPage logInPage = new LogInPage();
-        LOGGER.info("Logging in");
-        logInPage.setUsernameAndSubmit(username);
-        MainPage mainPage = new MainPage();
-        logInPage.setPasswordAndSubmit(password);
-        LOGGER.info("Opening new message widget");
-        NewMessageWidget newMessageWidget = mainPage.clickToComposeButton();
-        AlertDialogWidget alertDialogWidget = new AlertDialogWidget();
-        LOGGER.info("filling new letter");
-        newMessageWidget.setReceiverField(getIncorrectReceiver());
-        newMessageWidget.setTitleField(MESSAGE_TITLE);
-        newMessageWidget.setMessageField(getMessage());
-        newMessageWidget.clickToSendButton();
-        LOGGER.info("Opening alert dialog");
-        assertTrue(alertDialogWidget.alertDialogIsEnable());
-        LOGGER.info("closing alert dialog");
-        alertDialogWidget.clickToButtonOk();
-        LOGGER.info("deleting incorrect receiver");
-        newMessageWidget.clickToDeleteContact();
-        LOGGER.info("writing correct receiver");
-        newMessageWidget.setReceiverField(getReceiver());
-        LOGGER.info("sending letter");
-        newMessageWidget.clickToSendButton();
-        LOGGER.info("opening sent page");
-        mainPage.goToSentPage();
-        SentPage sentPage = new SentPage();
-        LOGGER.info("checking sent page");
-        assertEquals(sentPage.getLetter(), MESSAGE_TITLE);
+        LogInBO logInBO = new LogInBO();
+        logInBO.logIn(username, password);
+        MessageBO messageBO = new MessageBO();
+        assertTrue(messageBO.sendIncorrectMessage(MESSAGE_TITLE));
+        messageBO.correctReceiverAndSend();
+        assertEquals(messageBO.checkThatLetterIsSent(), MESSAGE_TITLE);
     }
 
     @AfterMethod
-    public void quitDriver() {
+    public void quitDriver()
+    {
         DriverProvider.quit();
     }
 }

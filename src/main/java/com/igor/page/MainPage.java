@@ -17,9 +17,8 @@ public class MainPage extends BasePage{
     @FindBy(xpath = "//form[@role='search']/button[4]")
     private WebElement searchButton;
 
-    public NewMessageWidget clickToComposeButton(){
+    public void clickToComposeButton(){
         composeButton.click();
-        return new NewMessageWidget();
     }
 
     public void goToSentPage(){
