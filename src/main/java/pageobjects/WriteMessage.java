@@ -1,12 +1,11 @@
-package page.objects;
+package pageobjects;
 
-import driver.DriverManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class WriteMessage extends BasePage{
 
-    @FindBy(name = "to")
+    @FindBy(css ="textarea[name='to']")
     private WebElement receiverInput;
 
     @FindBy(className = "editable")
@@ -18,10 +17,16 @@ public class WriteMessage extends BasePage{
     @FindBy(name = "subjectbox")
     private WebElement subjectInput;
 
-    public void toWriteMessage(String message,String receiver, String subject){
+    public void inputReceiver(String receiver){
         receiverInput.sendKeys(receiver);
-        subjectInput.sendKeys(subject);
+    }
+
+    public void inputMessage(String message){
         messageInput.sendKeys(message);
+    }
+
+    public void inputSubject(String subject){
+        subjectInput.sendKeys(subject);
     }
 
     public void toCloseMessage(){

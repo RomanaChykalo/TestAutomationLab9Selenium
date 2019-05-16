@@ -1,23 +1,18 @@
-package page.objects;
+package pageobjects;
 
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Function;
 
 public class DraftMessagePage extends BasePage {
 
-    @FindBy(css = "input.gb_He[name='q']")
+    @FindBy(css = "input[name='q']")
     private WebElement searchInput;
 
-    @FindBy(css = "button.gb_Qe.gb_Re")
+    @FindBy(xpath = "//form[@role='search']/button[4]")
     private WebElement goToDraftMessage;
 
     @FindBy(xpath = "//span[./span[contains(.,'Subject')]]")
@@ -32,15 +27,17 @@ public class DraftMessagePage extends BasePage {
     @FindBy(className = "bAq")
     private WebElement wasSent;
 
-    public void goToDraftMessageAndCheck() {
+    public void goToDraftMessage() {
+        searchInput.clear();
         searchInput.sendKeys("in:draft");
         goToDraftMessage.click();
-        System.out.println(messages.get(0).getText());
     }
 
-    public void send(String correctReceiver) {
+    public void chooseCorrectMessage(){
         messages.get(0).click();
-        receiverInput.sendKeys(correctReceiver);
+    }
+
+    public void send() {
         sendButton.click();
         new FluentWait<>(driver).until(ExpectedConditions.visibilityOf(wasSent));
     }

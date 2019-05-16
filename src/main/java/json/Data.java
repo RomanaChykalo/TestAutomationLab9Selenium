@@ -3,16 +3,14 @@ package json;
 public class Data {
     private String login;
     private String password;
-    private String wrongReceiver;
-    private String correctReceiver;
+    private String receiver;
     private String subject;
     private String message;
 
-  public Data(String login, String password, String wrongReceiver,String correctReceiver, String subject, String message){
+  public Data(String login, String password, String receiver, String subject, String message){
         this.login = login;
         this.password = password;
-        this.wrongReceiver = wrongReceiver;
-        this.correctReceiver = correctReceiver;
+        this.receiver = receiver;
         this.subject = subject;
         this.message = message;
     }
@@ -30,12 +28,8 @@ public class Data {
         return password;
     }
 
-    public String getCorrectReceiver() {
-        return correctReceiver;
-    }
-
-    public String getWrongReceiver() {
-        return wrongReceiver;
+    public String getReceiver() {
+        return receiver;
     }
 
     public String getSubject() {
@@ -54,12 +48,8 @@ public class Data {
         this.message = message;
     }
 
-    public void setCorrectReceiver(String correctReceiver) {
-        this.correctReceiver = correctReceiver;
-    }
-
-    public void setWrongReceiver(String wrongReceiver) {
-        this.wrongReceiver = wrongReceiver;
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
     }
 
     public void setSubject(String subject) {

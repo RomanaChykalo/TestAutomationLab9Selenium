@@ -1,4 +1,4 @@
-package page.objects;
+package pageobjects;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,9 +17,12 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//div[@id='passwordNext']")
     private WebElement buttonSubmitPassword;
 
-    public void loginAndSubmit(String login, String password){
+    public void inputLogin(String login){
         loginInput.sendKeys(login);
         buttonSubmitLogin.click();
+    }
+
+    public void inputPassword(String password){
         passwordInput.sendKeys(password);
         buttonSubmitPassword.click();
     }

@@ -23,7 +23,7 @@ public class DriverManager {
         if (Objects.isNull(driverPool.get())) {
             driverPool.set(new ChromeDriver());
             driverPool.get().get(filePath.propertyFile("fileWayGmail"));
-            driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            driverPool.get().manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
             driverPool.get().manage().window().maximize();
         }
         return driverPool.get();

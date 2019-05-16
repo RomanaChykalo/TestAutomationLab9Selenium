@@ -1,12 +1,12 @@
+import businessobjects.SendFromDraft;
+import businessobjects.SignIn;
+import businessobjects.WriteNewMessage;
 import driver.DriverManager;
 import json.Data;
 import json.Parser;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.*;
-import page.objects.DraftMessagePage;
-import page.objects.HomePage;
-import page.objects.LoginPage;
-import page.objects.WriteMessage;
 import properties.FilePath;
 
 import java.io.File;
@@ -15,44 +15,40 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class TestGmail {
-
-    private static FilePath filePath = new FilePath();
-    private static File json = new File(filePath.propertyFile("fileWayJSON"));
-    private static Parser parser = new Parser();
-    private static List<Data> users = parser.getData(json);
+    private Logger logger = LogManager.getLogger(TestGmail.class);
 
     @DataProvider(parallel = true)
     public Iterator<Object[]> getUsers() {
+        FilePath filePath = new FilePath();
+        File json = new File(filePath.propertyFile("fileWayJSON"));
+        Parser parser = new Parser();
+        List<Data> users = parser.getData(json);
         return Stream.of(
                 new Object[]{users.get(0).getLogin(), users.get(0).getPassword(), users.get(0).getMessage(),
-                        users.get(0).getSubject(), users.get(0).getWrongReceiver(), users.get(0).getCorrectReceiver()},
+                        users.get(0).getSubject(), users.get(0).getReceiver()},
                 new Object[]{users.get(1).getLogin(), users.get(1).getPassword(), users.get(1).getMessage(),
-                        users.get(1).getSubject(), users.get(1).getWrongReceiver(), users.get(1).getCorrectReceiver()},
+                        users.get(1).getSubject(),  users.get(1).getReceiver()},
                 new Object[]{users.get(2).getLogin(), users.get(2).getPassword(), users.get(2).getMessage(),
-                       users.get(2).getSubject(), users.get(2).getWrongReceiver(), users.get(2).getCorrectReceiver()},
+                       users.get(2).getSubject(), users.get(2).getReceiver()},
                 new Object[]{users.get(3).getLogin(), users.get(3).getPassword(), users.get(3).getMessage(),
-                        users.get(3).getSubject(), users.get(3).getWrongReceiver(), users.get(3).getCorrectReceiver()},
+                        users.get(3).getSubject(), users.get(3).getReceiver(),},
                 new Object[]{users.get(4).getLogin(), users.get(4).getPassword(), users.get(4).getMessage(),
-                        users.get(4).getSubject(), users.get(4).getWrongReceiver(), users.get(4).getCorrectReceiver()}).iterator();
+                       users.get(4).getSubject(), users.get(4).getReceiver()}).iterator();
     }
 
     @Test(dataProvider = "getUsers")
-    public void LoginTest(String login, String password,String message, String subject, String wrongReceiver, String correctReceiver) {
-        LoginPage loginPage = new LoginPage();
-        loginPage.loginAndSubmit(login, password);
+    public void LoginTest(String login, String password,String message, String subject, String receiver) {
+        SignIn signIn = new SignIn();
+        signIn.login(login,password);
+        logger.info("You have successfully logged in.");
 
-        HomePage homePage = new HomePage();
-        homePage.goToWriteMessage();
+        WriteNewMessage writeMessage = new WriteNewMessage();
+        writeMessage.tryToWriteMessage(receiver,subject,message);
+        logger.info("Message was wrote but was not sent.");
 
-        WriteMessage writeMessage = new WriteMessage();
-        writeMessage.toWriteMessage(message, wrongReceiver, subject);
-        writeMessage.toCloseMessage();
-
-        DraftMessagePage draftMessagePage = new DraftMessagePage();
-        new WebDriverWait(DriverManager.getDriver(), 10);
-
-        draftMessagePage.goToDraftMessageAndCheck();
-        draftMessagePage.send(correctReceiver);
+        SendFromDraft sendFromDraft = new SendFromDraft();
+        sendFromDraft.sendMessage();
+        logger.info("Message was sent.");
     }
 
     @AfterMethod
