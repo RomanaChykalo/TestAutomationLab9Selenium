@@ -1,7 +1,6 @@
 package pages;
 
 import driver.DriverLoader;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,25 +10,29 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 import static model.Consts.LETTER_AMOUNT;
 
 public class MainPage extends BasePage {
-    @FindBy(css = "td.WA.xY")
+    @FindBy(xpath = "//span[@aria-label and @role='button']//following::td[@jscontroller]//div[@role]")
     private List<WebElement> importantMarkButtons;
-    @FindBy(css = "input.gb_He")
+    @FindBy(xpath = "//form[@role='search']//input")
     private WebElement gmailSearchInput;
-    @FindBy(css = "#aso_search_form_anchor > button.gb_Qe.gb_Re")
+    @FindBy(xpath = "//button[@aria-label and following-sibling::*[position()=1][name()='table']]")
     private WebElement gmailSearchButton;
 
     public void markImportantMessages() {
-        Wait wait = DriverLoader.getFluentWait()
-                .withTimeout(10, TimeUnit.SECONDS)
-                .pollingEvery(5, TimeUnit.SECONDS)
-                .ignoring(org.openqa.selenium.StaleElementReferenceException.class);
-        wait.until(ExpectedConditions.stalenessOf(importantMarkButtons.get(LETTER_AMOUNT)));
-        importantMarkButtons.stream().limit(LETTER_AMOUNT).forEach(WebElement::click);
+        if (importantMarkButtons.size()>LETTER_AMOUNT) {
+            Wait wait = new FluentWait(driver)
+                    .withTimeout(50, TimeUnit.SECONDS)
+                    .pollingEvery(5, TimeUnit.SECONDS)
+                    .ignoring(org.openqa.selenium.StaleElementReferenceException.class);
+            wait.until(ExpectedConditions.stalenessOf(importantMarkButtons.get(LETTER_AMOUNT-1)));
+            importantMarkButtons.stream().limit(LETTER_AMOUNT).forEach(WebElement::click);
+        } else {
+            System.out.println("We can't continue test, because we haven't enough messages for deleting");
+            DriverLoader.getDriver().close();
+        }
     }
 
     public void openImportantFolder() {

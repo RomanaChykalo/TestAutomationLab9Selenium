@@ -18,10 +18,12 @@ public class LoginPage extends BasePage {
     public void typeEmailAndSubmit(String userEmail){
         userEmailInput.sendKeys(userEmail);
         emailNextButton.click();
+
     }
     public void typePasswordAndSubmit(String userPassword){
         passwordInput.sendKeys(userPassword);
         passNextButton.click();
+        
     }
     public void signIn(){
         signInButton.click();

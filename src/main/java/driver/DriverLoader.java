@@ -1,8 +1,6 @@
 package driver;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.FluentWait;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,12 +10,8 @@ import java.util.Objects;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import static model.Consts.CITE;
-
 public class DriverLoader {
-
-    private static WebDriver driver;
-    private static FluentWait waitDriver;
+    private static ThreadLocal<WebDriver> driverPool = new ThreadLocal<>();
     private static Map<String, String> configList = new DriverLoader().getInfoFromPropertyFile();
 
     static {
@@ -28,41 +22,30 @@ public class DriverLoader {
     }
 
     public static WebDriver getDriver() {
-        if (Objects.isNull(driver)) {
-            driver = createDriverInstance();
+        if (Objects.isNull(driverPool.get())) {
+            driverPool.set(new ChromeDriver());
+            driverPool.get().manage().window().maximize();
+            driverPool.get().manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
         }
-        return driver;
-    }
-
-    public static FluentWait getFluentWait() {
-        if (Objects.isNull(waitDriver)) {
-            waitDriver = new FluentWait(driver);
-        }
-        return waitDriver;
-    }
-
-    public static WebDriver createDriverInstance() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get(CITE);
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        return driver;
-    }
+        return driverPool.get();
+   }
 
     public static void tearDown() {
-        driver.quit();
+            driverPool.get().quit();
+            driverPool.remove();
     }
 
     private Map<String, String> getInfoFromPropertyFile() {
         Properties prop = new Properties();
         try (InputStream input = getClass().getClassLoader().getResourceAsStream("application.properties")) {
             prop.load(input);
-        } catch (IOException ex) {
+       } catch (IOException ex) {
             ex.printStackTrace();
         }
-        configList = new HashMap<>();
-        configList.put("driver", prop.getProperty("driver"));
+       configList = new HashMap<>();
+       configList.put("driver", prop.getProperty("driver"));
         configList.put("path", prop.getProperty("path"));
         return configList;
     }
+
 }

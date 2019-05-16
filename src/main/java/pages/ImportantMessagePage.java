@@ -1,23 +1,26 @@
 package pages;
 
 import driver.DriverLoader;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 
 import java.util.List;
 
-public class ImportantPage extends BasePage {
+public class ImportantMessagePage extends BasePage {
     @FindBy(css = "td.oZ-x3")
     private List<WebElement> checkboxes;
     @FindBy(css = "[gh] [act='10']")
     private WebElement deleteButton;
     @FindBy(css = "[gh] .Dj > .ts:nth-of-type(2)")
     private WebElement lettersAmount;
+    private Logger logger = LogManager.getLogger(ImportantMessagePage.class);
 
     public void selectLettersInImportantFolder() {
         String jsClickCode = "arguments[0].scrollIntoView(true); arguments[0].click();";
@@ -27,12 +30,18 @@ public class ImportantPage extends BasePage {
     }
 
     public void deleteSelectedLetters() {
-        this.deleteButton.click();
-        DriverLoader.getFluentWait()
-                .until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector("span.bAq"))));
+        if(deleteButton.isDisplayed()) {
+            this.deleteButton.click();
+            Wait wait = new FluentWait(driver);
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.cssSelector("span.bAq"))));
+        }
     }
 
     public String getLetterAmount() {
-        return lettersAmount.getText();
+        try {
+            return lettersAmount.getText();
+        } catch (org.openqa.selenium.NoSuchElementException ex){
+            return "0";
+        }
     }
 }
