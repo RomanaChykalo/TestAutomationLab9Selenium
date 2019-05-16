@@ -1,8 +1,8 @@
 package com.sofia;
 
+import com.sofia.businesslayer.HomeEmailPageBo;
+import com.sofia.businesslayer.LoginBO;
 import com.sofia.utilmanager.driver.DriverManager;
-import com.sofia.pageobjects.gmailpages.GmailHomePage;
-import com.sofia.pageobjects.gmailpages.GmailSignInPageObj;
 import com.sofia.utilmanager.property.Property;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,7 +23,7 @@ public class GmailUndoDeleteEmailsTest {
     private static final Logger LOG = LogManager.getLogger(GmailUndoDeleteEmailsTest.class);
     private static final String UNDO_DELETE_EMAIL_WIDGET = getWidgetText();
     private static final int CHECKBOX_AMOUNT = 3;
-    private static final int USERS_AMOUNT = 4;
+    private static final int USERS_AMOUNT = 5;
 
     @BeforeMethod()
     public void setStartedPage(){
@@ -42,21 +42,16 @@ public class GmailUndoDeleteEmailsTest {
 
     @Test(dataProvider = "users")
     public void logInAndSendEmail(String testUsername, String testPassword) {
-        GmailSignInPageObj loginPage = new GmailSignInPageObj();
-        LOG.info("Making username input");
-        loginPage.typeUernameAndSubmit(testUsername);
-        assertEquals(loginPage.getActiveUsernameAttributeValue(), testUsername);
-        LOG.info("Username Correct. Making password input");
-        loginPage.typePasswordAndSubmit(testPassword);
-        LOG.info("Log in successfully! ");
+        LoginBO signIn = new LoginBO();
+        signIn.loginIntoAccount(testUsername, testPassword);
+        assertEquals(signIn.loginIntoAccount(testUsername, testPassword), testUsername);
 
-        GmailHomePage homePage = new GmailHomePage();
-        assertTrue(!homePage.isCheckboxesListEmpty());
-        LOG.info("There are enough messages to delete");
-        homePage.checkEmailsBoxes(CHECKBOX_AMOUNT);
-        homePage.clickDeleteButton();
-        homePage.clickUndoButton();
-        assertEquals(homePage.getUndoWidgetAttributeValue(), UNDO_DELETE_EMAIL_WIDGET);
+        HomeEmailPageBo homePage = new HomeEmailPageBo();
+        homePage.deleteCheckedEmails(CHECKBOX_AMOUNT);
+        assertTrue(homePage .deleteCheckedEmails(CHECKBOX_AMOUNT));
+
+        homePage .undoEmailDeletion();
+        assertEquals(homePage.undoEmailDeletion(), UNDO_DELETE_EMAIL_WIDGET);
         LOG.info("Test passed successfully");
     }
 
