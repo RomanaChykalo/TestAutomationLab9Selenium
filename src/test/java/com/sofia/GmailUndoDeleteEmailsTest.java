@@ -43,14 +43,11 @@ public class GmailUndoDeleteEmailsTest {
     @Test(dataProvider = "users")
     public void logInAndSendEmail(String testUsername, String testPassword) {
         LoginBO signIn = new LoginBO();
-        signIn.loginIntoAccount(testUsername, testPassword);
         assertEquals(signIn.loginIntoAccount(testUsername, testPassword), testUsername);
 
         HomeEmailPageBo homePage = new HomeEmailPageBo();
-        homePage.deleteCheckedEmails(CHECKBOX_AMOUNT);
-        assertTrue(homePage .deleteCheckedEmails(CHECKBOX_AMOUNT));
+        assertTrue(homePage.deleteCheckedEmails(CHECKBOX_AMOUNT));
 
-        homePage .undoEmailDeletion();
         assertEquals(homePage.undoEmailDeletion(), UNDO_DELETE_EMAIL_WIDGET);
         LOG.info("Test passed successfully");
     }
