@@ -1,6 +1,6 @@
 package com.sofia;
 
-import com.sofia.businesslayer.HomeEmailPageBo;
+import com.sofia.businesslayer.HomeEmailPageBO;
 import com.sofia.businesslayer.LoginBO;
 import com.sofia.utilmanager.driver.DriverManager;
 import com.sofia.utilmanager.property.Property;
@@ -22,8 +22,8 @@ import static org.testng.AssertJUnit.assertEquals;
 public class GmailUndoDeleteEmailsTest {
     private static final Logger LOG = LogManager.getLogger(GmailUndoDeleteEmailsTest.class);
     private static final String UNDO_DELETE_EMAIL_WIDGET = getWidgetText();
-    private static final int CHECKBOX_AMOUNT = 3;
-    private static final int USERS_AMOUNT = 5;
+    private static final int CHECKBOX_AMOUNT = getCheckboxAmount();
+    private static final int USERS_AMOUNT = getUserAmount();
 
     @BeforeMethod()
     public void setStartedPage(){
@@ -45,7 +45,7 @@ public class GmailUndoDeleteEmailsTest {
         LoginBO signIn = new LoginBO();
         assertEquals(signIn.loginIntoAccount(testUsername, testPassword), testUsername);
 
-        HomeEmailPageBo homePage = new HomeEmailPageBo();
+        HomeEmailPageBO homePage = new HomeEmailPageBO();
         assertTrue(homePage.deleteCheckedEmails(CHECKBOX_AMOUNT));
 
         assertEquals(homePage.undoEmailDeletion(), UNDO_DELETE_EMAIL_WIDGET);

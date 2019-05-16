@@ -34,4 +34,16 @@ public class JsonParser {
         return (String) (jsonObject.get("delete_email_widget_text"));
     }
 
+    public static int getUserAmount() {
+        return (int) (long) jsonObject.get("user_amount");
+    }
+
+    public static int getCheckboxAmount() {
+        return (int) (long) jsonObject.get("checkbox_amount");
+    }
+
+    public static int getImplicitWait() {
+        return (int) (long) jsonObject.get("implicit_wait");
+    }
+
 }

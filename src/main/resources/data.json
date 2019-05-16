@@ -26,5 +26,8 @@
     }
   ],
 
-  "delete_email_widget_text": "Дію скасовано."
+  "delete_email_widget_text": "Дію скасовано.",
+  "implicit_wait": 80,
+  "user_amount": 2,
+  "checkbox_amount": 3
 }

@@ -4,7 +4,7 @@ import com.sofia.pageobjects.gmailpages.GmailHomePage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class HomeEmailPageBo {
+public class HomeEmailPageBO {
     private static final Logger LOG = LogManager.getLogger(LoginBO.class);
     private GmailHomePage homePage = new GmailHomePage();
 
