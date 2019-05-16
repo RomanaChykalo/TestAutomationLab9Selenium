@@ -6,14 +6,15 @@ import org.apache.logging.log4j.Logger;
 
 public class LoginBO {
     private static final Logger LOG = LogManager.getLogger(LoginBO.class);
+    private long threadId = Thread.currentThread().getId();
 
     public String loginIntoAccount(String testUsername, String testPassword){
         GmailSignInPageObj loginPage = new GmailSignInPageObj();
-        LOG.info("Making username input");
+        LOG.info(threadId + " Making username input");
         loginPage.typeUernameAndSubmit(testUsername);
-        LOG.info("Username Correct. Making password input");
+        LOG.info(threadId + " Username Correct. Making password input");
         loginPage.typePasswordAndSubmit(testPassword);
-        LOG.info("Log in successfully! ");
+        LOG.info(threadId + " Log in successfully!");
         return loginPage.getActiveUsernameAttributeValue();
     }
 

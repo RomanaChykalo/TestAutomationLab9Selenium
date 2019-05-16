@@ -24,6 +24,7 @@ public class GmailUndoDeleteEmailsTest {
     private static final String UNDO_DELETE_EMAIL_WIDGET = getWidgetText();
     private static final int CHECKBOX_AMOUNT = getCheckboxAmount();
     private static final int USERS_AMOUNT = getUserAmount();
+    private static final String TEST_PASSED = "Test passed successfully";
 
     @BeforeMethod()
     public void setStartedPage(){
@@ -49,7 +50,7 @@ public class GmailUndoDeleteEmailsTest {
         assertTrue(homePage.deleteCheckedEmails(CHECKBOX_AMOUNT));
 
         assertEquals(homePage.undoEmailDeletion(), UNDO_DELETE_EMAIL_WIDGET);
-        LOG.info("Test passed successfully");
+        LOG.info(TEST_PASSED);
     }
 
     @AfterMethod

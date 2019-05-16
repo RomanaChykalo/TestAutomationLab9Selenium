@@ -10,7 +10,7 @@ public class GmailHomePage extends GeneralGmailPage {
     @FindBy(xpath = "//div[@role='checkbox']")
     private List<WebElement> emailCheckboxes;
 
-    @FindBy(className = "asa")
+    @FindBy(xpath = "//div[@aria-label='Видалити']")
     private WebElement deleteButton;
 
     @FindBy(id = "link_undo")
