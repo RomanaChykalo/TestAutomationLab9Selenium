@@ -1,6 +1,5 @@
 package com.igor.page;
 
-import com.igor.page.widget.NewMessageWidget;
 import com.igor.provider.DriverProvider;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

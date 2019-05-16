@@ -7,23 +7,28 @@ import com.igor.page.widget.NewMessageWidget;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.UUID;
+
 import static com.igor.utils.parser.JsonParser.*;
 
 public class MessageBO {
     private static final Logger LOGGER = LogManager.getLogger(MessageBO.class);
+    private final String MESSAGE_TITLE;
     private MainPage mainPage;
     private SentPage sentPage;
     private NewMessageWidget newMessageWidget;
     private AlertDialogWidget alertDialogWidget;
+
 
     public MessageBO(){
         mainPage = new MainPage();
         sentPage = new SentPage();
         newMessageWidget = new NewMessageWidget();
         alertDialogWidget = new AlertDialogWidget();
+        MESSAGE_TITLE = UUID.randomUUID().toString();
     }
 
-    public boolean sendIncorrectMessage(String MESSAGE_TITLE) {
+    public void sendIncorrectMessage() {
         LOGGER.info("Opening new message widget");
         mainPage.clickToComposeButton();
         LOGGER.info("filling new letter");
@@ -32,7 +37,6 @@ public class MessageBO {
         newMessageWidget.setMessageField(getMessage());
         newMessageWidget.clickToSendButton();
         LOGGER.info("Opening alert dialog");
-        return alertDialogWidget.alertDialogIsEnable();
     }
 
     public void correctReceiverAndSend(){
@@ -46,10 +50,14 @@ public class MessageBO {
         newMessageWidget.clickToSendButton();
     }
 
-    public String checkThatLetterIsSent(){
+    public boolean checkThatAlertWidgetAppeared(){
+        return alertDialogWidget.alertDialogIsEnable();
+    }
+
+    public boolean checkThatLetterIsSent(){
         LOGGER.info("opening sent page");
         mainPage.goToSentPage();
         LOGGER.info("checking sent page");
-        return sentPage.getLetter();
+        return sentPage.getLetter().equals(MESSAGE_TITLE);
     }
 }
