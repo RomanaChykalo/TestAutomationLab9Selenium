@@ -12,14 +12,19 @@ import static com.igor.utils.parser.JsonParser.*;
 public class MessageBO {
     private static final Logger LOGGER = LogManager.getLogger(MessageBO.class);
     private MainPage mainPage;
+    private SentPage sentPage;
     private NewMessageWidget newMessageWidget;
     private AlertDialogWidget alertDialogWidget;
-    private SentPage sentPage;
+
+    public MessageBO(){
+        mainPage = new MainPage();
+        sentPage = new SentPage();
+        newMessageWidget = new NewMessageWidget();
+        alertDialogWidget = new AlertDialogWidget();
+    }
 
     public boolean sendIncorrectMessage(String MESSAGE_TITLE) {
         LOGGER.info("Opening new message widget");
-        mainPage = new MainPage();
-        newMessageWidget = new NewMessageWidget();
         mainPage.clickToComposeButton();
         LOGGER.info("filling new letter");
         newMessageWidget.setReceiverField(getIncorrectReceiver());
@@ -27,12 +32,11 @@ public class MessageBO {
         newMessageWidget.setMessageField(getMessage());
         newMessageWidget.clickToSendButton();
         LOGGER.info("Opening alert dialog");
-        return new AlertDialogWidget().alertDialogIsEnable();
+        return alertDialogWidget.alertDialogIsEnable();
     }
 
     public void correctReceiverAndSend(){
         LOGGER.info("closing alert dialog");
-        alertDialogWidget = new AlertDialogWidget();
         alertDialogWidget.clickToButtonOk();
         LOGGER.info("deleting incorrect receiver");
         newMessageWidget.clickToDeleteContact();
@@ -44,7 +48,6 @@ public class MessageBO {
 
     public String checkThatLetterIsSent(){
         LOGGER.info("opening sent page");
-        sentPage = new SentPage();
         mainPage.goToSentPage();
         LOGGER.info("checking sent page");
         return sentPage.getLetter();
