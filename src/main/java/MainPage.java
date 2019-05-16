@@ -23,7 +23,7 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//a[@href ='https://mail.google.com/mail/u/0/#drafts']")
     private WebElement draftButton;
 
-    @FindBy(xpath = "//div[@class = 'ae4 UI']//tbody/tr[2]")
+    @FindBy(xpath = "//div[@class = 'ae4 UI']//tbody/tr[1]")
     private WebElement draft;
 
     @FindBy(xpath = "//*[@class = 'F cf zt']//tbody/tr[2]//td[@class = 'xY a4W']//div//span[@class = 'bog']/span")
