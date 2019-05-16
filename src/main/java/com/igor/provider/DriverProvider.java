@@ -3,6 +3,7 @@ package com.igor.provider;
 import com.igor.utils.property.Property;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -13,6 +14,7 @@ public class DriverProvider {
     private static ThreadLocal<WebDriver> DRIVER_POOL = new ThreadLocal<>();
     private static final String NAME = Objects.requireNonNull(Property.getProperty("name"));
     private static final String PATH = Objects.requireNonNull(Property.getProperty("path"));
+    private static final boolean HEADLESS_MODE = Boolean.valueOf(Property.getProperty("headless"));
 
     static {
         System.setProperty(NAME, PATH);
@@ -23,7 +25,9 @@ public class DriverProvider {
     public static WebDriver getDriver()
     {
         if(Objects.isNull(DRIVER_POOL.get())) {
-            DRIVER_POOL.set(new ChromeDriver());
+            ChromeOptions options = new ChromeOptions();
+            options.setHeadless(HEADLESS_MODE);
+            DRIVER_POOL.set(new ChromeDriver(options));
             DRIVER_POOL.get().manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
         }
         return DRIVER_POOL.get();

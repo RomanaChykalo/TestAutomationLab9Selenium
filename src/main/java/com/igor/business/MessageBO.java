@@ -4,6 +4,7 @@ import com.igor.page.MainPage;
 import com.igor.page.SentPage;
 import com.igor.page.widget.AlertDialogWidget;
 import com.igor.page.widget.NewMessageWidget;
+import com.igor.page.widget.SendingMessageAlertDialogWidget;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,13 +19,14 @@ public class MessageBO {
     private SentPage sentPage;
     private NewMessageWidget newMessageWidget;
     private AlertDialogWidget alertDialogWidget;
-
+    private SendingMessageAlertDialogWidget sendingMessageAlertDialogWidget;
 
     public MessageBO(){
         mainPage = new MainPage();
         sentPage = new SentPage();
         newMessageWidget = new NewMessageWidget();
         alertDialogWidget = new AlertDialogWidget();
+        sendingMessageAlertDialogWidget = new SendingMessageAlertDialogWidget();
         MESSAGE_TITLE = UUID.randomUUID().toString();
     }
 
@@ -48,6 +50,7 @@ public class MessageBO {
         newMessageWidget.setReceiverField(getReceiver());
         LOGGER.info("sending letter");
         newMessageWidget.clickToSendButton();
+        sendingMessageAlertDialogWidget.waitWhileMessageSending();
     }
 
     public boolean checkThatAlertWidgetAppeared(){
