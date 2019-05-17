@@ -6,9 +6,13 @@ import org.apache.logging.log4j.Logger;
 
 public class LogInBO {
     private static final Logger LOGGER = LogManager.getLogger(LogInBO.class);
+    private LogInPage logInPage;
+
+    public LogInBO(){
+        logInPage = new LogInPage();
+    }
 
     public void logIn(String username, String password){
-        LogInPage logInPage = new LogInPage();
         LOGGER.info("Logging in");
         logInPage.setUsernameAndSubmit(username);
         logInPage.setPasswordAndSubmit(password);
