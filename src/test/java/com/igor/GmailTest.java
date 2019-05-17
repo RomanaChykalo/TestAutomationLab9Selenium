@@ -2,12 +2,10 @@ package com.igor;
 
 import com.igor.business.LogInBO;
 import com.igor.business.MessageBO;
+import com.igor.listener.FailureLister;
 import com.igor.provider.DriverProvider;
 import com.igor.utils.property.Property;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.Iterator;
 import java.util.stream.Stream;
@@ -15,6 +13,7 @@ import java.util.stream.Stream;
 import static com.igor.utils.parser.JsonParser.getUsers;
 import static org.testng.Assert.assertTrue;
 
+@Listeners(FailureLister.class)
 public class GmailTest {
     @BeforeMethod()
     public void setStartedPage(){
