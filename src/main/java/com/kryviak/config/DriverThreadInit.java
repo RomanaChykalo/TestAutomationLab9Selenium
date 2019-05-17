@@ -4,11 +4,12 @@ import com.kryviak.utils.PropertyParser;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class DriverThreadInit {
     private PropertyParser propertyParser = new PropertyParser();
 
     private DriverThreadInit() {
-
     }
 
     private static DriverThreadInit instance = new DriverThreadInit();
@@ -23,6 +24,7 @@ public class DriverThreadInit {
             WebDriver webDriver;
             webDriver = new ChromeDriver();
             System.setProperty(propertyParser.getSysDriverProp(), propertyParser.getDriverPath());
+            webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             webDriver.manage().window().maximize();
             webDriver.get(propertyParser.getDriverUrl());
             return webDriver;

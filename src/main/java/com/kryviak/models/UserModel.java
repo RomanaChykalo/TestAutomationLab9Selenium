@@ -1,6 +1,6 @@
 package com.kryviak.models;
 
-public class LoginModel {
+public class UserModel {
     private String login;
     private String password;
 

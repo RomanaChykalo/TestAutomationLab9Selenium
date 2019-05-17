@@ -4,6 +4,7 @@ import com.kryviak.pages.AbstractPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class MailboxPage extends AbstractPage {
     public void clickCreateNewLetterButton() {
         waitForElementVisible(clickCreateNewLetterButtonLocator);
         webDriver.findElement(clickCreateNewLetterButtonLocator).click();
-       logger.info("Click to the 'Compose' button on your email page");
+        logger.info("Click to the 'Compose' button on your email page");
     }
 
     public void setEmailToTextField(String emailTo) {
@@ -59,6 +60,7 @@ public class MailboxPage extends AbstractPage {
      */
     public void clickSenTMessageLink() {
         waitForElementVisible(clickSendMessageLinkLocator);
+        checkIfDisplayedElement(webDriver.findElement(clickSendMessageLinkLocator));
         webDriver.findElement(clickSendMessageLinkLocator).click();
         logger.info("Click to the 'Sent' link to view all send message");
     }
@@ -75,18 +77,23 @@ public class MailboxPage extends AbstractPage {
 
     public void selectMessageByTitle(String msgTitle) {
         List<WebElement> mailTitlesList = getAllMessagesRows();
-        for (WebElement webElement : mailTitlesList) {
-            if (webElement.findElement(getMessageTitle).getText().equals(msgTitle)) {
-                webElement.findElement(clickSelectButton).click();
-                break;
-            }
-        }
+        mailTitlesList.stream()
+                .filter(webElement -> webElement.findElement(getMessageTitle).getText().equals(msgTitle))
+                .findFirst()
+                .ifPresent(webElement -> webElement.findElement(clickSelectButton).click());
     }
 
-    public void deleteSelectedMessage(){
+    public void deleteSelectedMessage() {
         waitForElementIsNotVisible(undoLinkLocator);
         waitForElementVisible(deleteMessageButton);
         webDriver.findElement(deleteMessageButton).click();
         logger.info("Delete the message");
+    }
+
+    private void checkIfDisplayedElement(WebElement webElement) {
+        try {
+            webElement.isDisplayed();
+        } catch (StaleElementReferenceException ignored) {
+        }
     }
 }

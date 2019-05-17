@@ -10,10 +10,10 @@ public abstract class AbstractPage {
     protected WebDriver webDriver = DriverThreadInit.getInstance().getDriver();
 
     protected void waitForElementVisible(By by) {
-        (new WebDriverWait(this.webDriver, 10)).until(ExpectedConditions.visibilityOfElementLocated(by));
+        (new WebDriverWait(this.webDriver, 30)).until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
     protected void waitForElementIsNotVisible(By by) {
-        (new WebDriverWait(this.webDriver, 10)).until(ExpectedConditions.invisibilityOfElementLocated(by));
+        (new WebDriverWait(this.webDriver, 30)).until(ExpectedConditions.invisibilityOfElementLocated(by));
     }
 }

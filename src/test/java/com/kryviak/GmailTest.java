@@ -3,8 +3,8 @@ package com.kryviak;
 import com.kryviak.config.DriverThreadInit;
 import com.kryviak.loginBO.LoginBO;
 import com.kryviak.mailboxBO.MailboxBO;
-import com.kryviak.models.LoginModel;
 import com.kryviak.models.MessageModel;
+import com.kryviak.models.UserModel;
 import com.kryviak.utils.XmlParser;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -31,11 +31,11 @@ public class GmailTest {
     public void sendEmail(String login, String password) {
         XmlParser parser = new XmlParser();
         MailboxBO mailboxBO = new MailboxBO();
+        UserModel userModel = new UserModel();
         MessageModel messageModel = parser.getMessageModelData();
-        LoginModel loginModel = new LoginModel();
-        loginModel.setUserLogin(login);
-        loginModel.setUserPassword(password);
-        new LoginBO().login(loginModel);
+        userModel.setUserLogin(login);
+        userModel.setUserPassword(password);
+        new LoginBO().login(userModel);
         mailboxBO.sendLetter(messageModel, messageModel.getSubjectTo());
         Assert.assertTrue(mailboxBO.isMessageSent(messageModel.getSubjectTo()), "Message with subject [" +
                 messageModel.getSubjectTo() + "] was not sent.");
