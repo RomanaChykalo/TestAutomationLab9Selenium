@@ -8,13 +8,9 @@ import com.igor.page.widget.SendingMessageAlertDialogWidget;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.UUID;
-
-import static com.igor.utils.parser.JsonParser.*;
 
 public class MessageBO {
     private static final Logger LOGGER = LogManager.getLogger(MessageBO.class);
-    private final String MESSAGE_TITLE;
     private MainPage mainPage;
     private SentPage sentPage;
     private NewMessageWidget newMessageWidget;
@@ -27,40 +23,40 @@ public class MessageBO {
         newMessageWidget = new NewMessageWidget();
         alertDialogWidget = new AlertDialogWidget();
         sendingMessageAlertDialogWidget = new SendingMessageAlertDialogWidget();
-        MESSAGE_TITLE = UUID.randomUUID().toString();
     }
 
-    public void sendIncorrectMessage() {
+    public void fillFieldsForMessage(String receiver, String topic, String message){
         LOGGER.info("Opening new message widget");
         mainPage.clickToComposeButton();
         LOGGER.info("filling new letter");
-        newMessageWidget.setReceiverField(getIncorrectReceiver());
-        newMessageWidget.setTitleField(MESSAGE_TITLE);
-        newMessageWidget.setMessageField(getMessage());
-        newMessageWidget.clickToSendButton();
-        LOGGER.info("Opening alert dialog");
+        newMessageWidget.setReceiverField(receiver);
+        newMessageWidget.setTitleField(topic);
+        newMessageWidget.setMessageField(message);
     }
 
-    public void correctReceiverAndSend(){
+    public void correctReceiver(String receiver){
         LOGGER.info("closing alert dialog");
         alertDialogWidget.clickToButtonOk();
         LOGGER.info("deleting incorrect receiver");
         newMessageWidget.clickToDeleteContact();
         LOGGER.info("writing correct receiver");
-        newMessageWidget.setReceiverField(getReceiver());
-        LOGGER.info("sending letter");
-        newMessageWidget.clickToSendButton();
-        sendingMessageAlertDialogWidget.waitWhileMessageSending();
+        newMessageWidget.setReceiverField(receiver);
     }
 
-    public boolean checkThatAlertWidgetAppeared(){
+    public void sendMessage(){
+        newMessageWidget.clickToSendButton();
+    }
+
+    public boolean isAlertWidgetVisible(){
         return alertDialogWidget.alertDialogIsEnable();
     }
 
-    public boolean checkThatLetterIsSent(){
+    public boolean isLetterSent(String topic){
+        LOGGER.info("waiting while sending message dialog widget is active");
+        sendingMessageAlertDialogWidget.waitWhileMessageSending();
         LOGGER.info("opening sent page");
         mainPage.goToSentPage();
         LOGGER.info("checking sent page");
-        return sentPage.getLetter().equals(MESSAGE_TITLE);
+        return sentPage.getLetter().equals(topic);
     }
 }
