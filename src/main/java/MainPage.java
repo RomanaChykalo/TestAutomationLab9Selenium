@@ -5,8 +5,12 @@ public class MainPage extends BasePage {
 
     @FindBy(className = "aic")
     private WebElement composeButton;
+
     @FindBy(name = "to")
     private WebElement whomField;
+
+    @FindBy(xpath ="//span[@class='vN bfK a3q']")
+    private WebElement savedEmail;
 
     @FindBy(className = "aoT")
     private WebElement subjectField;
@@ -20,20 +24,11 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//img[@class ='Ha']")
     private WebElement closeButton;
 
-    @FindBy(xpath = "//a[@href ='https://mail.google.com/mail/#drafts']")
+    @FindBy(xpath = "//div[@class = 'TO']//span[@class='nU n1']/a")
     private WebElement draftButton;
 
     @FindBy(xpath = "//div[@class = 'ae4 UI']//tbody/tr[1]")
     private WebElement draft;
-
-    @FindBy(xpath = "//*[@class = 'F cf zt']//tbody/tr[2]//td[@class = 'xY a4W']//div//span[@class = 'bog']/span")
-    private WebElement savedSubject;
-
-    @FindBy(xpath = "//*[@class = 'F cf zt']//tbody/tr[2]//td[@class = 'xY a4W']//div//span[@class = 'bog']/span/following::span")
-    private WebElement savedText;
-
-    @FindBy(xpath = "//div[@class ='oL aDm az9']/span")
-    private WebElement savedEmailAddress;
 
     public void clickComposeButton() {
         composeButton.click();
@@ -62,17 +57,16 @@ public class MainPage extends BasePage {
     public void clickOnDraftButton() {
         draftButton.click();
     }
+    public String takeEmailAddress() {
+        return savedEmail.getAttribute("email");
+    }
 
     public String takeLetterSubject() {
-        return savedSubject.getText();
+        return subjectField.getAttribute("value");
     }
 
     public String takeLetterText() {
-        return savedText.getText();
-    }
-
-    public String takeEmailAddress() {
-        return savedEmailAddress.getText();
+        return textField.getText();
     }
 
     public void clickOnDraft() {
