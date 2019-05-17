@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+import static com.igor.utils.constant.Constants.EXPLICIT_WAIT;
 import static com.igor.utils.constant.Constants.IMPLICIT_WAIT;
 
 public class DriverProvider {
@@ -29,12 +30,9 @@ public class DriverProvider {
             options.setHeadless(HEADLESS_MODE);
             DRIVER_POOL.set(new ChromeDriver(options));
             DRIVER_POOL.get().manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
+            DRIVER_POOL.get().manage().timeouts().pageLoadTimeout(EXPLICIT_WAIT, TimeUnit.SECONDS);
         }
         return DRIVER_POOL.get();
-    }
-
-    public static void pageLoadTimeout(int seconds) {
-        DRIVER_POOL.get().manage().timeouts().pageLoadTimeout(seconds, TimeUnit.SECONDS);
     }
 
     public static void quit() {

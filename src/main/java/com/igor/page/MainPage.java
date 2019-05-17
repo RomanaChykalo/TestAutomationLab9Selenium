@@ -1,6 +1,5 @@
 package com.igor.page;
 
-import com.igor.provider.DriverProvider;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -25,6 +24,5 @@ public class MainPage extends BasePage{
         searchField.sendKeys("in:sent");
         searchButton.click();
         (new WebDriverWait(driver, EXPLICIT_WAIT)).until(ExpectedConditions.urlContains("sent"));
-        DriverProvider.pageLoadTimeout(EXPLICIT_WAIT);
     }
 }

@@ -1,6 +1,5 @@
 package com.igor.page;
 
-import com.igor.provider.DriverProvider;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,6 +23,5 @@ public class LogInPage extends BasePage{
         (new WebDriverWait(driver, EXPLICIT_WAIT)).until(ExpectedConditions.visibilityOf(passwordField));
         passwordField.sendKeys(password);
         passwordField.sendKeys(Keys.ENTER);
-        DriverProvider.pageLoadTimeout(EXPLICIT_WAIT);
     }
 }
