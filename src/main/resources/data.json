@@ -1,23 +1,15 @@
 {
   "users": [
     {
+      "username": "orest.zhmurkevych.secondary@gmail.com",
+      "password": "passwordfortest"
+    },
+    {
       "username": "sonyachanter@gmail.com",
       "password": "sonichka13"
     },
     {
       "username": "paprika0015@gmail.com",
-      "password": "423489123789op"
-    },
-    {
-      "username": "orest.zhmurkevych.secondary@gmail.com",
-      "password": "passwordfortest"
-    },
-    {
-      "username": "paprika0019@gmail.com",
-      "password": "423489123789op"
-    },
-    {
-      "username": "paprika0020@gmail.com",
       "password": "423489123789op"
     },
     {
@@ -27,7 +19,7 @@
   ],
 
   "delete_email_widget_text": "Дію скасовано.",
-  "implicit_wait": 120,
-  "user_amount": 2,
+  "implicit_wait": 160,
+  "user_amount": 4,
   "checkbox_amount": 3
 }
