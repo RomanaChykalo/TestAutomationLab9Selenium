@@ -1,5 +1,6 @@
-public class DataProviderClass {
+package dataproviders;
 
+public class DataProviderClass {
 
     public static  Object[][] getDataFromDataProvider(){
         return new Object[][] {

@@ -1,10 +1,9 @@
 package pages;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class MainPage extends BasePage {
 
@@ -30,10 +29,14 @@ public class MainPage extends BasePage {
     private WebElement closeButton;
 
     @FindBy(xpath = "//div[@class = 'TO']//span[@class='nU n1']/a")
-    private WebElement draftButton;
+    private WebElement draftFolder;
 
     @FindBy(xpath = "//div[@class = 'ae4 UI']//tbody/tr[1]")
-    private WebElement draft;
+    private WebElement lastMessageInDraftList;
+
+    @FindBy(xpath = "//div[@class = 'vh']")
+    private WebElement popUpMessage;
+
 
     public void clickComposeButton() {
         composeButton.click();
@@ -53,20 +56,20 @@ public class MainPage extends BasePage {
 
     public void clickSendButton() {
         sendButton.click();
-       new WebDriverWait(driver, 30).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class = 'vh']")));
+       wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class = 'vh']")));
     }
 
     public void clickOnCloseMessageButton() {
         closeButton.click();
     }
 
-    public void clickOnDraftButton() {
-        new WebDriverWait(driver, 30).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class = 'TO']//span[@class='nU n1']/a")));
-        draftButton.click();
+    public void clickOnDraftFolder() {
+      wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class = 'TO']//span[@class='nU n1']/a")));
+        draftFolder.click();
     }
 
     public String takeEmailAddress() {
-        new WebDriverWait(driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='vN bfK a3q']")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='vN bfK a3q']")));
         return savedEmail.getAttribute("email");
     }
 
@@ -78,8 +81,8 @@ public class MainPage extends BasePage {
         return textField.getText();
     }
 
-    public void clickOnDraft() {
-        draft.click();
+    public void clickOnLastMessageInDraftList() {
+        lastMessageInDraftList.click();
     }
 }
 

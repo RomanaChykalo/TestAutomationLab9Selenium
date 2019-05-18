@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class LoginPage extends BasePage {
 
@@ -26,7 +26,7 @@ public class LoginPage extends BasePage {
     }
 
     public void typePassword(String password) {
-       new WebDriverWait(driver, 30).until(ExpectedConditions.elementToBeClickable(By.name("password")));
+       wait.until(ExpectedConditions.elementToBeClickable(By.name("password")));
         passwordField.sendKeys(password);
     }
 }

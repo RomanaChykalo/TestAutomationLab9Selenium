@@ -18,8 +18,8 @@ public class MainPageBO {
     }
 
     public void openSavedDraft() {
-        mainPage.clickOnDraftButton();
-        mainPage.clickOnDraft();
+        mainPage.clickOnDraftFolder();
+        mainPage.clickOnLastMessageInDraftList();
     }
 
     public boolean isSavedEmailInDraftEqualsToEntered(String enteredEmail) {
