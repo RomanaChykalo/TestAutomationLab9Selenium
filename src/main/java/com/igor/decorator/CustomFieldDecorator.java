@@ -26,8 +26,6 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
             if (locator == null) {
                 return null;
             }
-
-            // элемент
             return createElement(loader, locator, decoratableClass);
         }
         return null;
@@ -38,9 +36,7 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
      * либо null если класс не подходит для декоратора
      */
     private Class<?> decoratableClass(Field field) {
-
         Class<?> clazz = field.getType();
-
         // у элемента должен быть конструктор, принимающий WebElement
         try {
             clazz.getConstructor(WebElement.class);
@@ -70,9 +66,7 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
             return clazz.getConstructor(WebElement.class)
                     .newInstance(element);
         } catch (Exception e) {
-            throw new AssertionError(
-                    "WebElement can't be represented as " + clazz
-            );
+            throw new AssertionError("WebElement can't be represented as " + clazz);
         }
     }
 }
