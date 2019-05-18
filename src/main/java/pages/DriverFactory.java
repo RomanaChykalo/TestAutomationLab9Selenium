@@ -2,24 +2,26 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+
 public class DriverFactory {
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     private DriverFactory() {
     }
 
-    private static DriverFactory instance = new DriverFactory();
-
-    public static DriverFactory getInstance() {
-        return instance;
-    }
-
-    ThreadLocal<WebDriver> driver = ThreadLocal.withInitial(() -> new ChromeDriver());
-
-    public WebDriver getDriver() {
+    public static WebDriver getWebDriver() {
+        if (Objects.isNull(driver.get())) {
+            driver.set(new ChromeDriver());
+            driver.get().manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+            driver.get().manage().window().maximize();
+        }
         return driver.get();
     }
 
-    public void removeDriver() {
+    public static void removeDriver() {
         driver.get().quit();
         driver.remove();
     }

@@ -8,8 +8,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainPage extends BasePage {
 
-    WebDriverWait wait = new WebDriverWait(DriverFactory.getInstance().getDriver(), 30);
-
     @FindBy(className = "aic")
     private WebElement composeButton;
 
@@ -55,7 +53,7 @@ public class MainPage extends BasePage {
 
     public void clickSendButton() {
         sendButton.click();
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class = 'vh']")));
+       new WebDriverWait(driver, 30).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class = 'vh']")));
     }
 
     public void clickOnCloseMessageButton() {
@@ -63,12 +61,12 @@ public class MainPage extends BasePage {
     }
 
     public void clickOnDraftButton() {
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//a[contains(@href, 'drafts')]")));
+        new WebDriverWait(driver, 30).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class = 'TO']//span[@class='nU n1']/a")));
         draftButton.click();
     }
 
     public String takeEmailAddress() {
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='vN bfK a3q']")));
+        new WebDriverWait(driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='vN bfK a3q']")));
         return savedEmail.getAttribute("email");
     }
 

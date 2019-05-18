@@ -8,8 +8,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends BasePage {
 
-    WebDriverWait wait = new WebDriverWait(DriverFactory.getInstance().getDriver(), 30);
-
     @FindBy(id = "identifierId")
     private WebElement emailField;
 
@@ -28,7 +26,7 @@ public class LoginPage extends BasePage {
     }
 
     public void typePassword(String password) {
-        wait.until(ExpectedConditions.elementToBeClickable(By.name("password")));
+       new WebDriverWait(driver, 30).until(ExpectedConditions.elementToBeClickable(By.name("password")));
         passwordField.sendKeys(password);
     }
 }

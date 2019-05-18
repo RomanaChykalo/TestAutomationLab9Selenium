@@ -3,7 +3,6 @@ import business.MainPageBO;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import pages.DriverFactory;
 
@@ -12,7 +11,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 public class GmailPageTest {
     private static final String DRIVER_NAME = "webdriver.chrome.driver";
@@ -24,6 +22,7 @@ public class GmailPageTest {
     @BeforeMethod
     public void setUp() {
         System.setProperty(DRIVER_NAME, PATH_TO_CHROME_DRIVER);
+        DriverFactory.getWebDriver().get(URL);
     }
 
     @DataProvider(parallel = true)
@@ -33,14 +32,10 @@ public class GmailPageTest {
 
     @Test(dataProvider = "loginData")
     public void correctlySavedDataTest(String email, String password) {
-    LoginPageBO loginBO = new LoginPageBO();
-    MainPageBO mainPageBO = new MainPageBO();
+        LoginPageBO loginBO = new LoginPageBO();
+        MainPageBO mainPageBO = new MainPageBO();
 
         try (InputStream input = new FileInputStream(PATH_TO_PROPERTIES)) {
-            WebDriver driver = DriverFactory.getInstance().getDriver();
-            driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-            driver.manage().window().maximize();
-            driver.get(URL);
             Properties prop = new Properties();
             prop.loadFromXML(input);
             String receiverEmail = prop.getProperty("receiver_email");
@@ -63,8 +58,9 @@ public class GmailPageTest {
             e.printStackTrace();
         }
     }
+
     @AfterMethod
     public void tearDown() {
-        DriverFactory.getInstance().removeDriver();
+        DriverFactory.removeDriver();
     }
 }

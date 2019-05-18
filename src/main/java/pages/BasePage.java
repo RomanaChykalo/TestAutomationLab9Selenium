@@ -1,11 +1,13 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 public class BasePage {
-    protected DriverFactory factory;
+    protected WebDriver driver;
 
-    public BasePage() {
-        PageFactory.initElements(factory.getInstance().getDriver(), this);
+    BasePage(){
+        driver = DriverFactory.getWebDriver();
+        PageFactory.initElements(driver, this);
     }
 }
