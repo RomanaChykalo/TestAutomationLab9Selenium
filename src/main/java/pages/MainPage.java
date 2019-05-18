@@ -1,7 +1,14 @@
+package pages;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainPage extends BasePage {
+
+    WebDriverWait wait = new WebDriverWait(DriverFactory.getInstance().getDriver(), 30);
 
     @FindBy(className = "aic")
     private WebElement composeButton;
@@ -9,7 +16,7 @@ public class MainPage extends BasePage {
     @FindBy(name = "to")
     private WebElement whomField;
 
-    @FindBy(xpath ="//span[@class='vN bfK a3q']")
+    @FindBy(xpath = "//span[@class='vN bfK a3q']")
     private WebElement savedEmail;
 
     @FindBy(className = "aoT")
@@ -48,6 +55,7 @@ public class MainPage extends BasePage {
 
     public void clickSendButton() {
         sendButton.click();
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class = 'vh']")));
     }
 
     public void clickOnCloseMessageButton() {
@@ -55,9 +63,12 @@ public class MainPage extends BasePage {
     }
 
     public void clickOnDraftButton() {
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//a[contains(@href, 'drafts')]")));
         draftButton.click();
     }
+
     public String takeEmailAddress() {
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='vN bfK a3q']")));
         return savedEmail.getAttribute("email");
     }
 

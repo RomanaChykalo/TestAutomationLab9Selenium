@@ -1,6 +1,7 @@
+package pages;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 public class DriverFactory {
 
     private DriverFactory() {
@@ -23,6 +24,7 @@ public class DriverFactory {
         driver.remove();
     }
 }
+
 
 
 

@@ -1,7 +1,14 @@
+package pages;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends BasePage {
+
+    WebDriverWait wait = new WebDriverWait(DriverFactory.getInstance().getDriver(), 30);
 
     @FindBy(id = "identifierId")
     private WebElement emailField;
@@ -17,10 +24,11 @@ public class LoginPage extends BasePage {
     }
 
     public void clickNextButton() {
-        nextButton.click();
+               nextButton.click();
     }
 
     public void typePassword(String password) {
+        wait.until(ExpectedConditions.elementToBeClickable(By.name("password")));
         passwordField.sendKeys(password);
     }
 }
