@@ -19,7 +19,9 @@
   ],
 
   "delete_email_widget_text": "Дію скасовано.",
+  "delete_email_widget_text_rus": "Действие отменено.",
+  "delete_email_widget_text_eng": "Дію скасовано.",
   "implicit_wait": 160,
-  "user_amount": 4,
+  "user_amount": 2,
   "checkbox_amount": 3
 }

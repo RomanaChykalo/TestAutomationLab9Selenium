@@ -1,5 +1,6 @@
 package com.sofia.pageobjects;
 
+import com.sofia.decorators.CustomFieldDecorator;
 import com.sofia.utilmanager.driver.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -9,11 +10,11 @@ import static com.sofia.utilmanager.driver.DriverManager.*;
 
 public abstract class GeneralGmailPage {
     protected WebDriver driver;
-    WebDriverWait webDriverWait;
+    private WebDriverWait webDriverWait;
 
     public GeneralGmailPage() {
         driver = DriverManager.getDriverInstance();
         webDriverWait = new WebDriverWait(driver, 30);
-        PageFactory.initElements(getDriverInstance(), this);
+        PageFactory.initElements(new CustomFieldDecorator(getDriverInstance()), this);
     }
 }

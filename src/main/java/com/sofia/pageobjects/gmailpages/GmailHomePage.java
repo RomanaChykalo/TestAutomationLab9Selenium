@@ -1,5 +1,7 @@
 package com.sofia.pageobjects.gmailpages;
 
+import com.sofia.decorators.elements.Button;
+import com.sofia.decorators.elements.Checkbox;
 import com.sofia.pageobjects.GeneralGmailPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.*;
@@ -10,18 +12,18 @@ import java.util.List;
 
 public class GmailHomePage extends GeneralGmailPage {
     @FindBy(xpath = "//div[@role='checkbox']")
-    private List<WebElement> emailCheckboxes;
+    private List<Checkbox> emailCheckboxes;
 
     @FindBy(xpath = "(//div[@class='asa'])[3]")
-    private WebElement deleteButton;
+    private Button deleteButton;
 
     @FindBy(id = "link_undo")
-    private WebElement undoButton;
+    private Button undoButton;
 
     @FindBy(className = "bAq")
     private WebElement undoWidget;
 
-    public List<WebElement> getCheckboxes(){
+    public List<Checkbox> getCheckboxes(){
         return emailCheckboxes;
     }
 
@@ -31,12 +33,12 @@ public class GmailHomePage extends GeneralGmailPage {
 
     public void checkEmailsBoxes(int amount){
         for (int i = 0; i < amount; i++) {
-            getCheckboxes().get(i).click();
+            getCheckboxes().get(i).setChecked();
         }
     }
 
     public void clickDeleteButton() {
-        (new WebDriverWait(driver, 30)).until(ExpectedConditions.elementToBeClickable(deleteButton));
+        (new WebDriverWait(driver, 30)).until(ExpectedConditions.elementToBeClickable(deleteButton.getButtonElement()));
         deleteButton.click();
     }
 
