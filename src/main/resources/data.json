@@ -28,6 +28,6 @@
 
   "delete_email_widget_text": "Дію скасовано.",
   "implicit_wait": 120,
-  "user_amount": 1,
+  "user_amount": 2,
   "checkbox_amount": 3
 }
