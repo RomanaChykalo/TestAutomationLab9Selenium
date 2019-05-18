@@ -1,31 +1,30 @@
 package com.igor.page.widget;
 
+import com.igor.decorator.element.Button;
+import com.igor.decorator.element.Label;
 import com.igor.page.BasePage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import static com.igor.utils.constant.Constants.EXPLICIT_WAIT;
 
 
 public class NewMessageWidget extends BasePage {
     @FindBy(xpath = "//textarea[@name='to']")
-    private WebElement receiverField;
+    private Label receiverField;
     @FindBy(xpath = "//form[@enctype='multipart/form-data']/div[1]")
-    private WebElement receiverArea;
+    private Label receiverArea;
     @FindBy(xpath = "//input[@name='to']/preceding-sibling::span/div[2]")
-    private WebElement deleteContact;
+    private Button deleteContact;
     @FindBy(xpath = "//input[@name='subjectbox']")
-    private WebElement titleField;
+    private Label titleField;
     @FindBy(xpath = "//input[@name='composeid']/../../table//div[@role='textbox']")
-    private WebElement messageField;
+    private Label messageField;
     @FindBy(xpath = "//table[@role='group']/tbody/tr/td[1]/div/div/div[1]")
-    private WebElement sendButton;
+    private Button sendButton;
 
 
     public void setReceiverField(String receiver) {
-        (new WebDriverWait(driver, EXPLICIT_WAIT)).until(ExpectedConditions.visibilityOf(receiverField));
+        webDriverWait.until(ExpectedConditions.visibilityOf(receiverField.getWebElement()));
         receiverField.clear();
         receiverField.sendKeys(receiver);
     }
@@ -41,9 +40,8 @@ public class NewMessageWidget extends BasePage {
     }
 
     public void clickToDeleteContact() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, EXPLICIT_WAIT);
         messageField.sendKeys(Keys.chord(Keys.CONTROL, Keys.SHIFT, "B"));
-        webDriverWait.until(ExpectedConditions.visibilityOf(receiverArea));
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteContact)).click();
+        webDriverWait.until(ExpectedConditions.visibilityOf(receiverArea.getWebElement()));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteContact.getWebElement())).click();
     }
 }

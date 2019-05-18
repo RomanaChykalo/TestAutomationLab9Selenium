@@ -1,19 +1,17 @@
 package com.igor.page;
 
-import org.openqa.selenium.WebElement;
+import com.igor.decorator.element.Button;
+import com.igor.decorator.element.Label;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import static com.igor.utils.constant.Constants.EXPLICIT_WAIT;
 
 public class MainPage extends BasePage{
     @FindBy(xpath = "//div[@role='complementary']/..//div[@role='button']")
-    private WebElement composeButton;
+    private Button composeButton;
     @FindBy(xpath = "//form[@role='search']//input")
-    private WebElement searchField;
+    private Label searchField;
     @FindBy(xpath = "//form[@role='search']/button[4]")
-    private WebElement searchButton;
+    private Button searchButton;
 
     public void clickToComposeButton(){
         composeButton.click();
@@ -23,6 +21,6 @@ public class MainPage extends BasePage{
         searchField.clear();
         searchField.sendKeys("in:sent");
         searchButton.click();
-        (new WebDriverWait(driver, EXPLICIT_WAIT)).until(ExpectedConditions.urlContains("sent"));
+        webDriverWait.until(ExpectedConditions.urlContains("sent"));
     }
 }

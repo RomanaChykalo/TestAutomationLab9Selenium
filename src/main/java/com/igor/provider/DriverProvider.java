@@ -31,6 +31,7 @@ public class DriverProvider {
             DRIVER_POOL.set(new ChromeDriver(options));
             DRIVER_POOL.get().manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
             DRIVER_POOL.get().manage().timeouts().pageLoadTimeout(EXPLICIT_WAIT, TimeUnit.SECONDS);
+            DRIVER_POOL.get().manage().timeouts().setScriptTimeout(EXPLICIT_WAIT, TimeUnit.SECONDS);
         }
         return DRIVER_POOL.get();
     }

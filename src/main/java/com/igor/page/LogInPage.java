@@ -1,18 +1,15 @@
 package com.igor.page;
 
+import com.igor.decorator.element.Label;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import static com.igor.utils.constant.Constants.EXPLICIT_WAIT;
 
 public class LogInPage extends BasePage{
     @FindBy(id = "identifierId")
-    private WebElement usernameField;
+    private Label usernameField;
     @FindBy(name = "password")
-    private WebElement passwordField;
+    private Label passwordField;
 
     public void setUsernameAndSubmit(String username){
         usernameField.sendKeys(username);
@@ -20,7 +17,7 @@ public class LogInPage extends BasePage{
     }
 
     public void setPasswordAndSubmit(String password){
-        (new WebDriverWait(driver, EXPLICIT_WAIT)).until(ExpectedConditions.visibilityOf(passwordField));
+        webDriverWait.until(ExpectedConditions.visibilityOf(passwordField.getWebElement()));
         passwordField.sendKeys(password);
         passwordField.sendKeys(Keys.ENTER);
     }
