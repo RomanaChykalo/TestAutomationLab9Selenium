@@ -1,15 +1,16 @@
 package com.igor.page;
 
 import com.igor.decorator.element.Label;
+import com.igor.decorator.element.TextArea;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LogInPage extends BasePage{
     @FindBy(id = "identifierId")
-    private Label usernameField;
+    private TextArea usernameField;
     @FindBy(name = "password")
-    private Label passwordField;
+    private TextArea passwordField;
 
     public void setUsernameAndSubmit(String username){
         usernameField.sendKeys(username);

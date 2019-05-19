@@ -2,8 +2,8 @@ package com.igor.decorator.element;
 
 import org.openqa.selenium.WebElement;
 
-public class AlertDialog extends AbstractElement {
-    public AlertDialog(WebElement webElement) {
+public class Element extends AbstractElement {
+    public Element(WebElement webElement) {
         super(webElement);
     }
 }
