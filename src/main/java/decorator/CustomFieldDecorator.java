@@ -29,7 +29,6 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
         return super.decorate(loader, field);
     }
 
-    @SuppressWarnings("unchecked")
     private Class<Element> decorateableClass(Field field) {
 
         Class<?> clazz = field.getType();
