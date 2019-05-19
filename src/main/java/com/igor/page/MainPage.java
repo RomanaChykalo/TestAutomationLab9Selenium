@@ -14,7 +14,7 @@ public class MainPage extends BasePage{
     private Button searchButton;
 
     public void clickToComposeButton(){
-        composeButton.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(composeButton.getWebElement())).click();
     }
 
     public void goToSentPage(){

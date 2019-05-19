@@ -2,10 +2,10 @@ package com.igor.decorator.element;
 
 import org.openqa.selenium.WebElement;
 
-public abstract class AbstractElement{
+public abstract class AbstractElement {
     protected WebElement webElement;
 
-    protected AbstractElement(WebElement webElement) {
+    AbstractElement(WebElement webElement) {
         this.webElement = webElement;
     }
 

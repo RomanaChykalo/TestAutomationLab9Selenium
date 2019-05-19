@@ -4,7 +4,7 @@ import com.igor.page.MainPage;
 import com.igor.page.SentPage;
 import com.igor.page.widget.AlertDialogWidget;
 import com.igor.page.widget.NewMessageWidget;
-import com.igor.page.widget.SendingMessageAlertDialogWidget;
+import com.igor.page.widget.SendingMessageDialogWidget;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,14 +15,14 @@ public class MessageBO {
     private SentPage sentPage;
     private NewMessageWidget newMessageWidget;
     private AlertDialogWidget alertDialogWidget;
-    private SendingMessageAlertDialogWidget sendingMessageAlertDialogWidget;
+    private SendingMessageDialogWidget sendingMessageDialogWidget;
 
     public MessageBO(){
         mainPage = new MainPage();
         sentPage = new SentPage();
         newMessageWidget = new NewMessageWidget();
         alertDialogWidget = new AlertDialogWidget();
-        sendingMessageAlertDialogWidget = new SendingMessageAlertDialogWidget();
+        sendingMessageDialogWidget = new SendingMessageDialogWidget();
     }
 
     public void fillFieldsForMessage(String receiver, String topic, String message){
@@ -53,7 +53,7 @@ public class MessageBO {
 
     public boolean isLetterSent(String topic){
         LOGGER.info("waiting while sending message dialog widget is active");
-        sendingMessageAlertDialogWidget.waitWhileMessageSending();
+        sendingMessageDialogWidget.waitWhileMessageSending();
         LOGGER.info("opening sent page");
         mainPage.goToSentPage();
         LOGGER.info("checking sent page");
