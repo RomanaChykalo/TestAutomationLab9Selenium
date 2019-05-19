@@ -1,6 +1,10 @@
 package pages;
+
+import elements.Button;
+import elements.Label;
+import elements.Popup;
+import elements.TextField;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -8,34 +12,34 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class MainPage extends BasePage {
 
     @FindBy(className = "aic")
-    private WebElement composeButton;
+    private Button composeButton;
 
     @FindBy(name = "to")
-    private WebElement whomField;
+    private TextField whomField;
 
     @FindBy(xpath = "//span[@class='vN bfK a3q']")
-    private WebElement savedEmail;
+    private TextField savedEmail;
 
     @FindBy(className = "aoT")
-    private WebElement subjectField;
+    private TextField subjectField;
 
     @FindBy(css = ".Ar.Au div")
-    private WebElement textField;
+    private TextField textField;
 
     @FindBy(css = ".dC div")
-    private WebElement sendButton;
+    private Button sendButton;
 
     @FindBy(xpath = "//img[@class ='Ha']")
-    private WebElement closeButton;
+    private Button closeButton;
 
     @FindBy(xpath = "//div[@class = 'TO']//span[@class='nU n1']/a")
-    private WebElement draftFolder;
+    private Label draftFolder;
 
     @FindBy(xpath = "//div[@class = 'ae4 UI']//tbody/tr[1]")
-    private WebElement lastMessageInDraftList;
+    private Label lastMessageInDraftList;
 
     @FindBy(xpath = "//div[@class = 'vh']")
-    private WebElement popUpMessage;
+    private Popup popUpMessage;
 
 
     public void clickComposeButton() {
@@ -74,11 +78,12 @@ public class MainPage extends BasePage {
     }
 
     public String takeLetterSubject() {
-        return subjectField.getAttribute("value");
+       return subjectField.getAttribute("value");
     }
 
     public String takeLetterText() {
         return textField.getText();
+
     }
 
     public void clickOnLastMessageInDraftList() {
