@@ -1,6 +1,11 @@
 package data;
 
 import org.testng.annotations.DataProvider;
+import utils.CSVParser;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class DataProvidersSet {
     @DataProvider(name = "users", parallel = true)
@@ -38,9 +43,9 @@ public class DataProvidersSet {
     }
 
     @DataProvider(name = "recipientsTest", parallel = true)
-    public Object[][] recipientsTest() {
-        return new Object[][]{
-                {"tt6549624@gmail.com", "Subject 1", "This is test mail #1"}
+    public Object[] recipientsTest() {
+        return new Object[]{
+                CSVParser.parseCSV("src/test/resources/testEmails.csv")
         };
     }
 }

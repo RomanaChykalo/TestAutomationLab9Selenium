@@ -26,11 +26,16 @@ public abstract class BasePage {
     public Wait expWait(int seconds){
         Wait expWait = new WebDriverWait(driver, seconds);
         return expWait;
+
     }
 
     public JavascriptExecutor jsExecutor(){
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         return jsExecutor;
+    }
+
+    public String isPageLoaded(){
+        return (String) jsExecutor().executeScript("return document.readyState");
     }
 
 }

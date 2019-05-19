@@ -1,13 +1,13 @@
-package pages.bo;
+package pages.businessobj;
 
 import pages.pagemodels.GmailPage;
 import pages.pagemodels.LoginPage;
 
-public class LoginManager {
+public class LoginBO {
     private LoginPage loginPage;
     private GmailPage gmailPage;
 
-    public LoginManager() {
+    public LoginBO() {
     }
 
     public LoginPage getLoginPage() {

@@ -4,8 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import utils.PropertyManager;
 
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 public class DriverManager {
     static Logger logger = LogManager.getLogger(DriverManager.class);
@@ -18,8 +20,10 @@ public class DriverManager {
 
     private static WebDriver getWebDriverInstance(){
         if (Objects.isNull(DRIVER_POOL.get())){
-            logger.info("Starting Chrome driver...");
+            PropertyManager.setSystemWebDriverProperty();
             DRIVER_POOL.set(new ChromeDriver());
+            DRIVER_POOL.get().manage().window().maximize();
+            DRIVER_POOL.get().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         }
         return DRIVER_POOL.get();
     }
