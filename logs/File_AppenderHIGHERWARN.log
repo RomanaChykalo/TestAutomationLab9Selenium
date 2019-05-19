@@ -7,3 +7,6 @@ ERROR 2019-05-14 19:03:52.743 Parser:26 - class com.fasterxml.jackson.databind.e
 ERROR 2019-05-14 19:17:05.320 Parser:26 - class com.fasterxml.jackson.databind.exc.InvalidDefinitionException 
 ERROR 2019-05-14 19:18:37.441 Parser:26 - class com.fasterxml.jackson.databind.exc.InvalidDefinitionException 
 ERROR 2019-05-14 19:34:23.068 FilePath:24 - class java.io.IOException 
+ERROR 2019-05-18 18:37:59.982 FilePath:23 - class java.io.FileNotFoundException 
+ERROR 2019-05-19 15:54:21.144 FilePath:23 - class java.io.IOException 
+ERROR 2019-05-19 17:29:37.075 FilePath:23 - class java.io.IOException 

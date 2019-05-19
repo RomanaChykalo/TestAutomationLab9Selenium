@@ -3,37 +3,47 @@
   {
     "login":"ivannaboiko200@gmail.com",
     "password":"Qwerty12345678",
-    "receiver":"ivankaboiko06@gmail.com",
-    "subject":"Subject",
-    "message": "Hello! How are you?"
+    "messageModel": {
+      "receiver":"0631769347r@gmail.com",
+      "subject":"Subject",
+      "message": "Hello! How are you?"
+    }
   },
   {
     "login":"userTestNG11@gmail.com",
     "password":"Qwerty12345678",
-    "receiver":"ivankaboiko06@gmail.com",
-    "subject":"Subject",
-    "message": "Hello! How are you?"
+    "messageModel": {
+      "receiver":"0673404783r@gmail.com",
+      "subject":"Subject",
+      "message": "Hello! How are you?"
+    }
   },
   {
     "login":"userTestNG22@gmail.com",
     "password":"Qwerty12345678",
-    "receiver":"ivankaboiko06@gmail.com",
-    "subject":"Subject",
-    "message": "Hello! How are you?"
+    "messageModel": {
+      "receiver":"0673404788r@gmail.com",
+      "subject":"Subject",
+      "message": "Hello! How are you?"
+    }
   },
   {
     "login":"userTestNG33@gmail.com",
     "password":"Qwerty12345678",
-    "receiver":"ivankaboiko06@gmail.com",
-    "subject":"Subject",
-    "message": "Hello! How are you?"
+    "messageModel": {
+      "receiver":"0937597r@gmail.com",
+      "subject":"Subject",
+      "message": "Hello! How are you?"
+    }
   },
   {
     "login":"userTestNG44@gmail.com",
     "password":"Qwerty12345678",
-    "receiver":"ivankaboiko06@gmail.com",
-    "subject":"Subject",
-    "message": "Hello! How are you?"
+    "messageModel": {
+      "receiver":"0937597167r@gmail.com",
+      "subject":"Subject",
+      "message": "Hello! How are you?"
+    }
   }
 ]
 

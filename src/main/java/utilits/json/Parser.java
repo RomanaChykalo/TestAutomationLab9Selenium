@@ -1,13 +1,12 @@
-package json;
+package utilits.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import utilits.model.UserModel;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 public class Parser {
 
@@ -18,15 +17,15 @@ public class Parser {
         this.objectMapper = new ObjectMapper();
     }
 
-    public List<Data> getData(File jsonFile) {
-        Data[] data = new Data[0];
+    public  UserModel[] getData(File jsonFile) {
+        UserModel[] data = new UserModel[0];
         try {
-            data = objectMapper.readValue(jsonFile, Data[].class);
+            data = objectMapper.readValue(jsonFile, UserModel[].class);
         } catch (IOException e) {
             logger.error(e.getClass());
             e.printStackTrace();
         }
 
-        return Arrays.asList(data);
+        return data;
     }
 }

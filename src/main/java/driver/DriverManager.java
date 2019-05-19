@@ -2,7 +2,7 @@ package driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import properties.FilePath;
+import utilits.properties.FilePath;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -23,7 +23,7 @@ public class DriverManager {
         if (Objects.isNull(driverPool.get())) {
             driverPool.set(new ChromeDriver());
             driverPool.get().get(filePath.propertyFile("fileWayGmail"));
-            driverPool.get().manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
+            driverPool.get().manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
             driverPool.get().manage().window().maximize();
         }
         return driverPool.get();

@@ -1,29 +1,31 @@
-package pageobjects;
+package po;
 
+import decorator.elements.Button;
+import decorator.elements.Input;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
 
     @FindBy(id = "identifierId")
-    private WebElement loginInput;
+    private Input loginInput;
 
     @FindBy(id = "identifierNext")
-    private WebElement buttonSubmitLogin;
+    private Button buttonSubmitLogin;
 
     @FindBy(name = "password")
-    private WebElement passwordInput;
+    private Input passwordInput;
 
     @FindBy(xpath = "//div[@id='passwordNext']")
-    private WebElement buttonSubmitPassword;
+    private Button buttonSubmitPassword;
 
     public void inputLogin(String login){
-        loginInput.sendKeys(login);
+        loginInput.clearAndSendKeys(login);
         buttonSubmitLogin.click();
     }
 
     public void inputPassword(String password){
-        passwordInput.sendKeys(password);
+        passwordInput.clearAndSendKeys(password);
         buttonSubmitPassword.click();
     }
 

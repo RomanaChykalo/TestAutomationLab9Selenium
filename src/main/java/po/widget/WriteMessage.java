@@ -1,32 +1,34 @@
-package pageobjects;
+package po.widget;
 
-import org.openqa.selenium.WebElement;
+import decorator.elements.Button;
+import decorator.elements.Input;
 import org.openqa.selenium.support.FindBy;
+import po.BasePage;
 
-public class WriteMessage extends BasePage{
+public class WriteMessage extends BasePage {
 
     @FindBy(css ="textarea[name='to']")
-    private WebElement receiverInput;
+    private Input receiverInput;
 
     @FindBy(className = "editable")
-    private WebElement messageInput;
+    private Input messageInput;
 
     @FindBy(xpath = "//img[@class='Ha' and @src='images/cleardot.gif']")
-    private WebElement closedButton;
+    private Button closedButton;
 
     @FindBy(name = "subjectbox")
-    private WebElement subjectInput;
+    private Input subjectInput;
 
     public void inputReceiver(String receiver){
-        receiverInput.sendKeys(receiver);
+        receiverInput.clearAndSendKeys(receiver);
     }
 
     public void inputMessage(String message){
-        messageInput.sendKeys(message);
+        messageInput.clearAndSendKeys(message);
     }
 
     public void inputSubject(String subject){
-        subjectInput.sendKeys(subject);
+        subjectInput.clearAndSendKeys(subject);
     }
 
     public void toCloseMessage(){

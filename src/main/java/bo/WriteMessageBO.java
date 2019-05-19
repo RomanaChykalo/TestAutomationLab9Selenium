@@ -1,12 +1,20 @@
-package businessobjects;
+package bo;
 
-import pageobjects.HomePage;
-import pageobjects.WriteMessage;
+import po.DraftMessagePage;
+import po.HomePage;
+import po.widget.WriteMessage;
 
-public class WriteNewMessage {
+public class WriteMessageBO {
 
     private HomePage homePage = new HomePage();
     private WriteMessage writeMessage = new WriteMessage();
+    private DraftMessagePage draftMessagePage = new DraftMessagePage();
+
+    public void sendMessage(){
+        draftMessagePage.goToDraftMessage();
+        draftMessagePage.chooseLastMessage();
+        draftMessagePage.sendMessage();
+    }
 
     public void tryToWriteMessage(String receiver, String subject, String message){
         homePage.goToWriteMessage();

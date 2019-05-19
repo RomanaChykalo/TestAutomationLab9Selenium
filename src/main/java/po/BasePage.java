@@ -1,4 +1,5 @@
-package pageobjects;
+package po;
+import decorator.CustomFieldDecorator;
 import driver.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -11,7 +12,7 @@ public class BasePage {
 
     public BasePage(){
         driver = DriverManager.getDriver();
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(new CustomFieldDecorator(driver),this);
     }
 
 }

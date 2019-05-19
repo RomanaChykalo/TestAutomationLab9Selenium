@@ -1,8 +1,8 @@
-package businessobjects;
+package bo;
 
-import pageobjects.LoginPage;
+import po.LoginPage;
 
-public class SignIn {
+public class SignInBO {
 
     private  LoginPage loginPage = new LoginPage();
 
