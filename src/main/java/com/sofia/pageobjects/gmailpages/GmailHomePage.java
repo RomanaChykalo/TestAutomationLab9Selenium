@@ -9,6 +9,7 @@ import org.openqa.selenium.support.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import static com.sofia.utilmanager.jsonparser.JsonParser.getButtonWait;
