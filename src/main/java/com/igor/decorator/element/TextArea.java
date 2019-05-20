@@ -13,7 +13,8 @@ public class TextArea extends Element {
         webElement.clear();
     }
 
-    public String getText(){
-        return webElement.getText();
+    public void clearAndType(String text){
+        webElement.clear();
+        webElement.sendKeys(text);
     }
 }

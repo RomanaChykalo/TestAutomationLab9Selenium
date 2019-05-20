@@ -28,9 +28,11 @@ public class MessageBO {
     public void fillFieldsForMessage(String receiver, String topic, String message){
         LOGGER.info("Opening new message widget");
         mainPage.clickToComposeButton();
-        LOGGER.info("filling new letter");
+        LOGGER.info("set receiver");
         newMessageWidget.setReceiverField(receiver);
+        LOGGER.info("set title");
         newMessageWidget.setTitleField(topic);
+        LOGGER.info("set message");
         newMessageWidget.setMessageField(message);
     }
 
@@ -44,10 +46,12 @@ public class MessageBO {
     }
 
     public void sendMessage(){
+        LOGGER.info("sending message");
         newMessageWidget.clickToSendButton();
     }
 
     public boolean isAlertWidgetVisible(){
+        LOGGER.info("checking opened alert dialog");
         return alertDialogWidget.alertDialogIsEnable();
     }
 

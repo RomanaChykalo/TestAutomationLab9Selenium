@@ -38,7 +38,6 @@ public class GmailTest {
         logInBO.logIn(username, password);
         messageBO.fillFieldsForMessage(getIncorrectReceiver(), MESSAGE_TITLE, getMessage());
         messageBO.sendMessage();
-        LOGGER.info("Opening alert dialog");
         assertTrue(messageBO.isAlertWidgetVisible());
         messageBO.correctReceiver(getReceiver());
         messageBO.sendMessage();

@@ -13,8 +13,9 @@ public class LogInBO {
     }
 
     public void logIn(String username, String password){
-        LOGGER.info("Logging in");
+        LOGGER.info("Set username");
         logInPage.setUsernameAndSubmit(username);
+        LOGGER.info("Set password");
         logInPage.setPasswordAndSubmit(password);
     }
 }

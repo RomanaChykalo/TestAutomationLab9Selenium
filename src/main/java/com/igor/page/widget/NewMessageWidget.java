@@ -27,8 +27,7 @@ public class NewMessageWidget extends BasePage {
 
     public void setReceiverField(String receiver) {
         webDriverWait.until(ExpectedConditions.visibilityOf(receiverField.getWebElement()));
-        receiverField.clear();
-        receiverField.sendKeys(receiver);
+        receiverField.clearAndType(receiver);
     }
 
     public void setTitleField(String title) {
