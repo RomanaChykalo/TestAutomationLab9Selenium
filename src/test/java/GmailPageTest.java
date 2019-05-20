@@ -1,12 +1,12 @@
 import business.LoginPageBO;
 import business.MainPageBO;
-import dataproviders.DataProviderClass;
-import dataproviders.MessageProperties;
+import dataproviders.UserDataProvider;
+import dataproviders.MessageDataProvider;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.testng.annotations.*;
-import driver.DriverFactory;
+import driver.DriverProvider;
 import static constants.Constants.*;
 
 public class GmailPageTest {
@@ -15,19 +15,19 @@ public class GmailPageTest {
     @BeforeMethod
     public void setUp() {
         System.setProperty(DRIVER_NAME, PATH_TO_CHROME_DRIVER);
-        DriverFactory.getWebDriver().get(URL);
+        DriverProvider.getWebDriver().get(URL);
     }
 
     @DataProvider(parallel = true)
     private Object[][] loginData() {
-        return DataProviderClass.getDataFromDataProvider();
+        return UserDataProvider.getDataFromDataProvider();
     }
 
     @Test(dataProvider = "loginData")
     public void correctlySavedDataTest(String email, String password) {
-        String receiverEmail = MessageProperties.getProperties().getProperty("receiver_email");
-        String subject = MessageProperties.getProperties().getProperty("subject");
-        String text = MessageProperties.getProperties().getProperty("text");
+        String receiverEmail = MessageDataProvider.getProperties().getProperty("receiver_email");
+        String subject = MessageDataProvider.getProperties().getProperty("subject");
+        String text = MessageDataProvider.getProperties().getProperty("text");
         LoginPageBO loginBO = new LoginPageBO();
         MainPageBO mainPageBO = new MainPageBO();
         loginBO.login(email, password);
@@ -44,6 +44,6 @@ public class GmailPageTest {
 
     @AfterMethod
     public void tearDown() {
-        DriverFactory.removeDriver();
+        DriverProvider.removeDriver();
     }
 }

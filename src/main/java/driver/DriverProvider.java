@@ -6,10 +6,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-public class DriverFactory {
+public class DriverProvider {
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    private DriverFactory() {
+    private DriverProvider() {
     }
 
     public static WebDriver getWebDriver() {

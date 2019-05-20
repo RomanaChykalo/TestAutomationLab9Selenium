@@ -25,7 +25,7 @@ public class MainPageBO {
     public boolean isSavedEmailInDraftEqualsToEntered(String enteredEmail) {
         String savedEmail = mainPage.takeEmailAddress();
         return savedEmail.equals(enteredEmail);
-    }
+        }
 
     public boolean isSavedSubjectEqualsToEntered(String enteredSubject) {
         String savedSubject = mainPage.takeLetterSubject();

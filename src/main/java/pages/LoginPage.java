@@ -24,11 +24,11 @@ public class LoginPage extends BasePage {
 
     public void clickNextButton() {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='RveJvd snByac']")));
-               nextButton.click();
+        nextButton.click();
     }
 
     public void typePassword(String password) {
-     wait.until(ExpectedConditions.elementToBeClickable(By.name("password")));
+        wait.until(ExpectedConditions.elementToBeClickable(By.name("password")));
         passwordField.sendKeys(password);
     }
 }

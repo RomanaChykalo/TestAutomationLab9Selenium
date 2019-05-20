@@ -4,6 +4,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 public class TextField extends Element {
+
     public TextField(WebElement webElement) {
         super(webElement);
     }
@@ -21,6 +22,6 @@ public class TextField extends Element {
     }
 
     public void pressEnter() {
-      webElement.sendKeys(Keys.ENTER);
+        webElement.sendKeys(Keys.ENTER);
     }
 }
