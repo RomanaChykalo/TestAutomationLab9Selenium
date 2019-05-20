@@ -28,10 +28,6 @@ public class MarkAndDeleteImportantMessageBO {
     }
 
     public boolean messagesDeleted(){
-     return gmailImportantPage.verifyDeleteMessages();
+        return gmailImportantPage.verifyDeleteMessages();
     }
-
-
-
-
 }

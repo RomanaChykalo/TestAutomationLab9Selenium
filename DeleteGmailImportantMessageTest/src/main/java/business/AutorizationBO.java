@@ -17,7 +17,7 @@ public class AutorizationBO {
     }
 
     public boolean verifyLogInSuccessful(){
-       return loginPage.userLogInSuccessful();
+        return loginPage.userLogInSuccessful();
     }
 
     public boolean verifyUserEnterCorrectEmail(){

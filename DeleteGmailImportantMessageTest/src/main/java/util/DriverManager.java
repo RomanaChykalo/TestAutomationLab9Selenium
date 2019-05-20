@@ -21,7 +21,6 @@ public class DriverManager {
         return DRIVER_POOL.get();
     }
 
-
     public static WebDriver createInstanseDriver() {
         {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
@@ -36,5 +35,4 @@ public class DriverManager {
         DRIVER_POOL.get().quit();
         DRIVER_POOL.set(null);
     }
-
 }

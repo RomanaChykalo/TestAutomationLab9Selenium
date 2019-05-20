@@ -60,10 +60,10 @@ public class LoginPage extends PageObject {
 
     private void waitPageUpdate() {
         try {
-            (new WebDriverWait(DriverManager.getWebDriver(), PAGE_UPDATE_TIMEOUT)).until(ExpectedConditions.urlContains("inbox"));
+            (new WebDriverWait(DriverManager.getWebDriver(), PAGE_UPDATE_TIMEOUT))
+                    .until(ExpectedConditions.urlContains("inbox"));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-
 }

@@ -1,14 +1,5 @@
 package util.readers;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.List;
-
 public class UserData {
     private String userEmail;
     private String password;
