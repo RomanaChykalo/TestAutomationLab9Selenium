@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages>
+    <message>
+        <recipient>test3mailSelenium@gmail.com</recipient>
+        <subject>Hi</subject>
+        <message_text>Hi</message_text>
+    </message>
+    <message>
+        <recipient>test4mailselenium@gmail.com</recipient>
+        <subject>Hi</subject>
+        <message_text>Hi</message_text>
+    </message>
+</messages>

@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ManageGmail"  parallel="methods" data-provider-thread-count="3" verbose="1">
+    <test name="ManageGmail">
+        <parameter name="url" value="https://www.gmail.com"/>
+        <classes>
+            <class name="DeleteSomeImportantGmailMessage"/>
+        </classes>
+    </test>
+</suite>

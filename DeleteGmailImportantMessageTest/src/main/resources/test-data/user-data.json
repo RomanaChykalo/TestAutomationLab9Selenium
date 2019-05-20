@@ -1,0 +1,24 @@
+{
+  "UserData": [
+    {
+      "userEmail": "test3mailSelenium@gmail.com",
+      "password": "DriverManager"
+    },
+   {
+      "userEmail": "test2mailselenium@gmail.com",
+      "password": "qwerty123QWER"
+    },
+    {
+      "userEmail": "test1mailselenium@gmail.com",
+      "password": "qwerty123QWER"
+    },
+    {
+      "userEmail": "mail3seleniumtest@gmail.com",
+      "password": "qwerty123QWER"
+    },
+    {
+      "userEmail": "test5mailselenium@gmail.com",
+      "password": "qwerty123QWER"
+    }
+  ]
+}
