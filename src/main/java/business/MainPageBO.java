@@ -18,14 +18,15 @@ public class MainPageBO {
     }
 
     public void openSavedDraft() {
-        mainPage.clickOnDraftFolder();
+        mainPage.openListOfDrafts();
         mainPage.clickOnLastMessageInDraftFolder();
+        logger.info("The draft was open");
     }
 
     public boolean isSavedEmailInDraftEqualsToEntered(String enteredEmail) {
         String savedEmail = mainPage.takeEmailAddress();
         return savedEmail.equals(enteredEmail);
-        }
+    }
 
     public boolean isSavedSubjectEqualsToEntered(String enteredSubject) {
         String savedSubject = mainPage.takeLetterSubject();

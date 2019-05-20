@@ -8,7 +8,7 @@ import static constants.Constants.PATH_TO_MESSAGE_DATA;
 
 public class MessageDataProvider {
 
-    public static Properties getProperties() {
+    public static Properties getData() {
         Properties properties = new Properties();
         try {
             properties.loadFromXML(new FileInputStream(PATH_TO_MESSAGE_DATA));

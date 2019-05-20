@@ -25,9 +25,9 @@ public class GmailPageTest {
 
     @Test(dataProvider = "loginData")
     public void correctlySavedDataTest(String email, String password) {
-        String receiverEmail = MessageDataProvider.getProperties().getProperty("receiver_email");
-        String subject = MessageDataProvider.getProperties().getProperty("subject");
-        String text = MessageDataProvider.getProperties().getProperty("text");
+        String receiverEmail = MessageDataProvider.getData().getProperty("receiver_email");
+        String subject = MessageDataProvider.getData().getProperty("subject");
+        String text = MessageDataProvider.getData().getProperty("text");
         LoginPageBO loginBO = new LoginPageBO();
         MainPageBO mainPageBO = new MainPageBO();
         loginBO.login(email, password);

@@ -20,8 +20,4 @@ public class TextField extends Element {
     public String getText() {
         return webElement.getText();
     }
-
-    public void pressEnter() {
-        webElement.sendKeys(Keys.ENTER);
-    }
 }

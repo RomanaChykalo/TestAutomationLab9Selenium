@@ -1,9 +1,6 @@
 package pages;
 
-import elements.Button;
-import elements.Label;
-import elements.Popup;
-import elements.TextField;
+import elements.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -25,21 +22,17 @@ public class MainPage extends BasePage {
     @FindBy(css = ".Ar.Au div")
     private TextField textField;
 
-    @FindBy(css = ".dC div")
-    private Button sendButton;
-
     @FindBy(xpath = "//img[@class ='Ha']")
     private Button closeButton;
 
     @FindBy(xpath = "//input[@class='gb_Fe']")
-    private TextField draftFolder;
+    private Search searchField;
 
     @FindBy(xpath = "//div[@class = 'ae4 UI']//tbody/tr[1]/td[5]")
     private Label lastMessageInDraftFolder;
 
-    @FindBy(xpath = "//div[@class = 'vh']")
-    private Popup popUpMessage;
-
+    @FindBy(css = ".dC div")
+    private Button sendButton;
 
     public void clickComposeButton() {
         composeButton.click();
@@ -57,19 +50,18 @@ public class MainPage extends BasePage {
         textField.sendKeys(text);
     }
 
-    public void clickSendButton() {
-        sendButton.click();
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class = 'vh']")));
-    }
-
     public void clickOnCloseMessageButton() {
         closeButton.click();
     }
 
-    public void clickOnDraftFolder() {
+    public void openListOfDrafts() {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@class='gb_Fe']")));
-        draftFolder.sendKeys("in:draft");
-        draftFolder.pressEnter();
+        searchField.typeTextInSearch("in:draft");
+        searchField.pressEnter();
+    }
+
+    public void clickOnLastMessageInDraftFolder() {
+        lastMessageInDraftFolder.click();
     }
 
     public String takeEmailAddress() {
@@ -82,11 +74,11 @@ public class MainPage extends BasePage {
 
     public String takeLetterText() {
         return textField.getText();
-
     }
 
-    public void clickOnLastMessageInDraftFolder() {
-        lastMessageInDraftFolder.click();
+    public void clickSendButton() {
+        sendButton.click();
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class = 'vh']")));
     }
 }
 
