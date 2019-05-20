@@ -5,7 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class HomeEmailPageBO {
-    private static final Logger LOG = LogManager.getLogger(LoginBO.class);
+    private static final Logger LOG = LogManager.getLogger(HomeEmailPageBO.class);
     private GmailHomePage homePage = new GmailHomePage();
     private long threadId = Thread.currentThread().getId();
 
