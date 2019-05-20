@@ -1,5 +1,6 @@
 package pages.businessobj;
 
+import data.Consts;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
@@ -8,15 +9,10 @@ import pages.pagemodels.GmailPage;
 public class EmailBO {
     private GmailPage gmailPage;
 
-    public EmailBO() {
-    }
+    public EmailBO() {}
 
     public EmailBO(GmailPage gmailPage) {
         this.gmailPage = gmailPage;
-    }
-
-    public GmailPage getGmailPage() {
-        return gmailPage;
     }
 
     public void sendEmail(String recipient, String subject, String mailBody){
@@ -25,17 +21,26 @@ public class EmailBO {
         gmailPage.setEmailSubject(subject);
         gmailPage.setEmailBody(mailBody);
         gmailPage.clickSendBtn();
-        gmailPage.expWait(25).until(ExpectedConditions.visibilityOf(gmailPage.getViewEmailSentMsgBtn()));
+        gmailPage.expWait(25).until(ExpectedConditions.visibilityOf((WebElement) gmailPage.getViewEmailSentMsgBtn()));
     }
 
-    public WebElement getViewEmailSentMsgBtn(){
-        return gmailPage.getViewEmailSentMsgBtn();
+    public boolean isViewEmailSentMsgBtnDisplayed(){
+        return gmailPage.getViewEmailSentMsgBtn().isDisplayed();
     }
 
-    public void delete3UnreadEmailAndVerifyTheyAreReverted(){
-        gmailPage.check3UnreadEmailsInboxAndDelete();
-        Assert.assertTrue(gmailPage.getDeleteEmailsSuccessMessage().isDisplayed());
+    public void deleteUnreadEmail(int emailsQty){
+        gmailPage.checkUnreadEmailsInboxAndDelete(emailsQty);
+    }
+
+    public boolean areEmailsDeleted(){
+        return gmailPage.isDeleteEmailsSuccessMessage();
+    }
+
+    public void revertDeletedEmails(){
         gmailPage.clickRevertBtn();
-        Assert.assertTrue(gmailPage.getActionCancelledMsg().isDisplayed());
+    }
+
+    public boolean isActionCancelledMsgDispalyed(){
+        return gmailPage.isActionCancelledMsgDispalyed();
     }
 }

@@ -1,6 +1,25 @@
 package data;
 
+import org.testng.annotations.DataProvider;
+import utils.CSVParser;
+
+import java.util.Iterator;
+
 public class TestData {
-    public static final String EMAIL = "shchurko.bohdan";
-    public static final String PASSW = "Qwerty_123!";
+    @DataProvider(name = "users", parallel = true)
+    public Object[][] users() {
+        return new Object[][]{
+                {"tt6549624", "Qwerty123!"},
+                {"tt6549625", "Qwerty123!"},
+                {"tt6549626", "Qwerty123!"},
+                {"tt6549627", "Qwerty123!"},
+                {"tt6549629", "Qwerty123!"}
+        };
+    }
+
+    @DataProvider(name = "recipientsMails", parallel = true)
+    public Iterator<Object[]> recipientsTest() {
+        return CSVParser.parseCSV("src/test/resources/testEmails.csv").iterator();
+    }
+
 }

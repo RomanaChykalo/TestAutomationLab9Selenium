@@ -1,5 +1,9 @@
 package pages.pagemodels;
 
+import element.custom.elements.Button;
+import element.custom.elements.Input;
+import element.custom.elements.Label;
+import element.custom.elements.Widget;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -14,74 +18,74 @@ public class GmailPage extends BasePage {
     Logger logger = LogManager.getLogger(GmailPage.class);
 
     @FindBy(xpath = "(//a[@title='Gmail'])[2]")
-    private WebElement gmailLogo;
+    private Label gmailLogo;
 
     @FindBy(xpath = "//div[@class = 'aic']//div[@role='button']")
-    private WebElement writeNewEmailButton;
+    private Button writeNewEmailButton;
 
     @FindBy(xpath = "//div[@role='dialog']")
-    private WebElement dialogWindow;
+    private Widget dialogWindow;
 
     @FindBy(name = "to")
-    private WebElement receiver;
+    private Input receiver;
 
     @FindBy(name = "subjectbox")
-    private WebElement subject;
+    private Input subject;
 
     @FindBy(css = "div[role='textbox']")
-    private WebElement emailBody;
+    private Input emailBody;
 
     @FindBy(xpath = "(//div[@class='dC']/div)[1]")
-    WebElement sendBtn;
+    private Button sendBtn;
 
     @FindBy(xpath = "(//div[@class='Cp'])[1]//tr")
     private List<WebElement> unreadInboxEmailList;
 
     @FindBy(xpath = "(//div[@class='asa'])[3]")
-    private WebElement deleteSelectedEmailsBtn;
+    private Button deleteSelectedEmailsBtn;
 
     @FindBy(xpath = "//div[@class='vh']")
-    private WebElement deleteEmailsSuccessMessage;
+    private Widget deleteEmailsSuccessMessage;
 
     @FindBy(xpath = "(//div[@class='vh']/span/span)[2]/span")
-    private WebElement revertBtn;
+    private Button revertBtn;
 
     @FindBy(xpath = "//span[@class='aT']/span")
-    private WebElement actionCancelledMsg;
+    private Widget actionCancelledMsg;
 
     @FindBy(id = "link_vsm")
-    private WebElement viewEmailSentMsgBtn;
+    private Button viewEmailSentMsgBtn;
 
 
     public GmailPage() {
-        expWait(30).until(ExpectedConditions.visibilityOf(gmailLogo));
+        expWait(30).until(ExpectedConditions.visibilityOf((WebElement) gmailLogo));
     }
 
-    public WebElement getGmailLogo() {
+    public Label getGmailLogo() {
         return this.gmailLogo;
     }
 
-    public WebElement getWriteNewEmailButton() {
+    public Button getWriteNewEmailButton() {
         return this.writeNewEmailButton;
     }
 
-    public WebElement getDialogWindow() {
+    public Widget getDialogWindow() {
         return this.dialogWindow;
     }
 
-    public WebElement getReceiver() {
+    public Input getReceiver() {
         return this.receiver;
     }
 
-    public WebElement getSubject() {
+    public Input getSubject() {
         return this.subject;
     }
 
-    public WebElement getEmailBody() {
+    public Input getEmailBody() {
         return this.emailBody;
     }
 
-    public WebElement getSendBtn() {
+    public Button getSendBtn() {
         return this.sendBtn;
     }
 
@@ -89,23 +93,23 @@ public class GmailPage extends BasePage {
         return unreadInboxEmailList;
     }
 
-    public WebElement getDeleteSelectedEmailsBtn() {
+    public Button getDeleteSelectedEmailsBtn() {
         return deleteSelectedEmailsBtn;
     }
 
-    public WebElement getDeleteEmailsSuccessMessage() {
+    public Widget getDeleteEmailsSuccessMessage() {
         return deleteEmailsSuccessMessage;
     }
 
-    public WebElement getRevertBtn() {
+    public Button getRevertBtn() {
         return revertBtn;
     }
 
-    public WebElement getCancelledMsg() {
+    public Widget getCancelledMsg() {
         return actionCancelledMsg;
     }
 
-    public WebElement getViewEmailSentMsgBtn() {
+    public Button getViewEmailSentMsgBtn() {
         return viewEmailSentMsgBtn;
     }
 
@@ -134,27 +138,31 @@ public class GmailPage extends BasePage {
         getSendBtn().click();
     }
 
-    public void check3UnreadEmailsInboxAndDelete() {
-        if (getUnreadInboxEmailList().size() >= 3) {
-            for (int i = 0; i < 3; i++) {
-                logger.trace("Choosing " + (i + 1) + " unread email...");
-                expWait(35).until(ExpectedConditions.elementToBeClickable(getUnreadInboxEmailList().get(i)));
-                getUnreadInboxEmailList().get(i).findElement(By.xpath("(./td)[2]/div")).click();
+    public void checkUnreadEmailsInboxAndDelete(int emailsQty) {
+        if (getUnreadInboxEmailList().size() >= emailsQty) {
+            for (int index = 0; index < emailsQty; index++) {
+                logger.trace("Choosing " + (index + 1) + " unread email...");
+                expWait(35).until(ExpectedConditions.elementToBeClickable(getUnreadInboxEmailList().get(index)));
+                getUnreadInboxEmailList().get(index).findElement(By.xpath("(./td)[2]/div")).click();
             }
             getDeleteSelectedEmailsBtn().click();
         } else {
-            logger.trace("There is no 3 unread emails inbox!");
+            logger.trace("There is no " + emailsQty + " unread emails inbox!");
             return;
         }
     }
 
+    public boolean isDeleteEmailsSuccessMessage(){
+        return getDeleteEmailsSuccessMessage().isDisplayed();
+    }
+
     public void clickRevertBtn(){
-        expWait(25).until(ExpectedConditions.elementToBeClickable(getRevertBtn()));
+        expWait(25).until(ExpectedConditions.elementToBeClickable((WebElement) getRevertBtn()));
         getRevertBtn().click();
     }
 
-    public WebElement getActionCancelledMsg(){
-        expWait(25).until(ExpectedConditions.visibilityOf(getCancelledMsg()));
-        return getCancelledMsg();
+    public boolean isActionCancelledMsgDispalyed(){
+        expWait(25).until(ExpectedConditions.visibilityOf((WebElement) getCancelledMsg()));
+        return getCancelledMsg().isDisplayed();
     }
 }

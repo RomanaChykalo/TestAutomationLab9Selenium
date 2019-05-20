@@ -1,27 +1,37 @@
 package utils;
 
+import com.opencsv.CSVReader;
+
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class CSVParser {
-    public static ArrayList<Object> parseCSV(String path){
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(new File(path));
-        } catch (FileNotFoundException e) {
+    public static List<Object[]> parseCSV(String pathToCSVFile){
+        List<Object[]> dataList = new ArrayList<>();
+        CSVReader reader = null;
+        try
+        {
+            reader = new CSVReader(new FileReader(new File(pathToCSVFile)),',');
+            String [] nextLine;
+            while ((nextLine = reader.readNext()) != null)
+            {
+                dataList.add(nextLine);
+            }
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
-        scanner.useDelimiter(",");
-        ArrayList<Object> dataArr = new ArrayList<>();
-        while (scanner.hasNext())
-        {
-            dataArr.add(scanner.next());
+        finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        scanner.close();
-        return dataArr;
+        return dataList;
     }
+
 }

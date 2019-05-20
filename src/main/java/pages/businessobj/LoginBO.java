@@ -5,17 +5,8 @@ import pages.pagemodels.LoginPage;
 
 public class LoginBO {
     private LoginPage loginPage;
-    private GmailPage gmailPage;
 
     public LoginBO() {
-    }
-
-    public LoginPage getLoginPage() {
-        return loginPage;
-    }
-
-    public GmailPage getGmailPage() {
-        return gmailPage;
     }
 
     public GmailPage login(String login, String passw){
@@ -24,7 +15,7 @@ public class LoginBO {
         loginPage.setEmailField(login);
         loginPage.clickLoginNextBtn();
         loginPage.setPasswrd(passw);
-        gmailPage = loginPage.clickPasswordNextBtn();
+        GmailPage gmailPage = loginPage.clickPasswordNextBtn();
         return gmailPage;
     }
 
