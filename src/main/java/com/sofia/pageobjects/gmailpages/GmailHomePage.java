@@ -2,16 +2,22 @@ package com.sofia.pageobjects.gmailpages;
 
 import com.sofia.decorators.elements.Button;
 import com.sofia.decorators.elements.Checkbox;
+import com.sofia.decorators.elements.Label;
 import com.sofia.pageobjects.GeneralGmailPage;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
+import static com.sofia.utilmanager.jsonparser.JsonParser.getButtonWait;
+import static com.sofia.utilmanager.jsonparser.JsonParser.getPageLoadWait;
+
 public class GmailHomePage extends GeneralGmailPage {
+    private static final int PAGE_LOAD_WAIT = getPageLoadWait();
+    private static final int BUTTON_WAIT = getButtonWait();
+
     @FindBy(xpath = "//div[@role='checkbox']")
     private List<Checkbox> emailCheckboxes;
 
@@ -22,7 +28,7 @@ public class GmailHomePage extends GeneralGmailPage {
     private Button undoButton;
 
     @FindBy(className = "bAq")
-    private WebElement undoWidget;
+    private Label undoWidget;
 
     public List<Checkbox> getCheckboxes(){
         return emailCheckboxes;
@@ -33,7 +39,7 @@ public class GmailHomePage extends GeneralGmailPage {
     }
 
     public void checkEmailsBoxes(int amount){
-        new WebDriverWait(driver, 40).until(
+        new WebDriverWait(driver, PAGE_LOAD_WAIT).until(
                 webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
         for (int i = 0; i < amount; i++) {
             getCheckboxes().get(i).setChecked();
@@ -41,17 +47,16 @@ public class GmailHomePage extends GeneralGmailPage {
     }
 
     public void clickDeleteButton() {
-        (new WebDriverWait(driver, 40)).until(ExpectedConditions.elementToBeClickable(deleteButton.getButtonElement()));
+        (new WebDriverWait(driver, BUTTON_WAIT)).until(ExpectedConditions.elementToBeClickable(deleteButton.getButtonElement()));
         deleteButton.click();
     }
 
     public void clickUndoButton() {
-        (new WebDriverWait(driver, 40)).until(ExpectedConditions.visibilityOf(undoButton.getButtonElement()));
         undoButton.click();
     }
 
     public String getUndoWidgetAttributeValue(){
-        return undoWidget.getAttribute("innerHTML");
+        return undoWidget.getAttributeValue();
     }
 
 }

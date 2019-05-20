@@ -1,4 +1,4 @@
-package com.sofia.decorators;
+package com.sofia.decorators.customdecotator;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
@@ -7,6 +7,8 @@ import java.lang.reflect.Proxy;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import com.sofia.decorators.IElement;
+import com.sofia.decorators.WrapperFactory;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -54,23 +56,18 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
         Class<?> clazz = field.getType();
 
         if (List.class.isAssignableFrom(clazz)) {
-
-            // для списка обязательно должна быть задана аннотация
             if (field.getAnnotation(FindBy.class) == null &&
                     field.getAnnotation(FindBys.class) == null) {
                 return null;
             }
-
-            // Список должен быть параметризирован
             Type genericType = field.getGenericType();
             if (!(genericType instanceof ParameterizedType)) {
                 return null;
             }
-            // получаем класс для элементов списка
+            // отримуємо клас для елементів списку
             clazz = (Class<?>) ((ParameterizedType) genericType).
                     getActualTypeArguments()[0];
         }
-
         if (IElement.class.isAssignableFrom(clazz)) {
             return (Class<IElement>) clazz;
         }
@@ -80,8 +77,8 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
     }
 
     /**
-     * Создание элемента.
-     * Находит WebElement и передает его в кастомный класс
+     * Створення елементу.
+     * Знаходить WebElement і передає його в кастомний клас
      */
     protected IElement createElement(ClassLoader loader, ElementLocator locator, Class<IElement> clazz) {
         WebElement proxy = proxyForLocator(loader, locator);
@@ -89,7 +86,7 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
     }
 
     /**
-     * Создание списка
+     * Створення списку
      */
     @SuppressWarnings("unchecked")
     protected List<IElement> createList(ClassLoader loader, ElementLocator locator, Class<IElement> clazz) {

@@ -1,6 +1,6 @@
 package com.sofia.pageobjects;
 
-import com.sofia.decorators.CustomFieldDecorator;
+import com.sofia.decorators.customdecotator.CustomFieldDecorator;
 import com.sofia.utilmanager.driver.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;

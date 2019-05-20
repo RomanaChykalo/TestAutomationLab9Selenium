@@ -1,4 +1,4 @@
-package com.sofia.decorators;
+package com.sofia.decorators.customdecotator;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
@@ -6,6 +6,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sofia.decorators.IElement;
+import com.sofia.decorators.WrapperFactory;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
 
@@ -18,9 +20,12 @@ public class LocatingCustomElementListHandler implements InvocationHandler {
         this.clazz = clazz;
     }
 
+    /**
+     * Знаходить список  WebElement і опрацьовує кожен його елемент
+     * і повертає новий список з елементами кастомного класу
+     */
     public Object invoke(Object object, Method method, Object[] objects) throws Throwable {
-        // Находит список WebElement и обрабатывает каждый его элемент,
-        // возвращает новый список с элементами кастомного класса
+
         List<WebElement> elements = locator.findElements();
         List<IElement> customs = new ArrayList<IElement>();
 

@@ -30,16 +30,20 @@ public class JsonParser {
         return (String)((JSONObject) ((JSONArray) jsonObject.get("users")).get(passwordNumber)).get("password");
     }
 
-    public static String getWidgetText(){
-        return (String) (jsonObject.get("delete_email_widget_text"));
-    }
-
     public static int getUserAmount() {
         return (int) (long) jsonObject.get("user_amount");
     }
 
     public static int getCheckboxAmount() {
         return (int) (long) jsonObject.get("checkbox_amount");
+    }
+
+    public static int getPageLoadWait() {
+        return (int) (long) jsonObject.get("explicit_wait_page_load");
+    }
+
+    public static int getButtonWait() {
+        return (int) (long) jsonObject.get("explicit_wait_button");
     }
 
     public static int getImplicitWait() {

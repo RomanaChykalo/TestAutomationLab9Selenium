@@ -1,31 +1,31 @@
 package com.sofia.pageobjects.gmailpages;
 
+import com.sofia.decorators.elements.Input;
+import com.sofia.decorators.elements.Label;
 import com.sofia.pageobjects.GeneralGmailPage;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class GmailSignInPageObj extends GeneralGmailPage {
     @FindBy(xpath = "//input[@id='identifierId']")
-    private WebElement usernameInput;
+    private Input usernameInput;
 
     @FindBy(id = "profileIdentifier")
-    private WebElement activeUsername;
+    private Label activeUsername;
 
     @FindBy(name = "password")
-    private WebElement passwordInput;
+    private Input passwordInput;
 
     public void typeUernameAndSubmit(String usernameInputValue) {
         usernameInput.sendKeys(usernameInputValue);
-        usernameInput.sendKeys(Keys.ENTER);
+        usernameInput.submitInput();
     }
 
     public void typePasswordAndSubmit(String passwordInputValue) {
         passwordInput.sendKeys(passwordInputValue);
-        passwordInput.sendKeys(Keys.ENTER);
+        passwordInput.submitInput();
     }
 
     public String getActiveUsernameAttributeValue(){
-        return activeUsername.getAttribute("innerHTML");
+        return activeUsername.getAttributeValue();
     }
 }
