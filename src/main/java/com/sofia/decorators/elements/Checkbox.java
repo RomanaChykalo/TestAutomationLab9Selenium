@@ -12,7 +12,7 @@ public class Checkbox extends Element {
         webElement.click();
     }
 
-    public void click(){
-        webElement.click();
-    }
+//    public void click() {
+//        webElement.click();
+//    }
 }

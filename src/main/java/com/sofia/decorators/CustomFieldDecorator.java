@@ -23,7 +23,7 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
     }
 
     /**
-     * Метод вызывается фабрикой для каждого поля в классе
+     * Метод викликається фабрикою для кожного поля в класі
      */
     @Override
     public Object decorate(ClassLoader loader, Field field) {
@@ -45,8 +45,8 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
     }
 
     /**
-     * Возвращает декорируемый класс поля,
-     * либо null если класс не подходит для декоратора
+     * Повертає задекорований клас поля
+     * або null, якщо клас не відходить для декоратора
      */
     @SuppressWarnings("unchecked")
     private Class<IElement> decoratableClass(Field field) {

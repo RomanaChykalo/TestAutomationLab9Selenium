@@ -38,11 +38,12 @@ public class GmailHomePage extends GeneralGmailPage {
     }
 
     public void clickDeleteButton() {
-        (new WebDriverWait(driver, 30)).until(ExpectedConditions.elementToBeClickable(deleteButton.getButtonElement()));
+        (new WebDriverWait(driver, 40)).until(ExpectedConditions.elementToBeClickable(deleteButton.getButtonElement()));
         deleteButton.click();
     }
 
     public void clickUndoButton() {
+        (new WebDriverWait(driver, 40)).until(ExpectedConditions.visibilityOf(undoButton.getButtonElement()));
         undoButton.click();
     }
 
