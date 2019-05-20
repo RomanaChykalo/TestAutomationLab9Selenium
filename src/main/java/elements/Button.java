@@ -5,8 +5,5 @@ public final class Button extends Element{
   public Button(WebElement webElement) {
         super(webElement);
     }
-    @Override
-    public void click() {
-      webElement.click();
-         }
-}
+            }
+

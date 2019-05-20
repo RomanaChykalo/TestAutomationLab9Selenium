@@ -8,7 +8,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-
 public class MainPage extends BasePage {
 
     @FindBy(className = "aic")
@@ -32,11 +31,11 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//img[@class ='Ha']")
     private Button closeButton;
 
-    @FindBy(xpath = "//div[@class = 'TO']//span[@class='nU n1']/a")
-    private Label draftFolder;
+    @FindBy(xpath = "//input[@class='gb_Fe']")
+    private TextField draftFolder;
 
-    @FindBy(xpath = "//div[@class = 'ae4 UI']//tbody/tr[1]")
-    private Label lastMessageInDraftList;
+    @FindBy(xpath = "//div[@class = 'ae4 UI']//tbody/tr[1]/td[5]")
+    private Label lastMessageInDraftFolder;
 
     @FindBy(xpath = "//div[@class = 'vh']")
     private Popup popUpMessage;
@@ -60,7 +59,7 @@ public class MainPage extends BasePage {
 
     public void clickSendButton() {
         sendButton.click();
-       wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class = 'vh']")));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class = 'vh']")));
     }
 
     public void clickOnCloseMessageButton() {
@@ -68,17 +67,17 @@ public class MainPage extends BasePage {
     }
 
     public void clickOnDraftFolder() {
-      wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class = 'TO']//span[@class='nU n1']/a")));
-        draftFolder.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@class='gb_Fe']")));
+        draftFolder.sendKeys("in:draft");
+        draftFolder.pressEnter();
     }
 
     public String takeEmailAddress() {
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='vN bfK a3q']")));
         return savedEmail.getAttribute("email");
     }
 
     public String takeLetterSubject() {
-       return subjectField.getAttribute("value");
+        return subjectField.getAttribute("value");
     }
 
     public String takeLetterText() {
@@ -86,8 +85,8 @@ public class MainPage extends BasePage {
 
     }
 
-    public void clickOnLastMessageInDraftList() {
-        lastMessageInDraftList.click();
+    public void clickOnLastMessageInDraftFolder() {
+        lastMessageInDraftFolder.click();
     }
 }
 

@@ -23,6 +23,7 @@ public class LoginPage extends BasePage {
     }
 
     public void clickNextButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='RveJvd snByac']")));
                nextButton.click();
     }
 

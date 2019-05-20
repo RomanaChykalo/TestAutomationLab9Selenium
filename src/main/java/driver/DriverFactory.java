@@ -15,7 +15,7 @@ public class DriverFactory {
     public static WebDriver getWebDriver() {
         if (Objects.isNull(driver.get())) {
             driver.set(new ChromeDriver());
-            driver.get().manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+            driver.get().manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
             driver.get().manage().window().maximize();
         }
         return driver.get();
