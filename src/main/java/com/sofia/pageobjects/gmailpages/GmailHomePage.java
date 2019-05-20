@@ -3,6 +3,7 @@ package com.sofia.pageobjects.gmailpages;
 import com.sofia.decorators.elements.Button;
 import com.sofia.decorators.elements.Checkbox;
 import com.sofia.pageobjects.GeneralGmailPage;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -32,6 +33,8 @@ public class GmailHomePage extends GeneralGmailPage {
     }
 
     public void checkEmailsBoxes(int amount){
+        new WebDriverWait(driver, 40).until(
+                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
         for (int i = 0; i < amount; i++) {
             getCheckboxes().get(i).setChecked();
         }

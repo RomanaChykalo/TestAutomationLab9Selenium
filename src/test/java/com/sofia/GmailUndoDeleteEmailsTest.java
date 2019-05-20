@@ -21,7 +21,7 @@ import static org.testng.AssertJUnit.assertEquals;
 
 public class GmailUndoDeleteEmailsTest {
     private static final Logger LOG = LogManager.getLogger(GmailUndoDeleteEmailsTest.class);
-    private static final String UNDO_DELETE_EMAIL_WIDGET = getWidgetText();
+    //private static final String UNDO_DELETE_EMAIL_WIDGET = getWidgetText();
     private static final int CHECKBOX_AMOUNT = getCheckboxAmount();
     private static final int USERS_AMOUNT = getUserAmount();
     private static final String TEST_PASSED = "Test passed successfully";
@@ -49,7 +49,8 @@ public class GmailUndoDeleteEmailsTest {
         HomeEmailPageBO homePage = new HomeEmailPageBO();
         assertTrue(homePage.deleteCheckedEmails(CHECKBOX_AMOUNT));
 
-        assertEquals(homePage.undoEmailDeletion(), UNDO_DELETE_EMAIL_WIDGET);
+        //assertEquals(homePage.undoEmailDeletion(), UNDO_DELETE_EMAIL_WIDGET);
+        assertTrue(homePage.undoEmailDeletion().matches("^[^ .]+ .+\\.$"));
         LOG.info(TEST_PASSED);
     }
 
