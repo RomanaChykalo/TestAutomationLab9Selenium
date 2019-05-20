@@ -9,7 +9,8 @@ import java.util.Map;
 import java.util.Properties;
 
 public class PropertyUtils {
-    public static Map<String, String> configList = new PropertyUtils().getInfoFromPropertyFile();
+    private static Map<String, String> configList = new PropertyUtils().getInfoFromPropertyFile();
+
     private Map<String, String> getInfoFromPropertyFile() {
         Properties prop = new Properties();
         try (InputStream input = getClass().getClassLoader().getResourceAsStream("application.properties")) {
@@ -22,6 +23,10 @@ public class PropertyUtils {
         configList.put("path", prop.getProperty("path"));
         configList.put("csv_path", prop.getProperty("csv_path"));
         configList.put("cite", prop.getProperty("cite"));
+        return configList;
+    }
+
+    public static Map<String, String> getConfigList() {
         return configList;
     }
 }

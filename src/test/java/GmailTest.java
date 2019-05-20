@@ -5,37 +5,37 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import parser.CSVParser;
+import utils.parser.CSVParser;
 import utils.PropertyUtils;
 
 import java.io.File;
 import java.util.Iterator;
 
+import static utils.model.Consts.LETTER_AMOUNT_TO_DELETE;
+
+
 public class GmailTest {
     private Logger logger = LogManager.getLogger(GmailTest.class);
-    public final int LETTER_AMOUNT = 3;
     @DataProvider(parallel = true)
     private Iterator<Object[]> loginDataCSV() {
-        return CSVParser.parseCSVFile(new File(PropertyUtils.configList.get("csv_path"))).iterator();
+        return CSVParser.parseCSVFile(new File(PropertyUtils.getConfigList().get("csv_path"))).iterator();
     }
 
     @Test(dataProvider = "loginDataCSV")
     public void generalTest(String email, String password) {
         LoginBO loginBO = new LoginBO();
-        loginBO.enterEmailPassAndSubmit(email, password);
+        loginBO.login(email, password);
         MessagesBO messagesBO = new MessagesBO();
-        messagesBO.markAsImportantAndNavigateToImpFolder(LETTER_AMOUNT);
-        String lettersAmountBeforeDeleting = messagesBO.checkLettersAmount();
-        logger.info("There are: " + lettersAmountBeforeDeleting + " messages in folder before deleting");
-        messagesBO.deleteMessages(LETTER_AMOUNT);
-        String lettersAmountAfterDeleting = messagesBO.checkLettersAmount();
-        logger.info("There are: " + lettersAmountAfterDeleting + " messages in folder after deleting");
-        Assert.assertNotEquals(lettersAmountBeforeDeleting, lettersAmountAfterDeleting);
+        messagesBO.markAsImportant(LETTER_AMOUNT_TO_DELETE);
+        Assert.assertTrue(messagesBO.isMarkAsImportantLabelPresent());
+        int messAmountBeforeDelete=messagesBO.openImportantFolder();
+        int messAmountAfterDelete = messagesBO.deleteMessages(LETTER_AMOUNT_TO_DELETE);
+        Assert.assertEquals(messAmountBeforeDelete-messAmountAfterDelete, LETTER_AMOUNT_TO_DELETE);
     }
 
     @BeforeMethod()
     public void setUp() {
-        DriverLoader.getDriver().get(PropertyUtils.configList.get("cite"));
+        DriverLoader.getDriver().get(PropertyUtils.getConfigList().get("cite"));
     }
 
     @AfterMethod
@@ -53,4 +53,3 @@ public class GmailTest {
         logger.info("Test END ");
     }
 }
-

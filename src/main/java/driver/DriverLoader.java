@@ -15,7 +15,7 @@ public class DriverLoader {
     private static ThreadLocal<WebDriver> driverPool = new ThreadLocal<>();
 
     static {
-        System.setProperty(PropertyUtils.configList.get("driver"), PropertyUtils.configList.get("path"));
+        System.setProperty(PropertyUtils.getConfigList().get("driver"), PropertyUtils.getConfigList().get("path"));
     }
 
     private DriverLoader() {

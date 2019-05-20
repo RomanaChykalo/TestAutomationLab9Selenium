@@ -11,10 +11,12 @@ public class LoginBO {
         loginPage = new LoginPage();
     }
 
-    public void enterEmailPassAndSubmit(String email, String password) {
+    public void login(String email, String password) {
         loginPage.typeEmailAndSubmit(email);
+        logger.info("User with email "+ email+" entered his email");
         loginPage.typePasswordAndSubmit(password);
-        logger.info("User "+Thread.currentThread().getName()+" successfully log in");
+        logger.info("User with email "+ email+" entered his password");
+        logger.info("User with email "+ email+" successfully log in");
 
     }
 }

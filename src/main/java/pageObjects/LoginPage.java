@@ -1,32 +1,28 @@
 package pageObjects;
 
+import elements.Button;
+import elements.Input;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
     @FindBy(css = "input#identifierId")
-    private WebElement userEmailInput;
+    private Input userEmailInput;
     @FindBy(id = "identifierNext")
-    private WebElement emailNextButton;
+    private Button emailNextButton;
     @FindBy(xpath = "//div[@id='password']//input[@name='password']")
-    private WebElement passwordInput;
+    private Input passwordInput;
     @FindBy (id = "passwordNext")
-    private WebElement passNextButton;
+    private Button passNextButton;
     @FindBy(css = "ul li:nth-child(2) a")
-    private WebElement signInButton;
+    private Button signInButton;
 
     public void typeEmailAndSubmit(String userEmail){
-        userEmailInput.sendKeys(userEmail);
+        userEmailInput.sentKeys(userEmail);
         emailNextButton.click();
-
     }
     public void typePasswordAndSubmit(String userPassword){
-        passwordInput.sendKeys(userPassword);
+        passwordInput.sentKeys(userPassword);
         passNextButton.click();
-        
     }
-    public void signIn(){
-        signInButton.click();
-    }
-
 }

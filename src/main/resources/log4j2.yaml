@@ -36,12 +36,12 @@ configuration:
       AppenderRef:
       - ref: Console
 
-    - name: businessObjects.MessagesBO
+    - name: pageObjects.ImportantMessagePage
       level: all
       AppenderRef:
       - ref: Console
 
-    - name: ImportantMessagePage
+    - name: pageObjects.MainPage
       level: all
       AppenderRef:
       - ref: Console
