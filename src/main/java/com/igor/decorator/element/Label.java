@@ -7,7 +7,7 @@ public class Label extends Element {
     }
 
     public boolean isEmpty(){
-        return webElement.getText().equals("");
+        return webElement.getText().isEmpty();
     }
 
     public String getText(){

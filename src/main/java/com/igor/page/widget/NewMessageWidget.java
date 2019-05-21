@@ -36,12 +36,12 @@ public class NewMessageWidget extends BasePage {
     public void setMessageField(String message) { messageField.sendKeys(message); }
 
     public void clickToSendButton() {
-        clickOnButton(sendButton);
+        sendButton.safelyClick();
     }
 
     public void clickToDeleteContact() {
         messageField.sendKeys(Keys.chord(Keys.CONTROL, Keys.SHIFT, "B"));
         webDriverWait.until(ExpectedConditions.visibilityOf(receiverArea.getWebElement()));
-        clickOnButton(deleteContact);
+        deleteContact.safelyClick();
     }
 }

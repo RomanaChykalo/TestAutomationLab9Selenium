@@ -10,12 +10,6 @@ public class TextArea extends Element {
         webElement.sendKeys(var1);
     }
 
-    public void clear() {
-        webElement.clear();
-    }
-
-    public String getText(){ return webElement.getText(); }
-
     public void clearAndType(String text){
         webElement.clear();
         webElement.sendKeys(text);

@@ -4,7 +4,6 @@ import com.igor.decorator.element.Button;
 import com.igor.decorator.element.Element;
 import com.igor.page.BasePage;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -19,6 +18,7 @@ public class AlertDialogWidget extends BasePage {
     }
 
     public void clickToButtonOk() {
-        clickOnButton(buttonOk);
+        buttonOk.safelyClick();
+        //clickOnButton(buttonOk);
     }
 }

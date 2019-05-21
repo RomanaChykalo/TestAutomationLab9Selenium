@@ -15,12 +15,12 @@ public class MainPage extends BasePage{
     private Button searchButton;
 
     public void clickToComposeButton(){
-        clickOnButton(composeButton);
+        composeButton.safelyClick();
     }
 
     public void goToSentPage(){
         searchField.clearAndType("in:sent");
-        clickOnButton(searchButton);
+        searchButton.safelyClick();
         webDriverWait.until(ExpectedConditions.urlContains("sent"));
     }
 }
