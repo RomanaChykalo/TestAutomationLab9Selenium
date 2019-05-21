@@ -1,6 +1,5 @@
 package com.igor.page;
 
-
 import com.igor.decorator.CustomFieldDecorator;
 import com.igor.utils.provider.DriverProvider;
 import org.openqa.selenium.WebDriver;

@@ -19,6 +19,5 @@ public class AlertDialogWidget extends BasePage {
 
     public void clickToButtonOk() {
         buttonOk.safelyClick();
-        //clickOnButton(buttonOk);
     }
 }
