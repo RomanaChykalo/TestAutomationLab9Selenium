@@ -10,6 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
+import static edu.gmail.utils.Constants.ONE;
 import static edu.gmail.utils.DriverWrapper.getInstanceOfDriverWrapper;
 
 
@@ -23,9 +24,12 @@ public class GmailPagesTest {
         GmailLoginPageBO loginPageBO = new GmailLoginPageBO();
         GmailDraftMessageBO draftMessageBO = new GmailDraftMessageBO();
         loginPageBO.loginToGmail();
+        logger.info("Logged in successfully");
         draftMessageBO.composeDraftLetterAndExit();
-        Integer expectedResult = draftMessageBO.getNumberOfDraftMessagesBeforeAddingNewDraftLetter() + 1;
+        logger.info("Successfully composed drafted letter and exited");
+        Integer expectedResult = draftMessageBO.getNumberOfDraftMessagesBeforeAddingNewDraftLetter() + ONE;
         Assert.assertEquals(Integer.valueOf(draftMessageBO.getNumberOfDraftMessagesAfterAddingNewDraftLetter()), expectedResult);
+        logger.info("Successfully added letter to drafted section");
         draftMessageBO.openDraftMessagesAndSendDraftedLetter();
         logger.info("Email was sent successfully");
     }
