@@ -1,4 +1,4 @@
-package com.igor.provider;
+package com.igor.utils.provider;
 
 import com.igor.utils.property.Property;
 import org.openqa.selenium.WebDriver;

@@ -18,6 +18,7 @@ public class JsonParser {
             jsonObject = (JSONObject) (new JSONParser().parse(new FileReader("src/main/resources/data.json")));
         } catch (IOException | ParseException e) {
             LOGGER.error(e.getMessage());
+            e.printStackTrace();
         }
     }
 

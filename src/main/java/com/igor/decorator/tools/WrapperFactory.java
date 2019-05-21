@@ -3,14 +3,14 @@ package com.igor.decorator.tools;
 import com.igor.decorator.element.AbstractElement;
 import org.openqa.selenium.WebElement;
 
-class WrapperFactory {
+public class WrapperFactory {
 
     /**
-     * Создает экземпляр класса,
-     * реализующий IElement интерфейс,
-     * вызывая конструктор с аргументом WebElement
+     * Create instance,
+     * implemented IElement,
+     * invoke constructor with arguments WebElement
      */
-    static AbstractElement createInstance(Class<AbstractElement> clazz,
+    public static AbstractElement createInstance(Class<AbstractElement> clazz,
                                           WebElement element) {
         try {
             return clazz.getConstructor(WebElement.class).

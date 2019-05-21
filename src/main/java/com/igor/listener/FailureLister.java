@@ -1,6 +1,6 @@
 package com.igor.listener;
 
-import com.igor.provider.DriverProvider;
+import com.igor.utils.provider.DriverProvider;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

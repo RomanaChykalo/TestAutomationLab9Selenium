@@ -19,10 +19,6 @@ public class AlertDialogWidget extends BasePage {
     }
 
     public void clickToButtonOk() {
-        if(buttonOk.isClickable()) {
-            buttonOk.click();
-        }else {
-            webDriverWait.until(ExpectedConditions.elementToBeClickable(buttonOk.getWebElement())).click();
-        }
+        clickOnButton(buttonOk);
     }
 }

@@ -3,7 +3,7 @@ package com.igor;
 import com.igor.business.LogInBO;
 import com.igor.business.MessageBO;
 import com.igor.listener.FailureLister;
-import com.igor.provider.DriverProvider;
+import com.igor.utils.provider.DriverProvider;
 import com.igor.utils.property.Property;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,7 +18,6 @@ import static org.testng.Assert.assertTrue;
 
 @Listeners(FailureLister.class)
 public class GmailTest {
-    private static final Logger LOGGER = LogManager.getLogger(GmailTest.class);
     private final String MESSAGE_TITLE = UUID.randomUUID().toString();
 
     @BeforeMethod()

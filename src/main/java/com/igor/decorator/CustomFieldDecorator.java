@@ -1,6 +1,8 @@
-package com.igor.decorator.tools;
+package com.igor.decorator;
 
 import com.igor.decorator.element.AbstractElement;
+import com.igor.decorator.tools.LocatingCustomElementListHandler;
+import com.igor.decorator.tools.WrapperFactory;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,7 +27,7 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
     @Override
     public Object decorate(ClassLoader loader, Field field) {
         Class<AbstractElement> decoratableClass = decoratableClass(field);
-        // если класс поля декорируемый
+        // if class of field is decorated
         if (!Objects.isNull(decoratableClass)) {
             ElementLocator locator = factory.createLocator(field);
             if (Objects.isNull(locator)) {
@@ -42,8 +44,8 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
     }
 
     /**
-     * Возвращает декорируемый класс поля,
-     * либо null если класс не подходит для декоратора
+     * Return decorated class field,
+     * or null if class isn't correct for decorator
      */
     @SuppressWarnings("unchecked")
     private Class<AbstractElement> decoratableClass(Field field) {
@@ -52,18 +54,18 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
 
         if (List.class.isAssignableFrom(clazz)) {
 
-            // для списка обязательно должна быть задана аннотация
+            // List has to have annotation
             if (Objects.isNull(field.getAnnotation(FindBy.class)) &&
                     Objects.isNull(field.getAnnotation(FindBys.class))) {
                 return null;
             }
 
-            // Список должен быть параметризирован
+            // List have to be parametrized
             Type genericType = field.getGenericType();
             if (!(genericType instanceof ParameterizedType)) {
                 return null;
             }
-            // получаем класс для элементов списка
+            // get class for elements of list
             clazz = (Class<?>) ((ParameterizedType) genericType).
                     getActualTypeArguments()[0];
         }
@@ -77,8 +79,8 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
     }
 
     /**
-     * Создание элемента.
-     * Находит WebElement и передает его в кастомный класс
+     * Creating element.
+     * Found WebElement and passes it to the custom class
      */
     private AbstractElement createElement(ClassLoader loader, ElementLocator locator,
                                           Class<AbstractElement> clazz) {
@@ -87,7 +89,7 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
     }
 
     /**
-     * Создание списка
+     * Сreating List
      */
     @SuppressWarnings("unchecked")
     private List<AbstractElement> createList(ClassLoader loader, ElementLocator locator,

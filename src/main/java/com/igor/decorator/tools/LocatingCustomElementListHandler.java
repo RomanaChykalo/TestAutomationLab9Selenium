@@ -14,7 +14,7 @@ public class LocatingCustomElementListHandler
     private final ElementLocator locator;
     private final Class<AbstractElement> clazz;
 
-    LocatingCustomElementListHandler(ElementLocator locator,
+    public LocatingCustomElementListHandler(ElementLocator locator,
                                      Class<AbstractElement> clazz) {
         this.locator = locator;
         this.clazz = clazz;
@@ -22,11 +22,10 @@ public class LocatingCustomElementListHandler
 
     public Object invoke(Object object, Method method,
                          Object[] objects) throws Throwable {
-        // Находит список WebElement и обрабатывает каждый его элемент,
-        // возвращает новый список с элементами кастомного класса
+        // Found a list of WebElement and handles each of its elements,
+        // return new list with elements of this custom class
         List<WebElement> elements = locator.findElements();
         List<AbstractElement> customs = new ArrayList<>();
-
         for (WebElement element : elements) {
             customs.add(WrapperFactory.createInstance(clazz, element));
         }

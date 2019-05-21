@@ -17,9 +17,8 @@ public class Property {
             properties.load(Objects.requireNonNull(input));
             return properties.getProperty(keyToFile);
         } catch (IOException e) {
-            LOGGER.error(e.getClass());
             LOGGER.error(e.getMessage());
-            LOGGER.trace(e.getStackTrace());
+            e.printStackTrace();
             return null;
         }
     }
