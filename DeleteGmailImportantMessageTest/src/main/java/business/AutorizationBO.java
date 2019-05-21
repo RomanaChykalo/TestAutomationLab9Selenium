@@ -9,11 +9,12 @@ public class AutorizationBO {
     private static Logger LOG = Logger.getLogger(AutorizationBO.class.getName());
 
     public void logInUser(String email, String password) throws InterruptedException {
+        LOG.info("User enter email" + email+ " in the login text box");
         loginPage.typeLoginAndSubmit(email);
-        LOG.info("User entered in the Email text box");
         Assert.assertTrue(verifyUserEnterCorrectEmail() , "Password page");
+        LOG.info("Password enter password" + password+ "in the Password text box");
         loginPage.typePasswordAndSubmit(password);
-        LOG.info("Password entered in the Password text box");
+
     }
 
     public boolean verifyLogInSuccessful(){

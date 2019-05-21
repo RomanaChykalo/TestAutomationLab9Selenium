@@ -35,7 +35,7 @@ public class GmailHomePage extends PageObject {
     private Button sentButton;
 
     @FindBy(css = "*[href*='#drafts")
-    private WebElement draftButton;
+    private Button draftButton;
 
     @FindBy(xpath = "//*[@role='main']//tr")
     private List<CheckBox> lastMessageCheckboxes;
@@ -54,10 +54,7 @@ public class GmailHomePage extends PageObject {
     private WebElement messageWidget;
 
     @FindBy(className = "aAy J-KU-KO aIf-aLe")
-    private WebElement primaryMessage;
-
-    @FindBy(xpath = " //*[contains(@class,'gb_Od gb_Sb gb_Md')]")
-    private WebElement gmailIcon;
+    private Button primaryMessage;
 
     @FindBy(xpath = "//*[contains(@class,'aio UKr6le')]//a[contains(@title,'Important')]")
     private Button importantButton;
