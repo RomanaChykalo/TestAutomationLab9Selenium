@@ -21,7 +21,7 @@ public class EmailBO {
         gmailPage.setEmailSubject(subject);
         gmailPage.setEmailBody(mailBody);
         gmailPage.clickSendBtn();
-        gmailPage.expWait(25).until(ExpectedConditions.visibilityOf((WebElement) gmailPage.getViewEmailSentMsgBtn()));
+        gmailPage.expWait(25).until(ExpectedConditions.visibilityOf(gmailPage.getViewEmailSentMsgBtn().getWebElement()));
     }
 
     public boolean isViewEmailSentMsgBtnDisplayed(){
@@ -33,7 +33,7 @@ public class EmailBO {
     }
 
     public boolean areEmailsDeleted(){
-        return gmailPage.isDeleteEmailsSuccessMessage();
+        return gmailPage.isDeleteEmailsSuccessMessageDisplayed();
     }
 
     public void revertDeletedEmails(){

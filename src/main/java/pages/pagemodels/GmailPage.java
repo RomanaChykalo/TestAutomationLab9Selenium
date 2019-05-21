@@ -38,13 +38,13 @@ public class GmailPage extends BasePage {
     @FindBy(xpath = "(//div[@class='dC']/div)[1]")
     private Button sendBtn;
 
-    @FindBy(xpath = "(//div[@class='Cp'])[1]//tr")
+    @FindBy(xpath = "//div[@class='Cp']//tr")
     private List<WebElement> unreadInboxEmailList;
 
     @FindBy(xpath = "(//div[@class='asa'])[3]")
     private Button deleteSelectedEmailsBtn;
 
-    @FindBy(xpath = "//div[@class='vh']")
+    @FindBy(xpath = "(//div[@class='vh'])[1]")
     private Widget deleteEmailsSuccessMessage;
 
     @FindBy(xpath = "(//div[@class='vh']/span/span)[2]/span")
@@ -58,7 +58,7 @@ public class GmailPage extends BasePage {
 
 
     public GmailPage() {
-        expWait(30).until(ExpectedConditions.visibilityOf((WebElement) gmailLogo));
+        expWait(30).until(ExpectedConditions.visibilityOf(gmailLogo.getWebElement()));
     }
 
     public Label getGmailLogo() {
@@ -152,17 +152,17 @@ public class GmailPage extends BasePage {
         }
     }
 
-    public boolean isDeleteEmailsSuccessMessage(){
+    public boolean isDeleteEmailsSuccessMessageDisplayed(){
         return getDeleteEmailsSuccessMessage().isDisplayed();
     }
 
     public void clickRevertBtn(){
-        expWait(25).until(ExpectedConditions.elementToBeClickable((WebElement) getRevertBtn()));
+        expWait(25).until(ExpectedConditions.elementToBeClickable(getRevertBtn().getWebElement()));
         getRevertBtn().click();
     }
 
     public boolean isActionCancelledMsgDispalyed(){
-        expWait(25).until(ExpectedConditions.visibilityOf((WebElement) getCancelledMsg()));
+        expWait(25).until(ExpectedConditions.visibilityOf(getCancelledMsg().getWebElement()));
         return getCancelledMsg().isDisplayed();
     }
 }

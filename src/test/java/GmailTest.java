@@ -1,5 +1,5 @@
 import data.Consts;
-import data.TestData;
+import data.TestDataProvider;
 import driver.DriverManager;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -13,7 +13,7 @@ public class GmailTest {
         DriverManager.getDriver();
     }
 
-    @Test(enabled = true, dataProvider = "recipientsMails", dataProviderClass = TestData.class)
+    @Test(dataProvider = "recipientsMails", dataProviderClass = TestDataProvider.class, priority = 1)
     public void sendTestEmailsForUsers(String recipient, String subject, String mailBody){
         LoginBO loginBO = new LoginBO();
         EmailBO emailBO = new EmailBO(loginBO.login(Consts.EMAIL, Consts.PASSW));
@@ -21,7 +21,7 @@ public class GmailTest {
         Assert.assertTrue(emailBO.isViewEmailSentMsgBtnDisplayed());
     }
 
-    @Test(enabled = true, dataProvider = "users", dataProviderClass = TestData.class, dependsOnMethods = {"sendTestEmailsForUsers"})
+    @Test(dataProvider = "users", dataProviderClass = TestDataProvider.class, priority = 2)
     public void delete3EmailsAndRevert(String login, String passw){
         LoginBO loginBO = new LoginBO();
         EmailBO emailBO = new EmailBO(loginBO.login(login, passw));

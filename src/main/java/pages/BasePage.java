@@ -1,6 +1,7 @@
 package pages;
 
 import driver.DriverManager;
+import element.element.utils.FieldDecorator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
@@ -16,7 +17,7 @@ public abstract class BasePage {
 
     public BasePage() {
         this.driver = DriverManager.getDriver();
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(new FieldDecorator(driver), this);
     }
 
     public WebDriver driver(){

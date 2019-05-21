@@ -5,7 +5,7 @@ import utils.CSVParser;
 
 import java.util.Iterator;
 
-public class TestData {
+public class TestDataProvider {
     @DataProvider(name = "users", parallel = true)
     public Object[][] users() {
         return new Object[][]{

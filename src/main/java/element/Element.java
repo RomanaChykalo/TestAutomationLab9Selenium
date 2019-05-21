@@ -8,4 +8,8 @@ public class Element implements IElement {
     public Element(WebElement webElement) {
         this.webElement = webElement;
     }
+
+    public WebElement getWebElement() {
+        return webElement;
+    }
 }

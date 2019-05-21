@@ -68,7 +68,7 @@ public class LoginPage extends BasePage {
 
     public void setPasswrd(String passw){
         logger.trace("Typing password...");
-        expWait(35).until(ExpectedConditions.elementToBeClickable((WebElement) getPasswField()));
+        expWait(35).until(ExpectedConditions.elementToBeClickable(getPasswField().getWebElement()));
         getPasswField().sendKeys(passw);
     }
 
