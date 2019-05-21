@@ -24,7 +24,7 @@ public class LoginEmailPage extends AbstractPage {
     }
 
     public void clickNextButton() {
-        logger.info("Click to the 'Next' on Email login page");
+        logger.info("Click to the 'Next' button on Email login page");
         nextButtonLocator.click();
     }
 }

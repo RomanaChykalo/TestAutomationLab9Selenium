@@ -1,6 +1,5 @@
 package com.kryviak.mailboxBO;
 
-import com.kryviak.decorator.ButtonDecor;
 import com.kryviak.models.MessageModel;
 import com.kryviak.pages.mailbox.MailboxPage;
 import org.openqa.selenium.WebElement;

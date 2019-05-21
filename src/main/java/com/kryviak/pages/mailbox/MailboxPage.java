@@ -83,21 +83,21 @@ public class MailboxPage extends AbstractPage {
 
     public List<WebElement> getMessageTitles() {
         waitForElementIsNotVisible(checkIfMessageIsSendButtonLocator.get(0));
-        checkIfDisplayedElement(checkIfMessageIsSendButtonLocator.get(0));
+        checkIfMessageIsSendButtonLocator.get(0).isDisplayed();
         return checkIfMessageIsSendButtonLocator;
     }
 
     public void selectMessageByTitle(String msgTitle) {
         // Used BY instead of @FindBy according to used for locator chaining.
         By mailTitleSelector = By.xpath("td[6]/div/div/div/span");
-        By deleteButtonSelector = By.xpath("td[2]");
+        By selectCheckBoxSelector = By.xpath("td[2]");
 
         waitForElementIsNotVisible(undoLinkLocator);
         getAllMessages.get(0).isDisplayed();
         getAllMessages.parallelStream()
                 .filter(webElement -> webElement.findElement(mailTitleSelector).getText().equals(msgTitle))
                 .findFirst()
-                .ifPresent(webElement -> webElement.findElement(deleteButtonSelector).click());
+                .ifPresent(webElement -> webElement.findElement(selectCheckBoxSelector).click());
     }
 
     public void deleteSelectedMessage() {

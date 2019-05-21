@@ -32,10 +32,11 @@ public class GmailTest {
         XmlParser parser = new XmlParser();
         MailboxBO mailboxBO = new MailboxBO();
         UserModel userModel = new UserModel();
+        LoginBO loginBO = new LoginBO();
         MessageModel messageModel = parser.getMessageModelData();
         userModel.setUserLogin(login);
         userModel.setUserPassword(password);
-        new LoginBO().login(userModel);
+        loginBO.login(userModel);
         mailboxBO.sendLetter(messageModel, messageModel.getSubjectTo());
         Assert.assertTrue(mailboxBO.isMessageSent(messageModel.getSubjectTo()), "Message with subject [" +
                 messageModel.getSubjectTo() + "] was not sent.");

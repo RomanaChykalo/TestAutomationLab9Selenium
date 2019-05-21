@@ -22,4 +22,8 @@ public class LinkDecor extends MyElement{
         logger.info("Link is displayed");
         return webElement.isDisplayed();
     }
+
+    public WebElement findElement(By mailTitleSelector) {
+        return webElement;
+    }
 }

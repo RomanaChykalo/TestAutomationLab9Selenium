@@ -2,7 +2,6 @@ package com.kryviak.decorator;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class ButtonDecor extends MyElement {
@@ -18,7 +17,7 @@ public class ButtonDecor extends MyElement {
         webElement.click();
     }
 
-    public boolean isDisplayed(){
+    public boolean isDisplayed() {
         logger.info("Button is displayed");
         return webElement.isDisplayed();
     }

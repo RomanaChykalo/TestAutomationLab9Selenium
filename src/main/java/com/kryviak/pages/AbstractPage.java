@@ -2,7 +2,6 @@ package com.kryviak.pages;
 
 import com.kryviak.config.DriverThreadInit;
 import com.kryviak.decorator.CustomFieldDecor;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -19,18 +18,10 @@ public abstract class AbstractPage {
     }
 
     protected void waitForElementVisible(WebElement webElement) {
-        (new WebDriverWait(this.webDriver, 30)).until(ExpectedConditions.visibilityOf(webElement));
+        (new WebDriverWait(this.webDriver, 10)).until(ExpectedConditions.visibilityOf(webElement));
     }
 
     protected void waitForElementIsNotVisible(WebElement webElement) {
-        (new WebDriverWait(this.webDriver, 30)).until(ExpectedConditions.invisibilityOf(webElement));
-    }
-
-    protected void checkIfDisplayedElement(WebElement webElement) {
-        try {
-            webElement.isDisplayed();
-        } catch (StaleElementReferenceException ex) {
-            ex.printStackTrace();
-        }
+        (new WebDriverWait(this.webDriver, 10)).until(ExpectedConditions.invisibilityOf(webElement));
     }
 }

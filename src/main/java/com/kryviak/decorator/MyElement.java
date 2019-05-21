@@ -4,7 +4,7 @@ import org.openqa.selenium.*;
 
 import java.util.List;
 
-public class MyElement implements WebElement{
+public class MyElement implements WebElement {
 
     WebElement webElement;
 
