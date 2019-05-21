@@ -43,3 +43,24 @@ Configutation:
         AppenderRef:
           ref: Console_Appender
           level: info
+
+      - name: com.kryviak.decorator.InputTextDecor
+        additivity: false
+        level: info
+        AppenderRef:
+          ref: Console_Appender
+          level: info
+
+      - name: com.kryviak.decorator.ButtonDecor
+        additivity: false
+        level: info
+        AppenderRef:
+          ref: Console_Appender
+          level: info
+
+      - name: com.kryviak.decorator.LinkDecor
+        additivity: false
+        level: info
+        AppenderRef:
+          ref: Console_Appender
+          level: info

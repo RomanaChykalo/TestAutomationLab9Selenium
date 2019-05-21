@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertyParser {
+
     private String sysDriverProp;
     private String driverUrl;
     private String driverPath;

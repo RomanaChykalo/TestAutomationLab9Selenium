@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.concurrent.TimeUnit;
 
 public class DriverThreadInit {
+
     private PropertyParser propertyParser = new PropertyParser();
 
     private DriverThreadInit() {
@@ -29,7 +30,6 @@ public class DriverThreadInit {
             webDriver.get(propertyParser.getDriverUrl());
             return webDriver;
         }
-
     };
 
     public WebDriver getDriver() {

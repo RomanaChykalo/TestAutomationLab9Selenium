@@ -1,6 +1,7 @@
 package com.kryviak.models;
 
 public class MessageModel {
+
     private String emailTo;
     private String subjectTo;
     private String messageTo;

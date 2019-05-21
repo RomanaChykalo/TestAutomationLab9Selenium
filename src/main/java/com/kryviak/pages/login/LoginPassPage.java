@@ -1,26 +1,32 @@
 package com.kryviak.pages.login;
 
+import com.kryviak.decorator.ButtonDecor;
+import com.kryviak.decorator.InputTextDecor;
 import com.kryviak.pages.AbstractPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPassPage extends AbstractPage {
-    private static Logger logger = LogManager.getLogger(LoginEmailPage.class);
 
-    private By userPasswordTextFieldLocator = By.cssSelector("input[type='password']");
-    private By nextButtonLocator = By.cssSelector("#passwordNext span");
+    private static Logger logger = LogManager.getLogger(LoginPassPage.class);
+
+    @FindBy(css = "input[type='password']")
+    private InputTextDecor userPasswordTextFieldLocator;
+
+    @FindBy(css = "#passwordNext span")
+    private ButtonDecor nextButtonLocator;
 
     public LoginPassPage setUserPasswordTextField(String userPassword) {
         waitForElementVisible(userPasswordTextFieldLocator);
-        webDriver.findElement(userPasswordTextFieldLocator).sendKeys(userPassword);
-        logger.info("User password is: " + userPassword);
+        logger.info("Set user password: " + userPassword);
+        userPasswordTextFieldLocator.sendKeys(userPassword);
         return this;
     }
 
     public void clickNextButton() {
         waitForElementVisible(nextButtonLocator);
-        webDriver.findElement(nextButtonLocator).click();
         logger.info("Click to the 'Next' button on Password login page");
+        nextButtonLocator.click();
     }
 }

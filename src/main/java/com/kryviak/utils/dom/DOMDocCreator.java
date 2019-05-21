@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class DOMDocCreator {
+
     private static Logger logger = LogManager.getLogger(DOMDocCreator.class);
     private DocumentBuilder documentBuilder;
     private Document document;

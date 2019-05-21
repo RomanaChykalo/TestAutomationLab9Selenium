@@ -5,6 +5,7 @@ import com.kryviak.pages.login.LoginEmailPage;
 import com.kryviak.pages.login.LoginPassPage;
 
 public class LoginBO {
+
     private LoginEmailPage loginEmailPage = new LoginEmailPage();
     private LoginPassPage loginPassPage = new LoginPassPage();
 
