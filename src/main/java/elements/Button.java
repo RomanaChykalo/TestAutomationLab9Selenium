@@ -15,11 +15,12 @@ public class Button extends Element {
     }
 
     public boolean isClickable(WebDriver driver) {
+        boolean isClickable = true;
         try {
-            (new WebDriverWait(driver, 5)).until(ExpectedConditions.elementToBeClickable(webElement));
+            (new WebDriverWait(driver, 3)).until(ExpectedConditions.elementToBeClickable(webElement));
         } catch (Exception ex) {
-            return false;
+            isClickable = false;
         }
-        return true;
+        return isClickable;
     }
 }
