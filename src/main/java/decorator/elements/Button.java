@@ -13,16 +13,16 @@ public class Button extends BaseElement {
     }
 
     public void click(){
-        if(isClickable()) {
+        if(isClickable()&&isEnabled()) {
             element.click();
-        }
+        }else System.out.println("Is not clickable");
     }
 
     public String getText(){
        return element.getText();
     }
 
-    public Boolean isDisplayed(){
-        return element.isDisplayed();
+    public Boolean isEnabled(){
+        return element.isEnabled();
     }
 }

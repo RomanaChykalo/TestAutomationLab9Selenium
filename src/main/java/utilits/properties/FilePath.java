@@ -16,7 +16,7 @@ public class FilePath {
 
     public String propertyFile(String keyToFile){
         try{
-            inputStream = new FileInputStream("src/main/resources/ways/ways.properties");
+            inputStream = new FileInputStream("src/test/java/resources/ways/ways.properties");
             properties.load(inputStream);
             filePath = properties.getProperty(keyToFile);
         }catch (IOException e){

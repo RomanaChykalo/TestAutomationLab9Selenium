@@ -10,9 +10,13 @@ public class WriteMessageBO {
     private WriteMessage writeMessage = new WriteMessage();
     private DraftMessagePage draftMessagePage = new DraftMessagePage();
 
-    public void sendMessage(){
+    public Boolean isSaveInDraft(String subject){
         draftMessagePage.goToDraftMessage();
         draftMessagePage.chooseLastMessage();
+        return draftMessagePage.isCorrectSubject(subject);
+    }
+
+    public void sendMessage(){
         draftMessagePage.sendMessage();
     }
 

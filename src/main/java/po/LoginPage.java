@@ -2,7 +2,6 @@ package po;
 
 import decorator.elements.Button;
 import decorator.elements.Input;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {

@@ -3,6 +3,7 @@ import bo.WriteMessageBO;
 import driver.DriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -36,6 +37,8 @@ public class TestGmail {
                 user.getMessageModel().getMessage());
         logger.info("Message was wrote but was not sent.");
 
+        Assert.assertTrue(writeMessage.isSaveInDraft(user.getMessageModel().getSubject()));
+        logger.info("Message was saved as a draft.");
         writeMessage.sendMessage();
         logger.info("Message was sent.");
     }
