@@ -22,7 +22,7 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
     }
 
     /**
-     * Метод вызывается фабрикой для каждого поля в классе
+     * Method is called by factory for every field
      */
     @Override
     public Object decorate(ClassLoader loader, Field field) {
