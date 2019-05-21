@@ -4,12 +4,11 @@ import com.sofia.decorators.elements.Button;
 import com.sofia.decorators.elements.Checkbox;
 import com.sofia.decorators.elements.Label;
 import com.sofia.pageobjects.GeneralGmailPage;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.support.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import static com.sofia.utilmanager.jsonparser.JsonParser.getButtonWait;
@@ -39,11 +38,13 @@ public class GmailHomePage extends GeneralGmailPage {
         return getCheckboxes().isEmpty();
     }
 
-    public void checkEmailsBoxes(int amount){
-        new WebDriverWait(driver, PAGE_LOAD_WAIT).until(
-                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+    public void checkEmailsBoxes(int amount) {
         for (int i = 0; i < amount; i++) {
-            getCheckboxes().get(i).setChecked();
+            int finalI = i;
+            new WebDriverWait(driver, PAGE_LOAD_WAIT).ignoring(StaleElementReferenceException.class).until(webDriver -> {
+                getCheckboxes().get(finalI).setChecked();
+                return true;
+            });
         }
     }
 

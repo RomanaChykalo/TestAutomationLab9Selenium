@@ -44,10 +44,8 @@ public class GmailUndoDeleteEmailsTest {
     public void logInAndSendEmail(String testUsername, String testPassword) {
         LoginBO signIn = new LoginBO();
         assertEquals(signIn.loginIntoAccount(testUsername, testPassword), testUsername);
-
         HomeEmailPageBO homePage = new HomeEmailPageBO();
         assertTrue(homePage.deleteCheckedEmails(CHECKBOX_AMOUNT));
-
         assertTrue(homePage.undoEmailDeletion().matches("^[^ .]+ .+\\.$"));
         LOG.info(TEST_PASSED);
     }
