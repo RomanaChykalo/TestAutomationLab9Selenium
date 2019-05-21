@@ -31,8 +31,8 @@ public class GoogleMailTestSuite {
   @BeforeMethod
   private void init() {
     WebDriver driver = DriverPool.getDriver();
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-    wait = (WebDriverWait) new WebDriverWait(driver, 50)
+    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    wait = (WebDriverWait) new WebDriverWait(driver, 30)
         .ignoring(StaleElementReferenceException.class);
     DriverPool.setWebDriver(driver);
   }

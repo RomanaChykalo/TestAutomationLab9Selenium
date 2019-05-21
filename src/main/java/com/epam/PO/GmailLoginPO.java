@@ -1,5 +1,6 @@
 package com.epam.PO;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,7 +20,10 @@ public class GmailLoginPO {
   @FindBy(id = "passwordNext")
   private WebElement passwordNexButton;
 
+  private WebDriver driver;
+
   public GmailLoginPO(WebDriver driver) {
+    this.driver = driver;
     PageFactory.initElements(driver, this);
   }
 
@@ -29,7 +33,8 @@ public class GmailLoginPO {
   }
 
   public void typePasswordAndSubmit(String password) {
+    JavascriptExecutor executor = (JavascriptExecutor) driver;
     passwordInputElement.sendKeys(password);
-    passwordNexButton.click();
+    executor.executeScript("arguments[0].click();", passwordNexButton);
   }
 }

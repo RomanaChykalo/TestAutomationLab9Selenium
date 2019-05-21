@@ -1,10 +1,13 @@
 package com.epam.PO;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GmailMessageWidgetPO {
 
@@ -32,7 +35,12 @@ public class GmailMessageWidgetPO {
   @FindBy(className = "vM")
   private WebElement closeIncorrectMailAddressElement;
 
-  public GmailMessageWidgetPO(WebDriver driver) {
+  private WebDriver driver;
+  private WebDriverWait wait;
+
+  public GmailMessageWidgetPO(WebDriver driver, WebDriverWait wait) {
+    this.driver = driver;
+    this.wait = wait;
     PageFactory.initElements(driver, this);
   }
 
@@ -58,7 +66,7 @@ public class GmailMessageWidgetPO {
   }
 
   public boolean isWarningMessageIsVisible() {
-    return warningElement.isDisplayed();
+    return wait.until(ExpectedConditions.visibilityOf(warningElement)).isDisplayed();
   }
 
   public void clickWarningOkButton() {
@@ -66,8 +74,9 @@ public class GmailMessageWidgetPO {
   }
 
   public void fixAddress(String correctAddress) {
+    JavascriptExecutor executor = (JavascriptExecutor) driver;
     messageBodyElement.sendKeys(Keys.chord(Keys.CONTROL, Keys.SHIFT, "T"));
-    closeIncorrectMailAddressElement.click();
+    executor.executeScript("arguments[0].click();", closeIncorrectMailAddressElement);
     addressElement.sendKeys(correctAddress);
   }
 }

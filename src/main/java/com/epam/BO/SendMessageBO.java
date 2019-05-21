@@ -21,7 +21,7 @@ public class SendMessageBO {
   }
 
   public void openFillAndSendMessage(MailModel mail) {
-    GmailMessageWidgetPO messageWidget = new GmailMessageWidgetPO(driver);
+    GmailMessageWidgetPO messageWidget = new GmailMessageWidgetPO(driver, wait);
     LOG.info("Open message widget.");
     new GmailHomePO(driver, wait).clickComposeButton();
     LOG.info("Fill message.");
@@ -33,12 +33,12 @@ public class SendMessageBO {
   }
 
   public boolean checkIsWarningMessageDisplay() {
-    GmailMessageWidgetPO messageWidget = new GmailMessageWidgetPO(driver);
+    GmailMessageWidgetPO messageWidget = new GmailMessageWidgetPO(driver, wait);
     return messageWidget.isWarningMessageIsVisible();
   }
 
   public void fixMailAdrressAndSend(MailModel mail) {
-    GmailMessageWidgetPO messageWidget = new GmailMessageWidgetPO(driver);
+    GmailMessageWidgetPO messageWidget = new GmailMessageWidgetPO(driver, wait);
     messageWidget.clickWarningOkButton();
     LOG.info("Fix mail adrress.");
     messageWidget.fixAddress(mail.getAddress());
