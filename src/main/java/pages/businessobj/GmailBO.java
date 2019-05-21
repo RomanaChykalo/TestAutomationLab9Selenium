@@ -1,17 +1,14 @@
 package pages.businessobj;
 
-import data.Consts;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 import pages.pagemodels.GmailPage;
 
-public class EmailBO {
+public class GmailBO {
     private GmailPage gmailPage;
 
-    public EmailBO() {}
+    public GmailBO() {}
 
-    public EmailBO(GmailPage gmailPage) {
+    public GmailBO(GmailPage gmailPage) {
         this.gmailPage = gmailPage;
     }
 

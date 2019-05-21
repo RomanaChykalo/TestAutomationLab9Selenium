@@ -19,9 +19,6 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//div[@id='identifierNext']//span")
     private Button loginNextBtn;
 
-    @FindBy(xpath = "//h1/content")
-    private Label helloField;
-
     @FindBy(xpath = "//input[@type='password']")
     private Input passwField;
 
@@ -37,10 +34,6 @@ public class LoginPage extends BasePage {
 
     public Button getLoginNextBtn() {
         return loginNextBtn;
-    }
-
-    public Label getHelloField() {
-        return helloField;
     }
 
     public Input getPasswField() {

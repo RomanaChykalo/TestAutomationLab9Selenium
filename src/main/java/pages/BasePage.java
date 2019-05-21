@@ -11,8 +11,6 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class BasePage {
-    Logger logger = LogManager.getLogger(BasePage.class);
-
     private WebDriver driver;
 
     public BasePage() {

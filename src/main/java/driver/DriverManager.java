@@ -23,7 +23,7 @@ public class DriverManager {
             DriverPropertyManager.setSystemWebDriverProperty();
             DRIVER_POOL.set(new ChromeDriver());
             DRIVER_POOL.get().manage().window().maximize();
-            DRIVER_POOL.get().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+            DRIVER_POOL.get().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         }
         return DRIVER_POOL.get();
     }

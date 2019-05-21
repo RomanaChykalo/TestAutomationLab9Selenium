@@ -58,7 +58,7 @@ public class GmailPage extends BasePage {
 
 
     public GmailPage() {
-        expWait(30).until(ExpectedConditions.visibilityOf(gmailLogo.getWebElement()));
+        expWait(30).until(ExpectedConditions.elementToBeClickable(gmailLogo.getWebElement()));
     }
 
     public Label getGmailLogo() {
