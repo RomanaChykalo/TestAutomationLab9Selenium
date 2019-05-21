@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import util.PageObject;
 import web_elements.Alert;
 import web_elements.Button;
 import web_elements.CheckBox;
@@ -43,9 +42,6 @@ public class GmailHomePage extends PageObject {
 
     @FindBy(xpath = "//*[contains(@class,'pG')]")
     private List<CheckBox> importantMessageCheckboxes;
-
-    @FindBy(xpath = "//*[contains(@class,'J-Ke n0') and contains(@title,'Inbox')]")
-    private WebElement inboxButtonInGmailPage;
 
     @FindBy(xpath = " //*[contains(text(), 'Conversation marked as important.')]")
     private Alert conversationAsImportantMessage;

@@ -30,39 +30,31 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
     @Override
     public Object decorate(ClassLoader loader, Field field) {
         Class<IElement> decoratableClass = decoratableClass(field);
-        // если класс поля декорируемый
         if (decoratableClass != null) {
             ElementLocator locator = factory.createLocator(field);
             if (locator == null) {
                 return null;
             }
-
             if (List.class.isAssignableFrom(field.getType())) {
                 return createList(loader, locator, decoratableClass);
             }
-
             return createElement(loader, locator, decoratableClass);
         }
         return super.decorate(loader, field);
     }
 
     private Class<IElement> decoratableClass(Field field) {
-
         Class<?> clazz = field.getType();
-
         if (List.class.isAssignableFrom(clazz)) {
 
-            // для списка обязательно должна быть задана аннотация
             if (field.getAnnotation(FindBy.class) == null &&
                     field.getAnnotation(FindBys.class) == null) {
                 return null;
             }
-
             Type genericType = field.getGenericType();
             if (!(genericType instanceof ParameterizedType)) {
                 return null;
             }
-            // получаем класс для элементов списка
             clazz = (Class<?>) ((ParameterizedType) genericType).
                     getActualTypeArguments()[0];
         }
@@ -75,7 +67,6 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
         }
     }
 
-
     protected IElement createElement(ClassLoader loader,
                                      ElementLocator locator,
                                      Class<IElement> clazz) {
@@ -83,12 +74,9 @@ public class CustomFieldDecorator extends DefaultFieldDecorator {
         return WrapperFactory.createInstance(clazz, proxy);
     }
 
-    protected List<IElement> createList(ClassLoader loader,
-                                        ElementLocator locator,
+    protected List<IElement> createList(ClassLoader loader, ElementLocator locator,
                                         Class<IElement> clazz) {
-
-        InvocationHandler handler =
-                new LocatingCustomElementListHandler(locator, clazz);
+        InvocationHandler handler = new LocatingCustomElementListHandler(locator, clazz);
         List<IElement> elements =
                 (List<IElement>) Proxy.newProxyInstance(
                         loader, new Class[] {List.class}, handler);

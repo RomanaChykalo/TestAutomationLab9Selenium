@@ -5,7 +5,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import util.DriverManager;
-import util.PageObject;
 import web_elements.Button;
 import web_elements.TextInput;
 

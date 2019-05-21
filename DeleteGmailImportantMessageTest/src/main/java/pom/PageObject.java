@@ -1,8 +1,9 @@
-package util;
+package pom;
 
 import decorator.CustomFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import util.DriverManager;
 
 public class PageObject {
     protected WebDriverWait wait;
