@@ -17,7 +17,6 @@ public class GmailDraftMessageBO {
     private GmailMailForm gmailMailFormObject;
     private GmailDraftForm gmailDraftFormObject;
     private int numberOfDraftMessagesBeforeAddingNewDraftLetter;
-//    private int numberOfDraftMessagesAfterAddingNewDraftLetter;
 
     public GmailDraftMessageBO() {
         driver = driverWrapperInstance.getDriver();

@@ -28,7 +28,9 @@ public class GmailPagesTest {
         draftMessageBO.composeDraftLetterAndExit();
         logger.info("Successfully composed drafted letter and exited");
         Integer expectedResult = draftMessageBO.getNumberOfDraftMessagesBeforeAddingNewDraftLetter() + ONE;
-        Assert.assertEquals(Integer.valueOf(draftMessageBO.getNumberOfDraftMessagesAfterAddingNewDraftLetter()), expectedResult);
+        Assert.assertEquals
+                (Integer.valueOf(draftMessageBO.getNumberOfDraftMessagesAfterAddingNewDraftLetter()),
+                        expectedResult);
         logger.info("Successfully added letter to drafted section");
         draftMessageBO.openDraftMessagesAndSendDraftedLetter();
         logger.info("Email was sent successfully");
