@@ -1,4 +1,4 @@
-package edu.pageobject.pagefactory;
+package edu.gmail.pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static edu.gmail.utils.ParserJSON.getLoginProperty;
+import static edu.gmail.utils.ParserJSON.getPasswordProperty;
 
 
 public class GmailLoginPage {
@@ -30,18 +33,18 @@ public class GmailLoginPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void setUserLogin(String login) {
-        userLogin.sendKeys(login);
+    public void setUserLogin() {
+        userLogin.sendKeys(getLoginProperty());
     }
 
     public void submitLogin() {
         buttonSubmitLogin.click();
     }
 
-    public void setPassword(String password) {
+    public void setPassword() {
         (new WebDriverWait(driver, 10))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type = password]")));
-        userPassword.sendKeys(password);
+        userPassword.sendKeys(getPasswordProperty());
     }
 
     public void submitPassword() {

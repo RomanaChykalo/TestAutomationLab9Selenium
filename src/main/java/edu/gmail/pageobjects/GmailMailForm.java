@@ -1,4 +1,4 @@
-package edu.pageobject.pagefactory;
+package edu.gmail.pageobjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,10 +7,14 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static edu.gmail.utils.ParserJSON.*;
+
 
 public class GmailMailForm {
 
     private WebDriver driver;
+
+    private static String subject;
 
     @FindBy(xpath = "//div[@class = 'T-I J-J5-Ji T-I-KE L3']")
     private WebElement buttonCompose;
@@ -32,25 +36,30 @@ public class GmailMailForm {
         PageFactory.initElements(driver, this);
     }
 
+    public static String getSubject() {
+        return subject;
+    }
+
     public void composeEmail() {
         (new WebDriverWait(driver, 15))
                 .until(ExpectedConditions.elementToBeClickable(buttonCompose));
         buttonCompose.click();
     }
 
-    public void setAddress(String address) {
+    public void setAddress() {
         (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.visibilityOf(addressField));
-        addressField.sendKeys(address);
+        addressField.sendKeys(getAddressProperty());
     }
 
-    public void setTopic(String topic) {
-        topicField.sendKeys(topic);
+    public void setSubject() {
+        subject = getSubjectProperty() + String.valueOf(Math.random());
+        topicField.sendKeys(subject);
     }
 
-    public void writeMessage(String message) {
+    public void writeMessage() {
         messageField.click();
-        messageField.sendKeys(message);
+        messageField.sendKeys(getMessageProperty());
     }
 
     public void exitFromLetter() {
