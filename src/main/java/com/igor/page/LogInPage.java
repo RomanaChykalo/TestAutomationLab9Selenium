@@ -13,13 +13,11 @@ public class LogInPage extends BasePage{
     private TextArea passwordField;
 
     public void setUsernameAndSubmit(String username){
-        usernameField.sendKeys(username);
-        usernameField.sendKeys(Keys.ENTER);
+        usernameField.typeAndSubmit(username);
     }
 
     public void setPasswordAndSubmit(String password){
         webDriverWait.until(ExpectedConditions.visibilityOf(passwordField.getWebElement()));
-        passwordField.sendKeys(password);
-        passwordField.sendKeys(Keys.ENTER);
+        passwordField.typeAndSubmit(password);
     }
 }

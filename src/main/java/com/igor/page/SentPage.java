@@ -8,7 +8,7 @@ public class SentPage extends BasePage{
     private Label sentLetter;
 
     public String getLetter(){
-        return sentLetter.getText();
+        return sentLetter.isEmpty() ? "" : sentLetter.getText();
     }
 }
 

@@ -2,7 +2,6 @@ package com.igor.page.widget;
 
 import com.igor.decorator.element.Button;
 import com.igor.decorator.element.Element;
-import com.igor.decorator.element.Label;
 import com.igor.decorator.element.TextArea;
 import com.igor.page.BasePage;
 import org.openqa.selenium.*;
@@ -37,12 +36,21 @@ public class NewMessageWidget extends BasePage {
     public void setMessageField(String message) { messageField.sendKeys(message); }
 
     public void clickToSendButton() {
-        sendButton.click();
+        if(sendButton.isClickable()) {
+            sendButton.click();
+        }else{
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(sendButton.getWebElement()));
+        }
     }
 
     public void clickToDeleteContact() {
         messageField.sendKeys(Keys.chord(Keys.CONTROL, Keys.SHIFT, "B"));
         webDriverWait.until(ExpectedConditions.visibilityOf(receiverArea.getWebElement()));
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteContact.getWebElement())).click();
+        if(deleteContact.isClickable()){
+            deleteContact.click();
+        }
+        else {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteContact.getWebElement())).click();
+        }
     }
 }

@@ -6,6 +6,10 @@ public class Label extends Element {
         super(webElement);
     }
 
+    public boolean isEmpty(){
+        return webElement.getText().equals("");
+    }
+
     public String getText(){
         return webElement.getText();
     }

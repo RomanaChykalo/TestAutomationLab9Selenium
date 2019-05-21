@@ -15,13 +15,20 @@ public class MainPage extends BasePage{
     private Button searchButton;
 
     public void clickToComposeButton(){
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(composeButton.getWebElement())).click();
+        if (composeButton.isClickable()) {
+            composeButton.click();
+        } else {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(composeButton.getWebElement())).click();
+        }
     }
 
     public void goToSentPage(){
-        searchField.clear();
-        searchField.sendKeys("in:sent");
-        searchButton.click();
+        searchField.clearAndType("in:sent");
+        if (searchButton.isClickable()) {
+            searchButton.click();
+        } else {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(searchButton.getWebElement())).click();
+        }
         webDriverWait.until(ExpectedConditions.urlContains("sent"));
     }
 }
