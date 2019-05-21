@@ -23,7 +23,7 @@ public class GmailMessageWidgetPO {
   @FindBy(css = "div.dC>div:nth-child(1)")
   private WebElement sendButtonElement;
 
-  @FindBy(css = "div.Kj-JD[role=\"alertdialog\"]")
+  @FindBy(css = "div.Kj-JD[role='alertdialog']")
   private WebElement warningElement;
 
   @FindBy(name = "ok")

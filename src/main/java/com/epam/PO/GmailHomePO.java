@@ -15,7 +15,7 @@ public class GmailHomePO {
   @FindBy(css = "div.vh")
   private WebElement sentMessageIdentifier;
 
-  @FindBy(css = "a[href=\"https://mail.google.com/mail/u/0/#sent\"]")
+  @FindBy(css = "a[href='https://mail.google.com/mail/u/0/#sent']")
   private WebElement sentPageOpenElement;
 
   private WebDriverWait wait;

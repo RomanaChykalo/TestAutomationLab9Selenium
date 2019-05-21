@@ -2,103 +2,103 @@
 <testng-results skipped="0" failed="0" ignored="0" total="5" passed="5">
   <reporter-output>
   </reporter-output>
-  <suite name="GoogleMailTestSuite" duration-ms="32975" started-at="2019-05-21T15:15:46 EEST" finished-at="2019-05-21T15:16:19 EEST">
+  <suite name="GoogleMailTestSuite" duration-ms="32309" started-at="2019-05-21T16:40:36 EEST" finished-at="2019-05-21T16:41:08 EEST">
     <groups>
     </groups>
-    <test name="GmailTest" duration-ms="32975" started-at="2019-05-21T15:15:46 EEST" finished-at="2019-05-21T15:16:19 EEST">
+    <test name="GmailTest" duration-ms="32309" started-at="2019-05-21T16:40:36 EEST" finished-at="2019-05-21T16:41:08 EEST">
       <class name="com.epam.GoogleMailTestSuite">
-        <test-method status="PASS" signature="init()[pri:0, instance:com.epam.GoogleMailTestSuite@31610302]" name="init" is-config="true" duration-ms="2993" started-at="2019-05-21T15:15:46 EEST" finished-at="2019-05-21T15:15:49 EEST">
+        <test-method status="PASS" signature="init()[pri:0, instance:com.epam.GoogleMailTestSuite@544fe44c]" name="init" is-config="true" duration-ms="2855" started-at="2019-05-21T16:40:36 EEST" finished-at="2019-05-21T16:40:39 EEST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- init -->
-        <test-method status="PASS" signature="init()[pri:0, instance:com.epam.GoogleMailTestSuite@31610302]" name="init" is-config="true" duration-ms="2965" started-at="2019-05-21T15:15:46 EEST" finished-at="2019-05-21T15:15:49 EEST">
+        <test-method status="PASS" signature="init()[pri:0, instance:com.epam.GoogleMailTestSuite@544fe44c]" name="init" is-config="true" duration-ms="2855" started-at="2019-05-21T16:40:36 EEST" finished-at="2019-05-21T16:40:39 EEST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- init -->
-        <test-method status="PASS" signature="init()[pri:0, instance:com.epam.GoogleMailTestSuite@31610302]" name="init" is-config="true" duration-ms="2616" started-at="2019-05-21T15:15:46 EEST" finished-at="2019-05-21T15:15:48 EEST">
+        <test-method status="PASS" signature="init()[pri:0, instance:com.epam.GoogleMailTestSuite@544fe44c]" name="init" is-config="true" duration-ms="3067" started-at="2019-05-21T16:40:36 EEST" finished-at="2019-05-21T16:40:39 EEST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- init -->
-        <test-method status="PASS" signature="GmailTest(com.epam.model.UserModel)[pri:0, instance:com.epam.GoogleMailTestSuite@31610302]" name="GmailTest" duration-ms="14113" started-at="2019-05-21T15:15:48 EEST" data-provider="loginData" finished-at="2019-05-21T15:16:02 EEST">
+        <test-method status="PASS" signature="GmailTest(com.epam.model.UserModel)[pri:0, instance:com.epam.GoogleMailTestSuite@544fe44c]" name="GmailTest" duration-ms="14391" started-at="2019-05-21T16:40:39 EEST" data-provider="loginData" finished-at="2019-05-21T16:40:53 EEST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[com.epam.model.UserModel@3be65110]]>
+                <![CDATA[com.epam.model.UserModel@76d69907]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- GmailTest -->
-        <test-method status="PASS" signature="GmailTest(com.epam.model.UserModel)[pri:0, instance:com.epam.GoogleMailTestSuite@31610302]" name="GmailTest" duration-ms="14462" started-at="2019-05-21T15:15:49 EEST" data-provider="loginData" finished-at="2019-05-21T15:16:03 EEST">
+        <test-method status="PASS" signature="GmailTest(com.epam.model.UserModel)[pri:0, instance:com.epam.GoogleMailTestSuite@544fe44c]" name="GmailTest" duration-ms="13832" started-at="2019-05-21T16:40:39 EEST" data-provider="loginData" finished-at="2019-05-21T16:40:53 EEST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[com.epam.model.UserModel@52b680f9]]>
+                <![CDATA[com.epam.model.UserModel@34b9581c]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- GmailTest -->
-        <test-method status="PASS" signature="GmailTest(com.epam.model.UserModel)[pri:0, instance:com.epam.GoogleMailTestSuite@31610302]" name="GmailTest" duration-ms="14791" started-at="2019-05-21T15:15:49 EEST" data-provider="loginData" finished-at="2019-05-21T15:16:03 EEST">
+        <test-method status="PASS" signature="GmailTest(com.epam.model.UserModel)[pri:0, instance:com.epam.GoogleMailTestSuite@544fe44c]" name="GmailTest" duration-ms="14760" started-at="2019-05-21T16:40:39 EEST" data-provider="loginData" finished-at="2019-05-21T16:40:54 EEST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[com.epam.model.UserModel@6f601bf7]]>
+                <![CDATA[com.epam.model.UserModel@11f43f39]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- GmailTest -->
-        <test-method status="PASS" signature="deinit()[pri:0, instance:com.epam.GoogleMailTestSuite@31610302]" name="deinit" is-config="true" duration-ms="0" started-at="2019-05-21T15:16:02 EEST" finished-at="2019-05-21T15:16:02 EEST">
+        <test-method status="PASS" signature="deinit()[pri:0, instance:com.epam.GoogleMailTestSuite@544fe44c]" name="deinit" is-config="true" duration-ms="0" started-at="2019-05-21T16:40:53 EEST" finished-at="2019-05-21T16:40:53 EEST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- deinit -->
-        <test-method status="PASS" signature="init()[pri:0, instance:com.epam.GoogleMailTestSuite@31610302]" name="init" is-config="true" duration-ms="2172" started-at="2019-05-21T15:16:02 EEST" finished-at="2019-05-21T15:16:04 EEST">
+        <test-method status="PASS" signature="init()[pri:0, instance:com.epam.GoogleMailTestSuite@544fe44c]" name="init" is-config="true" duration-ms="2137" started-at="2019-05-21T16:40:53 EEST" finished-at="2019-05-21T16:40:55 EEST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- init -->
-        <test-method status="PASS" signature="init()[pri:0, instance:com.epam.GoogleMailTestSuite@31610302]" name="init" is-config="true" duration-ms="2144" started-at="2019-05-21T15:16:03 EEST" finished-at="2019-05-21T15:16:05 EEST">
+        <test-method status="PASS" signature="deinit()[pri:0, instance:com.epam.GoogleMailTestSuite@544fe44c]" name="deinit" is-config="true" duration-ms="0" started-at="2019-05-21T16:40:53 EEST" finished-at="2019-05-21T16:40:53 EEST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deinit -->
+        <test-method status="PASS" signature="init()[pri:0, instance:com.epam.GoogleMailTestSuite@544fe44c]" name="init" is-config="true" duration-ms="2115" started-at="2019-05-21T16:40:53 EEST" finished-at="2019-05-21T16:40:55 EEST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- init -->
-        <test-method status="PASS" signature="deinit()[pri:0, instance:com.epam.GoogleMailTestSuite@31610302]" name="deinit" is-config="true" duration-ms="0" started-at="2019-05-21T15:16:03 EEST" finished-at="2019-05-21T15:16:03 EEST">
+        <test-method status="PASS" signature="deinit()[pri:0, instance:com.epam.GoogleMailTestSuite@544fe44c]" name="deinit" is-config="true" duration-ms="1" started-at="2019-05-21T16:40:54 EEST" finished-at="2019-05-21T16:40:54 EEST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- deinit -->
-        <test-method status="PASS" signature="deinit()[pri:0, instance:com.epam.GoogleMailTestSuite@31610302]" name="deinit" is-config="true" duration-ms="1" started-at="2019-05-21T15:16:03 EEST" finished-at="2019-05-21T15:16:03 EEST">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- deinit -->
-        <test-method status="PASS" signature="GmailTest(com.epam.model.UserModel)[pri:0, instance:com.epam.GoogleMailTestSuite@31610302]" name="GmailTest" duration-ms="13336" started-at="2019-05-21T15:16:04 EEST" data-provider="loginData" finished-at="2019-05-21T15:16:18 EEST">
+        <test-method status="PASS" signature="GmailTest(com.epam.model.UserModel)[pri:0, instance:com.epam.GoogleMailTestSuite@544fe44c]" name="GmailTest" duration-ms="13342" started-at="2019-05-21T16:40:55 EEST" data-provider="loginData" finished-at="2019-05-21T16:41:08 EEST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[com.epam.model.UserModel@7a2141a]]>
+                <![CDATA[com.epam.model.UserModel@4ec0fe00]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- GmailTest -->
-        <test-method status="PASS" signature="GmailTest(com.epam.model.UserModel)[pri:0, instance:com.epam.GoogleMailTestSuite@31610302]" name="GmailTest" duration-ms="13379" started-at="2019-05-21T15:16:05 EEST" data-provider="loginData" finished-at="2019-05-21T15:16:19 EEST">
+        <test-method status="PASS" signature="GmailTest(com.epam.model.UserModel)[pri:0, instance:com.epam.GoogleMailTestSuite@544fe44c]" name="GmailTest" duration-ms="12913" started-at="2019-05-21T16:40:55 EEST" data-provider="loginData" finished-at="2019-05-21T16:41:08 EEST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[com.epam.model.UserModel@5e85ff47]]>
+                <![CDATA[com.epam.model.UserModel@7f4b163]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- GmailTest -->
-        <test-method status="PASS" signature="deinit()[pri:0, instance:com.epam.GoogleMailTestSuite@31610302]" name="deinit" is-config="true" duration-ms="0" started-at="2019-05-21T15:16:18 EEST" finished-at="2019-05-21T15:16:18 EEST">
+        <test-method status="PASS" signature="deinit()[pri:0, instance:com.epam.GoogleMailTestSuite@544fe44c]" name="deinit" is-config="true" duration-ms="0" started-at="2019-05-21T16:41:08 EEST" finished-at="2019-05-21T16:41:08 EEST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- deinit -->
-        <test-method status="PASS" signature="deinit()[pri:0, instance:com.epam.GoogleMailTestSuite@31610302]" name="deinit" is-config="true" duration-ms="0" started-at="2019-05-21T15:16:19 EEST" finished-at="2019-05-21T15:16:19 EEST">
+        <test-method status="PASS" signature="deinit()[pri:0, instance:com.epam.GoogleMailTestSuite@544fe44c]" name="deinit" is-config="true" duration-ms="1" started-at="2019-05-21T16:41:08 EEST" finished-at="2019-05-21T16:41:08 EEST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- deinit -->

@@ -14,7 +14,7 @@ public class GmailLoginPO {
   @FindBy(className = "CwaK9")
   private WebElement mailNextButton;
 
-  @FindBy(css = "input.whsOnd.zHQkBf[type=\"password\"]")
+  @FindBy(css = "input.whsOnd.zHQkBf[type='password']")
   private WebElement passwordInputElement;
 
   @FindBy(id = "passwordNext")
